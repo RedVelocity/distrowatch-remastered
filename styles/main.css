@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root Styles */
+html {
+  @apply text-[14px] md:text-[11px];
+}
+body {
+  @apply bg-gray-100;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Components */
+@layer components {
+  .card {
+    @apply rounded-l rounded-br shadow rounded-tr-xl;
+  }
+}
+
+/* Styles */
