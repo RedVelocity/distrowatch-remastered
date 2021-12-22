@@ -3,7 +3,7 @@ import { load } from 'cheerio';
 
 export default async (req, res) => {
   // const { url } = req.query;
-  const API_ENDPOINT = `https://distrowatch.com/mx`;
+  const API_ENDPOINT = `https://distrowatch.com/popos`;
 
   try {
     const { data } = await axios.get(API_ENDPOINT, {
@@ -21,21 +21,26 @@ export default async (req, res) => {
         .end();
     // Header
     const header = '.TablesTitle';
-    const attributes = [];
+    let attributes = {};
     const title = $(header).children('h1').text();
     const logo = $(header).children('img').attr('src');
     const description = $(ignore(header, 'ul, b, a, div, h1, img'))
       .text()
       .trim();
-    console.log(`description=>`, description);
     $(header)
       .find('ul > li')
-      .each((_, el) =>
-        attributes.push({
-          [`${$(el).children('b').text()}`.replace(':', '')]: $(el)
-            .children('a')
-            .text(),
-        })
+      .each(
+        (_, el) =>
+          (attributes = {
+            ...attributes,
+            [`${$(el).children('b').text()}`]: $(el)
+              .children('a, font')
+              // .not('b')
+              .map(function () {
+                return $(this).text().trim();
+              })
+              .get(),
+          })
       );
     // Summary
     const summary = [];
@@ -43,7 +48,10 @@ export default async (req, res) => {
       .find('tr')
       .each((_, el) =>
         summary.push({
-          [`${$(el).children('th').text()}`]: $(el).children('td').text(),
+          [`${$(el).children('th').text()}`]: $(el)
+            .children('td')
+            .text()
+            .trim(),
         })
       );
     res

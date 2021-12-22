@@ -1,8 +1,6 @@
 const colors = {
-  cool: '#00bbff',
-  mild: '#f090cc',
-  hot: '#ef6a67',
-  dark: '#262d4a',
+  primary: '#FDFFE3',
+  secondary: '#0B3B24',
 };
 
 module.exports = colors;

@@ -4,6 +4,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 module.exports = withBundleAnalyzer({
   images: {
-    domains: ['img.icons8.com'],
+    domains: ['distrowatch.com'],
   },
 });
