@@ -63,7 +63,7 @@ const getData = async () => {
   }
 };
 
-export const getStaticProps = async (_) => ({
+export const getStaticProps = async () => ({
   props: {
     pageData: await getData(),
   },
