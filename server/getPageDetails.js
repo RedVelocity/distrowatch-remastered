@@ -3,7 +3,6 @@ import { load } from 'cheerio';
 
 const getPageDetails = async (slug) => {
   const API_ENDPOINT = `https://distrowatch.com/${slug}`;
-
   try {
     const { data } = await axios.get(API_ENDPOINT, {
       headers: {
@@ -12,8 +11,12 @@ const getPageDetails = async (slug) => {
       },
     });
     const $ = load(data);
-    if ($('body').contains('The distribution you requested does not exist'))
+    // Throw error if distro does not exist
+    if (
+      $('body').text().includes('The page you requested is no longer available')
+    )
       throw new Error(404);
+    // Helper function
     const ignore = (el, sel) =>
       $(el)
         .clone()
