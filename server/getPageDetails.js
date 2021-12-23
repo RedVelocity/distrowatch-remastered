@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-export default async (req, res) => {
+const getPageDetails = async (slug) => {
   // const { url } = req.query;
-  const API_ENDPOINT = `https://distrowatch.com/popos`;
+  const API_ENDPOINT = `https://distrowatch.com/${slug}`;
 
   try {
     const { data } = await axios.get(API_ENDPOINT, {
@@ -36,9 +36,7 @@ export default async (req, res) => {
             [`${$(el).children('b').text()}`]: $(el)
               .children('a, font')
               // .not('b')
-              .map(function () {
-                return $(this).text().trim();
-              })
+              .map((__, e) => $(e).text().trim())
               .get(),
           })
       );
@@ -54,11 +52,11 @@ export default async (req, res) => {
             .trim(),
         })
       );
-    res
-      .status(200)
-      .json({ header: { title, attributes, logo, description }, summary });
+    return { header: { title, attributes, logo, description }, summary };
   } catch (error) {
-    console.log(`error`, error);
-    res.status(422).json({ data: String(error) });
+    // console.log(`error`, error);
+    return { data: String(error) };
   }
 };
+
+export default getPageDetails;
