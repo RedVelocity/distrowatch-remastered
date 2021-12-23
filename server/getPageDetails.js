@@ -2,7 +2,6 @@ import axios from 'axios';
 import { load } from 'cheerio';
 
 const getPageDetails = async (slug) => {
-  // const { url } = req.query;
   const API_ENDPOINT = `https://distrowatch.com/${slug}`;
 
   try {
@@ -13,6 +12,8 @@ const getPageDetails = async (slug) => {
       },
     });
     const $ = load(data);
+    if ($('body').contains('The distribution you requested does not exist'))
+      throw new Error(404);
     const ignore = (el, sel) =>
       $(el)
         .clone()
@@ -55,7 +56,7 @@ const getPageDetails = async (slug) => {
     return { header: { title, attributes, logo, description }, summary };
   } catch (error) {
     // console.log(`error`, error);
-    return { data: String(error) };
+    return 404;
   }
 };
 

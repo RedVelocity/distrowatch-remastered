@@ -6,9 +6,10 @@ import getPageDetails from '../../server/getPageDetails';
 
 export const getStaticProps = async (context) => {
   const { slug } = context.params;
+  const pageData = await getPageDetails(slug);
   return {
     props: {
-      pageData: await getPageDetails(slug),
+      pageData,
     },
   };
 };
@@ -17,20 +18,22 @@ export const getStaticPaths = async () => {
   const paths = await getDistroList();
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
 const DistroDetails = ({ pageData }) => {
   const router = useRouter();
-  getDistroList();
 
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+  if (pageData === 404) {
+    return <h1>Distro Not Found</h1>;
+  }
 
   return (
-    <div className="container max-w-screen-md">
+    <div className="max-w-screen-md p-4 m-4 rounded-md shadow-md bg-primary">
       <h1>{pageData.header?.title}</h1>
       <div className="flex items-center justify-evenly">
         <div className="m-4">

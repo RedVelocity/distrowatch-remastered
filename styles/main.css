@@ -19,18 +19,15 @@ body {
 
 @layer base {
   h1 {
-    @apply p-4 text-2xl font-bold text-center uppercase rounded invert-text;
+    @apply p-2 text-2xl font-bold text-center uppercase rounded invert-text;
+  }
+  h2 {
+    @apply p-2 text-xl font-bold text-center uppercase rounded invert-text;
   }
   li {
     @apply py-0.5;
   }
   p {
     @apply p-4 text-sm italic;
-  }
-}
-
-@layer components {
-  .container {
-    @apply p-4 m-4 rounded-md shadow-md bg-primary;
   }
 }
