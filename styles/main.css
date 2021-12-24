@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 /* Root Styles */
-/* html {
-  @apply text-[14px] md:text-[11px];
-}*/
+html {
+  @apply text-[14px] md:text-[12px] lg:text-[14px];
+}
 body {
-  @apply bg-stone-100;
+  @apply bg-primary;
   /* font-family: 'Montserrat', sans-serif; */
 }
 
@@ -28,6 +28,6 @@ body {
     @apply py-0.5;
   }
   p {
-    @apply p-4 text-sm italic;
+    @apply p-2 italic;
   }
 }

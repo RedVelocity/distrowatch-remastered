@@ -7,6 +7,7 @@ import getPageDetails from '../../server/getPageDetails';
 export const getStaticProps = async (context) => {
   const { slug } = context.params;
   const pageData = await getPageDetails(slug);
+  if (pageData === 404) return { notFound: true };
   return {
     props: {
       pageData,
@@ -28,39 +29,38 @@ const DistroDetails = ({ pageData }) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-  if (pageData === 404) {
-    return <h1>Distro Not Found</h1>;
-  }
 
   return (
-    <div className="max-w-screen-md p-4 m-4 rounded-md shadow-md bg-primary">
-      <h1>{pageData.header?.title}</h1>
-      <div className="flex items-center justify-evenly">
-        <div className="m-4">
-          <Image
-            width={96}
-            height={96}
-            src={`https://distrowatch.com/${pageData.header?.logo}`}
-            alt="logo"
-          />
+    <div className="grid lg:grid-cols-2">
+      <div className="min-h-screen p-4 shadow-xl bg-[#DBFFFE] md:p-8 lg:p-12">
+        <h1>{pageData.header?.title}</h1>
+        <div className="flex items-center my-4 justify-evenly">
+          <div className="p-6 m-4 rounded shadow bg-primary">
+            <Image
+              width={96}
+              height={96}
+              src={`https://distrowatch.com/${pageData.header?.logo}`}
+              alt="logo"
+            />
+          </div>
+          <ul className="max-w-[50%] m-2 font-semibold">
+            {pageData.header &&
+              Object.entries(pageData.header.attributes).map((key, i) => (
+                <li key={i}>
+                  {key[0]}{' '}
+                  <span
+                    className={`font-normal ${
+                      key[1][0] === 'Active' && 'text-green-500'
+                    }`}
+                  >
+                    {key[1].join(', ')}
+                  </span>
+                </li>
+              ))}
+          </ul>
         </div>
-        <ul className="max-w-[50%] m-2 font-semibold">
-          {pageData.header &&
-            Object.entries(pageData.header.attributes).map((key, i) => (
-              <li key={i}>
-                {key[0]}{' '}
-                <span
-                  className={`font-normal ${
-                    key[1][0] === 'Active' && 'text-green-500'
-                  }`}
-                >
-                  {key[1].join(', ')}
-                </span>
-              </li>
-            ))}
-        </ul>
+        <p className="text-secondary">{pageData.header?.description}</p>
       </div>
-      <p className="text-secondary">{pageData.header?.description}</p>
     </div>
   );
 };
