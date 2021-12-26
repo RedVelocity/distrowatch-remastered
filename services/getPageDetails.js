@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
-const getPageDetails = async (slug) => {
-  const API_ENDPOINT = `https://distrowatch.com/${slug}`;
+const getPageDetails = async (distro) => {
+  const API_ENDPOINT = `https://distrowatch.com/${distro}`;
   try {
     const { data } = await axios.get(API_ENDPOINT, {
       headers: {

@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import getDistroList from '../../server/getDistroList';
-import getPageDetails from '../../server/getPageDetails';
+import getDistroList from '../../services/getDistroList';
+import getPageDetails from '../../services/getPageDetails';
 
 export const getStaticProps = async (context) => {
-  const { slug } = context.params;
-  const pageData = await getPageDetails(slug);
+  const { distro } = context.params;
+  const pageData = await getPageDetails(distro);
+
   if (pageData === 404) return { notFound: true };
   return {
     props: {
@@ -32,9 +33,9 @@ const DistroDetails = ({ pageData }) => {
 
   return (
     <div className="grid lg:grid-cols-2">
-      <div className="min-h-screen canister m-4 lg:m-0">
+      <div className="min-h-screen m-4 canister lg:m-0">
         <h1>{pageData.header?.title}</h1>
-        <div className="flex items-center flex-col my-4 justify-evenly lg:flex-row">
+        <div className="flex flex-col items-center my-4 justify-evenly lg:flex-row">
           <div className="p-6 m-4 rounded shadow bg-primary">
             <Image
               width={96}
@@ -43,7 +44,7 @@ const DistroDetails = ({ pageData }) => {
               alt="logo"
             />
           </div>
-          <ul className="max-w-[50%] m-2 font-semibold text-center lg:text-left">
+          <ul className="p-2 m-2 font-semibold text-center lg:text-left lg:max-w-[50%]">
             {pageData.header &&
               Object.entries(pageData.header.attributes).map((key, i) => (
                 <li key={i}>
