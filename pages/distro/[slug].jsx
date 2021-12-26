@@ -32,9 +32,9 @@ const DistroDetails = ({ pageData }) => {
 
   return (
     <div className="grid lg:grid-cols-2">
-      <div className="min-h-screen p-4 shadow-xl bg-[#DBFFFE] md:p-8 lg:p-12">
+      <div className="min-h-screen canister m-4 lg:m-0">
         <h1>{pageData.header?.title}</h1>
-        <div className="flex items-center my-4 justify-evenly">
+        <div className="flex items-center flex-col my-4 justify-evenly lg:flex-row">
           <div className="p-6 m-4 rounded shadow bg-primary">
             <Image
               width={96}
@@ -43,7 +43,7 @@ const DistroDetails = ({ pageData }) => {
               alt="logo"
             />
           </div>
-          <ul className="max-w-[50%] m-2 font-semibold">
+          <ul className="max-w-[50%] m-2 font-semibold text-center lg:text-left">
             {pageData.header &&
               Object.entries(pageData.header.attributes).map((key, i) => (
                 <li key={i}>

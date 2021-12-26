@@ -28,6 +28,12 @@ body {
     @apply py-0.5;
   }
   p {
-    @apply p-2 italic;
+    @apply p-2 italic text-justify;
+  }
+}
+
+@layer components {
+  .canister {
+    @apply p-4 bg-[#DBFFFE] md:p-8 lg:p-12;
   }
 }
