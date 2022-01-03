@@ -34,6 +34,6 @@ body {
 
 @layer components {
   .canister {
-    @apply p-4 bg-[#DBFFFE] md:p-8 lg:p-12;
+    @apply p-4 bg-white shadow-lg md:p-8 lg:p-12;
   }
 }

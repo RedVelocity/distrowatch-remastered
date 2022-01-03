@@ -38,15 +38,15 @@ const DistroDetails = ({ pageData }) => {
       <Head>
         <title>{`Distrowatch | ${pageData.header?.title}`}</title>
       </Head>
-      <div className="grid lg:grid-cols-2">
-        <div className="m-4 lg:min-h-screen canister lg:m-0">
+      <div className="grid p-4 lg:grid-cols-2 lg:min-h-screen">
+        <div className="canister">
           <h1>{pageData.header?.title}</h1>
           <div className="flex flex-col items-center my-4 justify-evenly lg:flex-row">
-            <div className="p-6 m-4 rounded shadow bg-primary">
+            <div className="p-6 m-4 rounded-md shadow-lg bg-primary">
               <Image
                 width={96}
                 height={96}
-                src={`https://distrowatch.com/${pageData.header?.logo}`}
+                src={pageData.header?.logo}
                 alt="logo"
               />
             </div>
@@ -60,7 +60,7 @@ const DistroDetails = ({ pageData }) => {
                       className={`${
                         attribute[1].trim() === 'Active'
                           ? 'text-green-500 font-semibold'
-                          : 'font-normal'
+                          : 'font-normal text-stone-500'
                       }`}
                     >
                       {attribute[1]}

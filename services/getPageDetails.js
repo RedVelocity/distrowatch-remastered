@@ -52,7 +52,9 @@ const getPageDetails = async (distro) => {
     // Header
     const header = '.TablesTitle';
     const title = $(header).children('h1').text();
-    const logo = $(header).children('img').attr('src');
+    const logo = `https://distrowatch.com/${$(header)
+      .children('img')
+      .attr('src')}`;
     // Description, popularity & rating
     const descriptionHeaderText = $(ignore(header, 'ul, div, h1, img'))
       .text()
