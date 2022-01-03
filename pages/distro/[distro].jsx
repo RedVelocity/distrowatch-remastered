@@ -49,16 +49,16 @@ const DistroDetails = ({ pageData }) => {
             {pageData.header &&
               // attribute[0]=column heading, attribute[1]=[column values]
               pageData.header.attributes.map((attribute, i) => (
-                <li key={i}>
-                  {`${attribute.split(':')[0]}: `}
+                <li key={i} className="capitalize">
+                  {`${attribute[0]}: `}
                   <span
                     className={`${
-                      attribute.split(':')[1].trim() === 'Active'
+                      attribute[1].trim() === 'Active'
                         ? 'text-green-500 font-semibold'
                         : 'font-normal'
                     }`}
                   >
-                    {attribute.split(':')[1]}
+                    {attribute[1]}
                   </span>
                 </li>
               ))}

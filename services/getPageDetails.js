@@ -27,6 +27,7 @@ const getPageDetails = async (distro) => {
     const header = '.TablesTitle';
     const title = $(header).children('h1').text();
     const logo = $(header).children('img').attr('src');
+    // Description, popularity & rating
     const descriptionHeaderText = $(ignore(header, 'ul, div, h1, img'))
       .text()
       .trim();
@@ -38,24 +39,29 @@ const getPageDetails = async (distro) => {
     const attributes = [];
     $(header)
       .find('ul > li')
-      .each((_, el) => attributes.push($(el).text().trim()));
-    // Summary
-    const summary = [];
+      .each((_, el) => attributes.push($(el).text().trim().split(':')));
+    // Details
+    const details = [];
     $('.Info:first')
       .find('tr')
+      // Skip first two rows
+      .next()
+      .next()
       .each((_, el) =>
-        summary.push({
+        details.push({
           [`${$(el).children('th').text()}`]: $(el)
-            .children('td')
-            .text()
-            .trim(),
+            .find('td > a')
+            .map((__, e) => ({
+              [`${$(e).text().trim()}`]: $(e).attr('href'),
+            }))
+            .get(),
         })
       );
     return {
-      header: { title, attributes, logo, description },
-      summary,
-      popularity,
-      rating,
+      header: { title, attributes, logo, description: description.trim() },
+      details,
+      popularity: popularity.trim(),
+      rating: rating.trim(),
     };
   } catch (error) {
     // console.log(`error`, error);
