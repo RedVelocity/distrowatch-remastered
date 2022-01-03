@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import getDistroList from '../../services/getDistroList';
+import getDistroPaths from '../../services/getDistroPaths';
 import getPageDetails from '../../services/getPageDetails';
 
 export const getStaticProps = async (context) => {
@@ -17,7 +17,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = await getDistroList();
+  const paths = await getDistroPaths();
   return {
     paths,
     fallback: 'blocking',
@@ -30,10 +30,11 @@ const DistroDetails = ({ pageData }) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+  // console.log(`pageData`, pageData);
 
   return (
     <div className="grid lg:grid-cols-2">
-      <div className="min-h-screen m-4 canister lg:m-0">
+      <div className="m-4 lg:min-h-screen canister lg:m-0">
         <h1>{pageData.header?.title}</h1>
         <div className="flex flex-col items-center my-4 justify-evenly lg:flex-row">
           <div className="p-6 m-4 rounded shadow bg-primary">
@@ -46,15 +47,18 @@ const DistroDetails = ({ pageData }) => {
           </div>
           <ul className="p-2 m-2 font-semibold text-center lg:text-left lg:max-w-[50%]">
             {pageData.header &&
-              Object.entries(pageData.header.attributes).map((key, i) => (
+              // attribute[0]=column heading, attribute[1]=[column values]
+              pageData.header.attributes.map((attribute, i) => (
                 <li key={i}>
-                  {key[0]}{' '}
+                  {`${attribute.split(':')[0]}: `}
                   <span
-                    className={`font-normal ${
-                      key[1][0] === 'Active' && 'text-green-500'
+                    className={`${
+                      attribute.split(':')[1].trim() === 'Active'
+                        ? 'text-green-500 font-semibold'
+                        : 'font-normal'
                     }`}
                   >
-                    {key[1].join(', ')}
+                    {attribute.split(':')[1]}
                   </span>
                 </li>
               ))}
@@ -65,5 +69,4 @@ const DistroDetails = ({ pageData }) => {
     </div>
   );
 };
-
 export default DistroDetails;

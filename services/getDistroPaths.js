@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getDistroList = async () => {
+const getDistroPaths = async () => {
   const API_ENDPOINT =
     'https://raw.githubusercontent.com/jamezrin/distrowatch-data/master/rankings.json';
 
@@ -15,4 +15,4 @@ const getDistroList = async () => {
   }
 };
 
-export default getDistroList;
+export default getDistroPaths;

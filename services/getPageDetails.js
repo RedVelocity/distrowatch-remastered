@@ -25,25 +25,22 @@ const getPageDetails = async (distro) => {
         .end();
     // Header
     const header = '.TablesTitle';
-    let attributes = {};
     const title = $(header).children('h1').text();
     const logo = $(header).children('img').attr('src');
-    const description = $(ignore(header, 'ul, b, a, div, h1, img'))
+    const descriptionHeaderText = $(ignore(header, 'ul, div, h1, img'))
       .text()
       .trim();
+    const [description, popularityHeadertext] = descriptionHeaderText.split(
+      'Popularity (hits per day):'
+    );
+    const [popularity, rating] = popularityHeadertext.split(
+      'Average visitor rating:'
+    );
+    // Header Attributes
+    const attributes = [];
     $(header)
       .find('ul > li')
-      .each(
-        (_, el) =>
-          (attributes = {
-            ...attributes,
-            [`${$(el).children('b').text()}`]: $(el)
-              .children('a, font')
-              // .not('b')
-              .map((__, e) => $(e).text().trim())
-              .get(),
-          })
-      );
+      .each((_, el) => attributes.push($(el).text().trim()));
     // Summary
     const summary = [];
     $('.Info:first')
@@ -56,7 +53,12 @@ const getPageDetails = async (distro) => {
             .trim(),
         })
       );
-    return { header: { title, attributes, logo, description }, summary };
+    return {
+      header: { title, attributes, logo, description },
+      summary,
+      popularity,
+      rating,
+    };
   } catch (error) {
     // console.log(`error`, error);
     return 404;

@@ -6,4 +6,13 @@ module.exports = withBundleAnalyzer({
   images: {
     domains: ['distrowatch.com'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/distro',
+        permanent: true,
+      },
+    ];
+  },
 });
