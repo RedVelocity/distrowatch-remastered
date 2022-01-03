@@ -1,6 +1,30 @@
 import axios from 'axios';
 import { load } from 'cheerio';
 
+const getExtras = (headerText) => {
+  if (headerText.includes('Popularity (hits per day):')) {
+    const description = headerText
+      .split('Popularity (hits per day):')[0]
+      .trim();
+    const [popularityText, rating] = headerText
+      .split('Popularity (hits per day):')[1]
+      .split('rating:');
+    const popularity = {};
+    popularityText
+      .split(', ')
+      .forEach(
+        (item) =>
+          (popularity[`${item.split(':')[0].trim()}`] = item
+            .split(':')[1]
+            .trim()
+            .replace('Average visitor', ''))
+      );
+    return [description, popularity, rating];
+  }
+  const [description, rating] = headerText.split('rating:');
+  return [description.trim().replace('Average visitor', ''), {}, rating.trim()];
+};
+
 const getPageDetails = async (distro) => {
   const API_ENDPOINT = `https://distrowatch.com/${distro}`;
   try {
@@ -31,36 +55,32 @@ const getPageDetails = async (distro) => {
     const descriptionHeaderText = $(ignore(header, 'ul, div, h1, img'))
       .text()
       .trim();
-    const [description, popularityHeadertext] = descriptionHeaderText.split(
-      'Popularity (hits per day):'
-    );
-    const [popularity, rating] = popularityHeadertext.split('rating:');
+    const [description, popularity, rating] = getExtras(descriptionHeaderText);
     // Header Attributes
     const attributes = [];
     $(header)
       .find('ul > li')
       .each((_, el) => attributes.push($(el).text().trim().split(':')));
     // Details
-    const details = [];
+    const details = {};
     $('.Info:first')
       .find('tr')
       // Skip first two rows
       .next()
       .next()
-      .each((_, el) =>
-        details.push({
-          [`${$(el).children('th').text()}`]: $(el)
+      .each(
+        (_, el) =>
+          (details[`${$(el).children('th').text()}`] = $(el)
             .find('td > a')
             .map((__, e) => ({
               [`${$(e).text().trim()}`]: $(e).attr('href'),
             }))
-            .get(),
-        })
+            .get())
       );
     return {
       header: { title, attributes, logo, description: description.trim() },
       details,
-      popularity: popularity.trim(),
+      popularity,
       rating: rating.trim(),
     };
   } catch (error) {
