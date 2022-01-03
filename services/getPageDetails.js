@@ -19,14 +19,16 @@ const getExtras = (headerText) => {
             .trim()
             .replace('Average visitor', ''))
       );
-    return [description, popularity, rating];
+    return [description, popularity, rating.trim()];
   }
-  const [description, rating] = headerText.split('rating:');
-  return [description.trim().replace('Average visitor', ''), {}, rating.trim()];
+  const [description, rating] = headerText.includes('Average visitor')
+    ? headerText.split('Average visitor rating:')
+    : headerText.split('Visitor rating:');
+  return [description.trim(), {}, rating.trim()];
 };
 
 const getPageDetails = async (distro) => {
-  const API_ENDPOINT = `https://distrowatch.com/${distro}`;
+  const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${distro}`;
   try {
     const { data } = await axios.get(API_ENDPOINT, {
       headers: {
@@ -37,7 +39,7 @@ const getPageDetails = async (distro) => {
     const $ = load(data);
     // Throw error if distro does not exist
     if (
-      $('body').text().includes('The page you requested is no longer available')
+      $('body').text().includes('The distribution you requested does not exist')
     )
       throw new Error(404);
     // Helper function
@@ -78,10 +80,10 @@ const getPageDetails = async (distro) => {
             .get())
       );
     return {
-      header: { title, attributes, logo, description: description.trim() },
+      header: { title, attributes, logo, description },
       details,
       popularity,
-      rating: rating.trim(),
+      rating,
     };
   } catch (error) {
     // console.log(`error`, error);
