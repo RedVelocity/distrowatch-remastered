@@ -33,9 +33,7 @@ const getPageDetails = async (distro) => {
     const [description, popularityHeadertext] = descriptionHeaderText.split(
       'Popularity (hits per day):'
     );
-    const [popularity, rating] = popularityHeadertext.split(
-      'Average visitor rating:'
-    );
+    const [popularity, rating] = popularityHeadertext.split('rating:');
     // Header Attributes
     const attributes = [];
     $(header)
