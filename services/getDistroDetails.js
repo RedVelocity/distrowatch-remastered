@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { load } from 'cheerio';
+import Distro from '../models/Distro';
+import dbConnect from './dbConnect';
 
 const getExtras = (headerText) => {
   if (headerText.includes('Popularity (hits per day):')) {
@@ -30,63 +32,77 @@ const getExtras = (headerText) => {
 const getDistroDetails = async (distro) => {
   const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${distro}`;
   try {
-    const { data } = await axios.get(API_ENDPOINT, {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36',
-      },
-    });
-    const $ = load(data);
-    // Throw error if distro does not exist
-    if (
-      $('body').text().includes('The distribution you requested does not exist')
-    )
-      throw new Error(404);
-    // Helper function
-    const ignore = (el, sel) =>
-      $(el)
-        .clone()
-        .find(sel || '>*')
-        .remove()
-        .end();
-    // Header
-    const header = '.TablesTitle';
-    const title = $(header).children('h1').text();
-    const logo = `https://distrowatch.com/${$(header)
-      .children('img')
-      .attr('src')}`;
-    // Description, popularity & rating
-    const descriptionHeaderText = $(ignore(header, 'ul, div, h1, img'))
-      .text()
-      .trim();
-    const [description, popularity, rating] = getExtras(descriptionHeaderText);
-    // Header Attributes
-    const attributes = [];
-    $(header)
-      .find('ul > li')
-      .each((_, el) => attributes.push($(el).text().trim().split(':')));
-    // Details
-    const details = {};
-    $('.Info:first')
-      .find('tr')
-      // Skip first two rows
-      .next()
-      .next()
-      .each(
-        (_, el) =>
-          (details[`${$(el).children('th').text()}`] = $(el)
-            .find('td > a')
-            .map((__, e) => ({
-              [`${$(e).text().trim()}`]: $(e).attr('href'),
-            }))
-            .get())
+    await dbConnect();
+    const dist = await Distro.findOne({ slug: distro }).exec();
+    // console.log(`dist`, dist, distro);
+    if (!dist) {
+      const { data } = await axios.get(API_ENDPOINT, {
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36',
+        },
+      });
+      const $ = load(data);
+      // Throw error if distro does not exist
+      if (
+        $('body')
+          .text()
+          .includes('The distribution you requested does not exist')
+      )
+        throw new Error(404);
+      // Helper function
+      const ignore = (el, sel) =>
+        $(el)
+          .clone()
+          .find(sel || '>*')
+          .remove()
+          .end();
+      // Header
+      const header = '.TablesTitle';
+      const title = $(header).children('h1').text();
+      const logo = `https://distrowatch.com/${$(header)
+        .children('img')
+        .attr('src')}`;
+      // Description, popularity & rating
+      const descriptionHeaderText = $(ignore(header, 'ul, div, h1, img'))
+        .text()
+        .trim();
+      const [description, popularity, rating] = getExtras(
+        descriptionHeaderText
       );
-    return {
-      header: { title, attributes, logo, description },
-      details,
-      popularity,
-      rating,
-    };
+      // Header Attributes
+      const attributes = [];
+      $(header)
+        .find('ul > li')
+        .each((_, el) => attributes.push($(el).text().trim().split(':')));
+      // Details
+      const details = {};
+      $('.Info:first')
+        .find('tr')
+        // Skip first two rows
+        .next()
+        .next()
+        .each(
+          (_, el) =>
+            (details[`${$(el).children('th').text()}`] = $(el)
+              .find('td > a')
+              .map((__, e) => ({
+                [`${$(e).text().trim()}`]: $(e).attr('href'),
+              }))
+              .get())
+        );
+      const newDist = new Distro({
+        header: { title, attributes, logo, description },
+        details,
+        popularity,
+        rating,
+        slug: distro,
+      });
+      await newDist.save();
+      // console.log(`newDist`, newDist);
+      return JSON.stringify(newDist);
+    }
+    return JSON.stringify(dist);
   } catch (error) {
     // console.log(`error`, error);
     return 404;
