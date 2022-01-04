@@ -1,13 +1,13 @@
 import axios from 'axios';
 import dbConnect from './dbConnect';
-import buildDistroDetailsData from '../lib/buildDistroDetailsData';
+import buildDistroDetails from '../lib/buildDistroDetails';
 import Distro from '../models/Distro';
 
 const getDistroDetails = async (slug) => {
   const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${slug}`;
   try {
     await dbConnect();
-    const distro = await Distro.findOne({ slug }).exec();
+    const distro = await Distro.findOne({ slug }).lean();
     // Scrape distrowatch.com if not cached in DB
     if (!distro) {
       const { data } = await axios.get(API_ENDPOINT, {
@@ -17,8 +17,8 @@ const getDistroDetails = async (slug) => {
         },
       });
       // Call helper function to scrape data
-      const newDistro = new Distro(buildDistroDetailsData(data, slug));
-      // Save scraped data to DB
+      const newDistro = new Distro(buildDistroDetails(data, slug));
+      // Save scraped data to DB and return it
       await newDistro.save();
       return JSON.stringify(newDistro);
     }
