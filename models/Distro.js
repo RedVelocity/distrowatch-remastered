@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-const DistroSchema = new mongoose.Schema({
+const schema = {
   header: {
     title: {
       type: 'String',
@@ -17,66 +17,16 @@ const DistroSchema = new mongoose.Schema({
       type: 'String',
     },
   },
-  details: {
-    'Home Page': {
-      type: ['Mixed'],
-    },
-    'Mailing Lists': {
-      type: ['Mixed'],
-    },
-    'User Forums': {
-      type: 'Array',
-    },
-    'Alternative User Forums': {
-      type: 'Array',
-    },
-    Documentation: {
-      type: ['Mixed'],
-    },
-    Screenshots: {
-      type: ['Mixed'],
-    },
-    Screencasts: {
-      type: 'Array',
-    },
-    'Download Mirrors': {
-      type: ['Mixed'],
-    },
-    'Bug Tracker': {
-      type: ['Mixed'],
-    },
-    'Related Websites': {
-      type: ['Mixed'],
-    },
-    Reviews: {
-      type: ['Mixed'],
-    },
-    'Where To Buy or Try': {
-      type: 'Array',
-    },
-  },
-  popularity: {
-    '12 months': {
-      type: 'String',
-    },
-    '6 months': {
-      type: 'String',
-    },
-    '3 months': {
-      type: 'String',
-    },
-    '4 weeks': {
-      type: 'String',
-    },
-    '1 week': {
-      type: 'String',
-    },
-  },
+  details: {},
+  popularity: { type: 'Mixed', default: {} },
   rating: {
     type: 'String',
+    required: true,
+    default: 'No Ratings',
   },
   date: {
     type: Date,
+    required: true,
     default: Date.now,
   },
   slug: {
@@ -84,8 +34,9 @@ const DistroSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-});
+};
 
+const DistroSchema = new Schema(schema, { minimize: false });
 const Distro = mongoose.models.Distro || mongoose.model('Distro', DistroSchema);
 
 export default Distro;

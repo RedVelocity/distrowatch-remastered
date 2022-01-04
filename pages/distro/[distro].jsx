@@ -28,7 +28,6 @@ export const getStaticPaths = async () => {
 
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
-
   // const router = useRouter();
   // if (router.isFallback) {
   //   return <div>Loading...</div>;
