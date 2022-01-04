@@ -13,8 +13,7 @@ body {
     #fdffe3,
     #bfcaab,
     #829779,
-    #48684b,
-    #0b3b24
+    #48684b
   );
   /* font-family: 'Montserrat', sans-serif; */
 }
@@ -43,5 +42,8 @@ body {
 @layer components {
   .canister {
     @apply p-4 shadow-lg bg-primary md:p-8 lg:p-12 rounded-xl;
+  }
+  .pill {
+    @apply px-2 py-1 font-semibold text-center bg-white border rounded-full;
   }
 }

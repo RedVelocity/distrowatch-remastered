@@ -22,6 +22,7 @@ module.exports = {
     'consistent-return': 1,
     'import/no-extraneous-dependencies': 0,
     'linebreak-style': 0,
+    'no-nested-ternary': 1,
     'no-return-assign': [1, 'except-parens'],
     'no-unused-expressions': [
       1,

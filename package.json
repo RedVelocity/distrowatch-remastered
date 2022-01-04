@@ -1,5 +1,5 @@
 {
-  "name": "distrowatch-remaster",
+  "name": "distrowatch-remastered",
   "private": true,
   "scripts": {
     "dev": "next dev",

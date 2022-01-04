@@ -58,9 +58,11 @@ const DistroDetails = ({ pageData }) => {
                     {`${attribute[0]}: `}
                     <span
                       className={`${
-                        attribute[1].trim() === 'Active'
-                          ? 'text-green-500 font-semibold'
-                          : 'font-normal text-stone-500'
+                        attribute[0].trim() === 'Status'
+                          ? attribute[1].trim().includes('defined')
+                            ? 'text-red-500 pill'
+                            : 'text-green-500 pill'
+                          : 'text-stone-500'
                       }`}
                     >
                       {attribute[1]}
