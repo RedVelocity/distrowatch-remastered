@@ -27,7 +27,7 @@ const getExtras = (headerText) => {
   return [description.trim(), {}, rating.trim()];
 };
 
-const getPageDetails = async (distro) => {
+const getDistroDetails = async (distro) => {
   const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${distro}`;
   try {
     const { data } = await axios.get(API_ENDPOINT, {
@@ -93,4 +93,4 @@ const getPageDetails = async (distro) => {
   }
 };
 
-export default getPageDetails;
+export default getDistroDetails;

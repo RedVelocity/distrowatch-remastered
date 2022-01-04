@@ -4,10 +4,18 @@
 
 /* Root Styles */
 html {
-  @apply text-[14px] md:text-[12px] lg:text-[14px];
+  @apply text-[14px] md:text-[12px];
 }
 body {
-  @apply bg-primary;
+  @apply min-h-screen;
+  background-image: linear-gradient(
+    to right top,
+    #fdffe3,
+    #bfcaab,
+    #829779,
+    #48684b,
+    #0b3b24
+  );
   /* font-family: 'Montserrat', sans-serif; */
 }
 
@@ -34,6 +42,6 @@ body {
 
 @layer components {
   .canister {
-    @apply p-4 bg-white shadow-lg md:p-8 lg:p-12;
+    @apply p-4 shadow-lg bg-primary md:p-8 lg:p-12 rounded-xl;
   }
 }

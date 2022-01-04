@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
-import getPageDetails from '../../services/getPageDetails';
+import getDistroDetails from '../../services/getDistroDetails';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
-  const pageData = await getPageDetails(distro);
+  const pageData = await getDistroDetails(distro);
 
   if (pageData === 404) return { notFound: true };
   return {
@@ -36,22 +36,22 @@ const DistroDetails = ({ pageData }) => {
   return (
     <>
       <Head>
-        <title>{`Distrowatch | ${pageData.header?.title}`}</title>
+        <title>{`Distrowatch | ${pageData.header.title}`}</title>
       </Head>
-      <div className="grid p-4 lg:grid-cols-2 lg:min-h-screen">
+      <div className="grid max-w-screen-xl p-4 m-auto lg:grid-cols-2">
         <div className="canister">
           <h1>{pageData.header?.title}</h1>
           <div className="flex flex-col items-center my-4 justify-evenly lg:flex-row">
-            <div className="p-6 m-4 rounded-md shadow-lg bg-primary">
+            <div className="p-8 m-4 bg-white border-2 rounded-full">
               <Image
                 width={96}
                 height={96}
-                src={pageData.header?.logo}
+                src={pageData.header.logo}
                 alt="logo"
               />
             </div>
             <ul className="p-2 m-2 font-semibold text-center lg:text-left lg:max-w-[50%]">
-              {pageData.header &&
+              {
                 // attribute[0]=column heading, attribute[1]=[column values]
                 pageData.header.attributes.map((attribute, i) => (
                   <li key={i} className="capitalize">
@@ -66,7 +66,8 @@ const DistroDetails = ({ pageData }) => {
                       {attribute[1]}
                     </span>
                   </li>
-                ))}
+                ))
+              }
             </ul>
           </div>
           <p className="text-secondary">{pageData.header?.description}</p>
@@ -75,4 +76,5 @@ const DistroDetails = ({ pageData }) => {
     </>
   );
 };
+
 export default DistroDetails;
