@@ -7,25 +7,19 @@ html {
   @apply text-[14px] md:text-[12px];
 }
 body {
-  @apply min-h-screen;
-  background-image: linear-gradient(
-    to right top,
-    #fdffe3,
-    #bfcaab,
-    #829779,
-    #48684b
-  );
+  @apply min-h-screen bg-cover bg-primary;
+  background-image: url('/waves.png');
 }
 
 @layer utilities {
   .invert-text {
-    @apply bg-secondary text-primary;
+    @apply bg-accent;
   }
   .danger {
     @apply text-white bg-red-400;
   }
   .success {
-    @apply bg-green-300;
+    @apply bg-accent;
   }
 }
 
@@ -46,7 +40,7 @@ body {
 
 @layer components {
   .canister {
-    @apply p-4 shadow-lg bg-primary md:p-8 lg:p-10 rounded-xl;
+    @apply p-4 shadow bg-white/80 backdrop-blur-sm md:p-8 lg:p-10 rounded-xl;
   }
   .pill {
     @apply px-2 py-1 text-sm font-semibold text-center bg-white border rounded-full;
