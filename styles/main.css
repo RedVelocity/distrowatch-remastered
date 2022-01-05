@@ -22,10 +22,10 @@ body {
     @apply bg-secondary text-primary;
   }
   .danger {
-    @apply text-red-400;
+    @apply text-white bg-red-400;
   }
   .success {
-    @apply text-green-500;
+    @apply bg-green-300;
   }
 }
 
@@ -49,7 +49,7 @@ body {
     @apply p-4 shadow-lg bg-primary md:p-8 lg:p-10 rounded-xl;
   }
   .pill {
-    @apply px-2 py-1 font-semibold text-center bg-white border rounded-full;
+    @apply px-2 py-1 text-sm font-semibold text-center bg-white border rounded-full;
   }
   .pill-danger {
     @apply pill danger;

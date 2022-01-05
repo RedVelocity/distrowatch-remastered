@@ -5,7 +5,6 @@ const schema = {
     title: {
       type: 'String',
       required: true,
-      unique: true,
     },
     attributes: {
       type: ['Array'],

@@ -13,7 +13,7 @@ export const getStaticProps = async (context) => {
   if (pageData === 404) return { notFound: true };
   return {
     props: {
-      pageData,
+      pageData: JSON.stringify(pageData),
     },
   };
 };
