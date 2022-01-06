@@ -7,7 +7,7 @@ html {
   @apply text-[14px] md:text-[12px];
 }
 body {
-  @apply min-h-screen bg-cover bg-primary;
+  @apply min-h-screen bg-cover bg-primary backdrop-blur;
   background-image: url('/waves.png');
 }
 
@@ -40,7 +40,7 @@ body {
 
 @layer components {
   .canister {
-    @apply p-4 shadow bg-white/80 backdrop-blur-sm md:p-8 lg:p-10 rounded-xl;
+    @apply p-4 shadow bg-white/80 md:p-8 lg:p-10 rounded-xl;
   }
   .pill {
     @apply px-2 py-1 text-sm font-semibold text-center bg-white border rounded-full;
