@@ -6,7 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "git": "npm --no-git-tag-version --no-commit-hooks version patch && git add . && git commit -m"
+    "git:patch": "npm --no-git-tag-version --no-commit-hooks version patch && git add . && git commit -m",
+    "git:minor": "npm --no-git-tag-version --no-commit-hooks version minor && git add . && git commit -m",
+    "git:major": "npm --no-git-tag-version --no-commit-hooks version major && git add . && git commit -m"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -30,5 +32,5 @@
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.7"
   },
-  "version": "1.8.12"
+  "version": "1.8.13"
 }
