@@ -7,7 +7,7 @@ html {
   @apply text-[14px] md:text-[12px];
 }
 body {
-  @apply min-h-screen bg-cover bg-primary backdrop-blur;
+  @apply min-h-screen bg-cover bg-primary;
   background-image: url('/waves.png');
 }
 
