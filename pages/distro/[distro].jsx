@@ -38,11 +38,11 @@ const DistroDetails = ({ pageData }) => {
       <Head>
         <title>{`Distrowatch | ${distro.header.title}`}</title>
       </Head>
-      <div className="grid max-w-screen-xl p-4 m-auto lg:grid-cols-2">
+      <div className="grid max-w-screen-xl m-auto lg:grid-cols-2">
         <div className="canister">
           <h1>{distro.header?.title}</h1>
           <div className="flex flex-col items-center my-4 justify-evenly lg:flex-row">
-            <div className="p-8 m-4 bg-white border-2 rounded-full">
+            <div className="p-8 m-4 border-2 rounded-full bg-white">
               <Image
                 width={96}
                 height={96}
@@ -62,7 +62,7 @@ const DistroDetails = ({ pageData }) => {
                           ? attribute[1].trim().includes('defined')
                             ? 'pill-danger'
                             : 'pill-success'
-                          : 'text-stone-500'
+                          : ''
                       }`}
                     >
                       {attribute[1]}
@@ -72,7 +72,7 @@ const DistroDetails = ({ pageData }) => {
               }
             </ul>
           </div>
-          <p className="text-secondary">{distro.header.description}</p>
+          <p className="">{distro.header.description}</p>
         </div>
       </div>
     </>

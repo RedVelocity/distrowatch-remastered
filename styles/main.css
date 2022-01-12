@@ -7,13 +7,13 @@ html {
   @apply text-[14px] md:text-[12px];
 }
 body {
-  @apply min-h-screen bg-cover bg-primary backdrop-blur;
-  background-image: url('/waves.png');
+  @apply bg-cover bg-secondary backdrop-blur;
+  /* background-image: url('/waves.png'); */
 }
 
 @layer utilities {
   .invert-text {
-    @apply bg-accent;
+    @apply bg-secondary text-primary;
   }
   .danger {
     @apply text-white bg-red-400;
@@ -21,14 +21,17 @@ body {
   .success {
     @apply bg-accent;
   }
+  .heading {
+    @apply p-2 font-bold uppercase border-b-2 border-accent;
+  }
 }
 
 @layer base {
   h1 {
-    @apply p-2 text-2xl font-bold text-center uppercase rounded invert-text;
+    @apply text-2xl heading;
   }
   h2 {
-    @apply p-2 text-xl font-bold text-center uppercase rounded invert-text;
+    @apply text-xl heading;
   }
   li {
     @apply py-0.5;
@@ -40,10 +43,10 @@ body {
 
 @layer components {
   .canister {
-    @apply p-4 shadow bg-white/80 md:p-8 lg:p-10 rounded-xl;
+    @apply p-4 m-4 shadow md:p-8 lg:p-10 bg-primary rounded-xl;
   }
   .pill {
-    @apply px-2 py-1 text-sm font-semibold text-center bg-white border rounded-full;
+    @apply px-2 py-1 text-sm font-semibold text-center rounded-full;
   }
   .pill-danger {
     @apply pill danger;
