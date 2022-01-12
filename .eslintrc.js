@@ -28,7 +28,7 @@ module.exports = {
       1,
       { allowTernary: true, allowShortCircuit: true },
     ],
-    'react/prop-types': 1,
+    'react/prop-types': 0,
     'react/jsx-filename-extension': 1,
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
