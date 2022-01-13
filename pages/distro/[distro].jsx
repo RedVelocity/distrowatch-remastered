@@ -41,7 +41,7 @@ const DistroDetails = ({ pageData }) => {
       <div className="grid max-w-screen-xl m-auto lg:grid-cols-2">
         <div className="canister">
           <h1>{distro.header?.title}</h1>
-          <div className="flex flex-col items-center my-4 justify-evenly lg:flex-row">
+          <div className="flex flex-col items-center my-4 justify-evenly md:flex-row">
             <div className="p-8 m-4 border-2 rounded-full bg-white">
               <Image
                 width={96}
@@ -50,7 +50,7 @@ const DistroDetails = ({ pageData }) => {
                 alt="logo"
               />
             </div>
-            <ul className="p-2 m-2 font-semibold text-center lg:text-left lg:max-w-[50%]">
+            <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
               {
                 // attribute[0]=column heading, attribute[1]=[column values]
                 distro.header.attributes.map((attribute, i) => (
@@ -62,7 +62,7 @@ const DistroDetails = ({ pageData }) => {
                           ? attribute[1].trim().includes('defined')
                             ? 'pill-danger'
                             : 'pill-success'
-                          : ''
+                          : 'font-normal'
                       }`}
                     >
                       {attribute[1]}
