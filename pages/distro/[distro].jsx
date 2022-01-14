@@ -15,7 +15,7 @@ export const getStaticProps = async (context) => {
     const { base64, img } = await getPlaiceholder(pageData.header?.logo);
     const dist = {
       ...pageData,
-      img: {
+      logo: {
         src: img.src,
         placeholder: 'blur',
         blurDataURL: base64,
@@ -43,7 +43,8 @@ export const getStaticPaths = async () => {
 
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
-  const { img } = distro;
+  console.log(`distro`, distro);
+  const { logo } = distro;
   // const router = useRouter();
   // if (router.isFallback) {
   //   return <div>Loading...</div>;
@@ -59,7 +60,7 @@ const DistroDetails = ({ pageData }) => {
           <h1>{distro.header?.title}</h1>
           <div className="flex flex-col items-center my-4 justify-evenly md:flex-row">
             <div className="m-4 p-4 border-2 rounded-full h-48 w-48 bg-white overflow-hidden relative">
-              <Image {...img} />
+              <Image {...logo} />
             </div>
             <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
               {
