@@ -6,7 +6,7 @@ const getDistroPaths = async () => {
 
   try {
     const { data } = await axios.get(API_ENDPOINT);
-    const paths = data[19]?.distributionsRanking?.map((distro) => ({
+    const paths = data[21]?.distributionsRanking?.map((distro) => ({
       params: { distro: distro.url.replace('https://distrowatch.com/', '') },
     }));
     return paths;
