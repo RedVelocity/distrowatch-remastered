@@ -10,21 +10,22 @@ export const getStaticProps = async (context) => {
   const { distro } = context.params;
   try {
     const pageData = await getDistroDetails(distro);
-    // console.log(`pageData`, pageData);
+    // console.log(`pageData`, pageData.header.title);
     if (pageData === 404) return { notFound: true };
     const { base64, img } = await getPlaiceholder(pageData.header?.logo);
+    const dist = {
+      ...pageData,
+      img: {
+        src: img.src,
+        placeholder: 'blur',
+        blurDataURL: base64,
+        layout: 'fill',
+        objectFit: 'scale-down',
+      },
+    };
     return {
       props: {
-        pageData: JSON.stringify({
-          ...pageData,
-          img: {
-            src: img.src,
-            blurDataURL: base64,
-            placeholder: 'blur',
-            layout: 'fill',
-            objectFit: 'scale-down',
-          },
-        }),
+        pageData: JSON.stringify(dist),
       },
     };
   } catch (error) {
