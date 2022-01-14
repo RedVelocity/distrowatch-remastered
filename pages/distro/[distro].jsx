@@ -1,21 +1,35 @@
 /* eslint-disable react/prop-types */
 import Image from 'next/image';
 import Head from 'next/head';
+import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
-  const pageData = await getDistroDetails(distro);
-  // console.log(`pageData`, pageData);
-
-  if (pageData === 404) return { notFound: true };
-  return {
-    props: {
-      pageData: JSON.stringify(pageData),
-    },
-  };
+  try {
+    const pageData = await getDistroDetails(distro);
+    // console.log(`pageData`, pageData);
+    if (pageData === 404) return { notFound: true };
+    const { base64, img } = await getPlaiceholder(pageData.header?.logo);
+    return {
+      props: {
+        pageData: JSON.stringify({
+          ...pageData,
+          img: {
+            src: img.src,
+            blurDataURL: base64,
+            placeholder: 'blur',
+            layout: 'fill',
+            objectFit: 'scale-down',
+          },
+        }),
+      },
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
 };
 
 export const getStaticPaths = async () => {
@@ -28,6 +42,7 @@ export const getStaticPaths = async () => {
 
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
+  const { img } = distro;
   // const router = useRouter();
   // if (router.isFallback) {
   //   return <div>Loading...</div>;
@@ -42,13 +57,8 @@ const DistroDetails = ({ pageData }) => {
         <div className="canister">
           <h1>{distro.header?.title}</h1>
           <div className="flex flex-col items-center my-4 justify-evenly md:flex-row">
-            <div className="p-8 m-4 border-2 rounded-full bg-white">
-              <Image
-                width={96}
-                height={96}
-                src={distro.header.logo}
-                alt="logo"
-              />
+            <div className="m-4 p-4 border-2 rounded-full h-48 w-48 bg-white overflow-hidden relative">
+              <Image {...img} />
             </div>
             <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
               {
