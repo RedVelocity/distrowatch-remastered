@@ -43,7 +43,7 @@ export const getStaticPaths = async () => {
 
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
-  console.log(`distro`, distro);
+  // console.log(`distro`, distro);
   const { logo } = distro;
   // const router = useRouter();
   // if (router.isFallback) {
