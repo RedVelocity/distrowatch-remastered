@@ -51,7 +51,7 @@ const DistroDetails = ({ pageData }) => {
         <title>{`Distrowatch | ${distro.header.title}`}</title>
       </Head>
       <section className=" bg-primary h-[25rem] mx-auto flex items-center justify-center">
-        <div className="grid items-center justify-items-center holder md:grid-cols-2">
+        <div className="grid items-center justify-center mb-4 justify-items-center holder md:flex">
           <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
             <Image {...logo} />
           </div>

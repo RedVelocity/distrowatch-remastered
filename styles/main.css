@@ -32,10 +32,7 @@ body {
 
 @layer base {
   h1 {
-    @apply text-6xl heading;
-  }
-  h2 {
-    @apply text-4xl heading;
+    @apply text-5xl md:text-6xl heading;
   }
   li {
     @apply py-0.5;
