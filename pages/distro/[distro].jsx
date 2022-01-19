@@ -51,7 +51,7 @@ const DistroDetails = ({ pageData }) => {
         <title>{`Distrowatch | ${distro.header.title}`}</title>
       </Head>
       <section className=" bg-primary h-[25rem] mx-auto flex items-center justify-center">
-        <div className="flex items-center justify-center holder">
+        <div className="grid items-center justify-items-center holder md:grid-cols-2">
           <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
             <Image {...logo} />
           </div>
@@ -88,11 +88,11 @@ const DistroDetails = ({ pageData }) => {
         </section>
       )}
       <section
-        className={`bg-secondary texture h-[25rem] mx-auto flex items-center justify-center ${
+        className={`bg-secondary texture min-h-[25rem] mx-auto flex items-center justify-center ${
           banner && 'mt-20'
         }`}
       >
-        <p className="text-2xl text-gray-200 holder">
+        <p className="px-8 text-2xl text-gray-200 holder md:px-4">
           {distro.header.description}
         </p>
       </section>
