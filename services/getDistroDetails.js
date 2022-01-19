@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dbConnect from './dbConnect';
-import buildDistroDetails from '../lib/buildDistroDetails';
+import scrapeDistroDetails from '../lib/scrapeDistroDetails';
 import Distro from '../models/Distro';
 
 const getDistroDetails = async (slug) => {
@@ -18,12 +18,12 @@ const getDistroDetails = async (slug) => {
         },
       });
       // Call helper function to scrape data
+      const distroData = scrapeDistroDetails(data, slug);
       // Save scraped data to DB and return it
-      const newDistro = await Distro.findOneAndUpdate(
-        { slug },
-        buildDistroDetails(data, slug),
-        { upsert: true, new: true }
-      );
+      const newDistro = await Distro.findOneAndUpdate({ slug }, distroData, {
+        upsert: true,
+        new: true,
+      });
       // console.log(`newDistro`, newDistro);
       return newDistro.toObject();
     }
