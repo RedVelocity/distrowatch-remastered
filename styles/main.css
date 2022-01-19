@@ -7,8 +7,9 @@ html {
   @apply text-[14px] md:text-[12px] scroll-smooth;
 }
 body {
-  @apply bg-cover bg-secondary backdrop-blur;
+  /* @apply bg-cover bg-secondary backdrop-blur; */
   /* background-image: url('/waves.png'); */
+  /* @apply bg-secondary texture; */
 }
 
 @layer utilities {
@@ -22,16 +23,19 @@ body {
     @apply bg-accent;
   }
   .heading {
-    @apply p-2 font-bold uppercase border-b-2 border-accent;
+    @apply p-2 font-bold uppercase;
+  }
+  .texture {
+    background-image: url('/bg-texture.svg');
   }
 }
 
 @layer base {
   h1 {
-    @apply text-2xl heading;
+    @apply text-6xl heading;
   }
   h2 {
-    @apply text-xl heading;
+    @apply text-4xl heading;
   }
   li {
     @apply py-0.5;
@@ -53,5 +57,8 @@ body {
   }
   .pill-success {
     @apply pill success;
+  }
+  .holder {
+    @apply max-w-screen-md p-4;
   }
 }

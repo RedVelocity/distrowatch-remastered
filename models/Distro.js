@@ -15,6 +15,11 @@ const schema = {
     description: {
       type: 'String',
     },
+    banner: {
+      type: 'String',
+      required: true,
+      default: 'null',
+    },
   },
   details: {},
   popularity: { type: 'Mixed', default: {} },

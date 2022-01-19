@@ -38,8 +38,8 @@ export const getStaticPaths = async () => {
 
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
-  // console.log(`distro`, distro);
   const { logo } = distro;
+  const banner = distro.header.banner !== 'false';
   // const router = useRouter();
   // if (router.isFallback) {
   //   return <div>Loading...</div>;
@@ -50,13 +50,13 @@ const DistroDetails = ({ pageData }) => {
       <Head>
         <title>{`Distrowatch | ${distro.header.title}`}</title>
       </Head>
-      <div className="grid max-w-screen-xl m-auto lg:grid-cols-2">
-        <div className="canister">
+      <section className=" bg-primary h-[25rem] mx-auto flex items-center justify-center">
+        <div className="flex items-center justify-center holder">
+          <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
+            <Image {...logo} />
+          </div>
           <h1>{distro.header?.title}</h1>
-          <div className="flex items-center my-4 justify-evenly md:flex-row">
-            <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
-              <Image {...logo} />
-            </div>
+          {/* <div className="flex items-center my-4 justify-evenly md:flex-row">
             <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
               {
                 // attribute[0]=column heading, attribute[1]=[column values]
@@ -79,9 +79,31 @@ const DistroDetails = ({ pageData }) => {
               }
             </ul>
           </div>
-          <p className="">{distro.header.description}</p>
+          <p className="">{distro.header.description}</p> */}
         </div>
-      </div>
+      </section>
+      {banner && (
+        <section className="relative h-full md:h-[25rem] lg:h-[25rem] aspect-video holder -my-10 mx-4 md:mx-auto overflow-hidden rounded-2xl bg-gray-400">
+          <Image src={distro.header.banner} layout="fill" />
+        </section>
+      )}
+      <section
+        className={`bg-secondary texture h-[25rem] mx-auto flex items-center justify-center ${
+          banner && 'mt-20'
+        }`}
+      >
+        <p className="text-2xl text-gray-200 holder">
+          {distro.header.description}
+        </p>
+      </section>
+      {/* <section className=" bg-primary h-[25rem] mx-auto flex items-center justify-center">
+        <div className="flex items-center justify-center holder">
+          <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
+            <Image {...logo} />
+          </div>
+          <h1>{distro.header.title}</h1>
+        </div>
+      </section> */}
     </>
   );
 };
