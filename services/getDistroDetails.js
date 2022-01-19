@@ -20,7 +20,7 @@ const getDistroDetails = async (slug) => {
       const newDistro = new Distro(buildDistroDetails(data, slug));
       // Save scraped data to DB and return it
       await newDistro.save();
-      // console.log(`newDistro.toObject()`, newDistro.toObject());
+      console.log(`newDistro.toObject()`, newDistro.toObject());
       return newDistro.toObject();
     }
     // Return cached data from DB

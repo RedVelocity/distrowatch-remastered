@@ -2,8 +2,8 @@ import getDistroDetails from '../../services/getDistroDetails';
 
 const getDistro = async (req, res) => {
   try {
-    const { slug } = req.query;
-    const pageData = await getDistroDetails(slug);
+    const { distro } = req.query;
+    const pageData = await getDistroDetails(distro);
     return res.json(pageData);
   } catch (error) {
     console.log(`error`, error);
