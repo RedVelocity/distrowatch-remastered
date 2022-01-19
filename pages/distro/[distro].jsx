@@ -7,29 +7,25 @@ import getDistroDetails from '../../services/getDistroDetails';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
-  try {
-    const pageData = await getDistroDetails(distro);
-    // console.log(`pageData`, pageData.header.title);
-    if (pageData === 404) return { notFound: true };
-    const { base64, img } = await getPlaiceholder(pageData.header?.logo);
-    const logo = {
-      src: img.src,
-      placeholder: 'blur',
-      blurDataURL: base64,
-      layout: 'fill',
-      objectFit: 'scale-down',
-    };
-    return {
-      props: {
-        pageData: JSON.stringify({
-          ...pageData,
-          logo,
-        }),
-      },
-    };
-  } catch (error) {
-    return { notFound: true };
-  }
+  const pageData = await getDistroDetails(distro);
+  // console.log(`pageData`, pageData.header.title);
+  if (pageData === 404) return { notFound: true };
+  const { base64, img } = await getPlaiceholder(pageData.header?.logo);
+  const logo = {
+    src: img.src,
+    placeholder: 'blur',
+    blurDataURL: base64,
+    layout: 'fill',
+    objectFit: 'scale-down',
+  };
+  return {
+    props: {
+      pageData: JSON.stringify({
+        ...pageData,
+        logo,
+      }),
+    },
+  };
 };
 
 export const getStaticPaths = async () => {
