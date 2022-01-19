@@ -25,7 +25,7 @@ const getDistroDetails = async (slug) => {
         { upsert: true, new: true }
       );
       // console.log(`newDistro`, newDistro);
-      return newDistro;
+      return newDistro.toObject();
     }
     // Return cached data from DB
     return distro;
