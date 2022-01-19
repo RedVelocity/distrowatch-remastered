@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import Image from 'next/image';
 import Head from 'next/head';
 import { getPlaiceholder } from 'plaiceholder';
@@ -13,19 +12,19 @@ export const getStaticProps = async (context) => {
     // console.log(`pageData`, pageData.header.title);
     if (pageData === 404) return { notFound: true };
     const { base64, img } = await getPlaiceholder(pageData.header?.logo);
-    const dist = {
-      ...pageData,
-      logo: {
-        src: img.src,
-        placeholder: 'blur',
-        blurDataURL: base64,
-        layout: 'fill',
-        objectFit: 'scale-down',
-      },
+    const logo = {
+      src: img.src,
+      placeholder: 'blur',
+      blurDataURL: base64,
+      layout: 'fill',
+      objectFit: 'scale-down',
     };
     return {
       props: {
-        pageData: JSON.stringify(dist),
+        pageData: JSON.stringify({
+          ...pageData,
+          logo,
+        }),
       },
     };
   } catch (error) {
@@ -58,8 +57,8 @@ const DistroDetails = ({ pageData }) => {
       <div className="grid max-w-screen-xl m-auto lg:grid-cols-2">
         <div className="canister">
           <h1>{distro.header?.title}</h1>
-          <div className="flex flex-col items-center my-4 justify-evenly md:flex-row">
-            <div className="m-4 p-4 border-2 rounded-full h-48 w-48 bg-white overflow-hidden relative">
+          <div className="flex items-center my-4 justify-evenly md:flex-row">
+            <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
               <Image {...logo} />
             </div>
             <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
