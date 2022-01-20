@@ -88,7 +88,7 @@ const DistroDetails = ({ pageData }) => {
         </section>
       )}
       <section
-        className={`bg-secondary texture min-h-[18rem] flex items-center justify-center ${
+        className={`bg-secondary texture flex items-center justify-center ${
           banner && 'mt-16'
         }`}
       >
@@ -96,9 +96,17 @@ const DistroDetails = ({ pageData }) => {
       </section>
       <section className=" bg-accent h-[18rem]">
         <div className="holder">
-          <span className="p-4 bg-white rounded shadow-lg">
-            {distro.rating}
-          </span>
+          <div className="inline-block w-auto px-4 py-2 bg-white rounded">
+            <h5>Rating</h5>
+            <span
+              className={`p-2 text-4xl ${
+                distro.rating > 8 ? 'text-accent' : 'text-red-400'
+              }`}
+            >
+              {distro.rating}
+            </span>
+            / 10
+          </div>
         </div>
       </section>
     </>
