@@ -50,9 +50,9 @@ const DistroDetails = ({ pageData }) => {
       <Head>
         <title>{`Distrowatch | ${distro.header.title}`}</title>
       </Head>
-      <section className=" bg-primary h-[25rem] mx-auto flex items-center justify-center">
-        <div className="grid items-center justify-center mb-4 justify-items-center holder md:flex">
-          <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
+      <section className=" bg-primary h-[18rem] flex items-center justify-center">
+        <div className="grid items-center justify-center text-center justify-items-center holder md:flex">
+          <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
             <Image {...logo} />
           </div>
           <h1>{distro.header?.title}</h1>
@@ -83,27 +83,24 @@ const DistroDetails = ({ pageData }) => {
         </div>
       </section>
       {banner && (
-        <section className="relative h-full md:h-[25rem] lg:h-[25rem] aspect-video holder -my-10 mx-4 md:mx-auto overflow-hidden rounded-2xl bg-gray-400">
-          <Image src={distro.header.banner} layout="fill" />
+        <section className="relative h-full md:h-[18rem] aspect-video holder -my-6 mx-8 md:mx-auto overflow-hidden rounded-2xl shadow-xl bg-gray-400">
+          <Image src={distro.header.banner} layout="fill" priority />
         </section>
       )}
       <section
-        className={`bg-secondary texture min-h-[25rem] mx-auto flex items-center justify-center ${
-          banner && 'mt-20'
+        className={`bg-secondary texture min-h-[18rem] flex items-center justify-center ${
+          banner && 'mt-16'
         }`}
       >
-        <p className="p-12 text-lg text-gray-200 md:text-xl holder lg:p-4">
-          {distro.header.description}
-        </p>
+        <p className="text-gray-200/90 holder">{distro.header.description}</p>
       </section>
-      {/* <section className=" bg-primary h-[25rem] mx-auto flex items-center justify-center">
-        <div className="flex items-center justify-center holder">
-          <div className="relative w-48 h-48 p-4 m-4 overflow-hidden bg-white border-2 rounded-full">
-            <Image {...logo} />
-          </div>
-          <h1>{distro.header.title}</h1>
+      <section className=" bg-accent h-[18rem]">
+        <div className="holder">
+          <span className="p-4 bg-white rounded shadow-lg">
+            {distro.rating}
+          </span>
         </div>
-      </section> */}
+      </section>
     </>
   );
 };

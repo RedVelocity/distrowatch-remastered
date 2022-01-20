@@ -3,20 +3,20 @@ import mongoose, { Schema } from 'mongoose';
 const schema = {
   header: {
     title: {
-      type: 'String',
+      type: String,
       required: true,
     },
     attributes: {
       type: ['Array'],
     },
     logo: {
-      type: 'String',
+      type: String,
     },
     description: {
-      type: 'String',
+      type: String,
     },
     banner: {
-      type: 'String',
+      type: String,
       required: true,
       default: 'null',
     },
@@ -24,9 +24,9 @@ const schema = {
   details: {},
   popularity: { type: 'Mixed', default: {} },
   rating: {
-    type: 'String',
+    type: Number,
     required: true,
-    default: 'No Ratings',
+    default: 0,
   },
   date: {
     type: Date,
@@ -34,7 +34,7 @@ const schema = {
     default: Date.now,
   },
   slug: {
-    type: 'String',
+    type: String,
     required: true,
     unique: true,
   },
