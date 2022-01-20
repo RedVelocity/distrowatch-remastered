@@ -92,7 +92,7 @@ const DistroDetails = ({ pageData }) => {
           banner && 'mt-20'
         }`}
       >
-        <p className="px-8 text-2xl text-gray-200 holder md:px-4">
+        <p className="p-12 text-lg text-gray-200 md:text-xl holder lg:p-4">
           {distro.header.description}
         </p>
       </section>
