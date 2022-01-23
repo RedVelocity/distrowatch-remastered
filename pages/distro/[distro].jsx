@@ -25,6 +25,7 @@ export const getStaticProps = async (context) => {
         logo,
       }),
     },
+    revalidate: 604800, // Rebuild every 7days
   };
 };
 

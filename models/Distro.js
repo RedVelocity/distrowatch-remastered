@@ -28,11 +28,6 @@ const schema = {
     required: true,
     default: 0,
   },
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
   slug: {
     type: String,
     required: true,
@@ -40,7 +35,7 @@ const schema = {
   },
 };
 
-const DistroSchema = new Schema(schema, { minimize: false });
+const DistroSchema = new Schema(schema, { minimize: false, timestamps: true });
 const Distro = mongoose.models.Distro || mongoose.model('Distro', DistroSchema);
 
 export default Distro;

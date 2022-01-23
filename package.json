@@ -14,6 +14,7 @@
     "@plaiceholder/next": "^2.2.0",
     "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10",
+    "dayjs": "^1.10.7",
     "mongoose": "^6.1.4",
     "next": "^12.0.8",
     "plaiceholder": "^2.2.0",
@@ -35,5 +36,5 @@
     "postcss": "^8.4.5",
     "tailwindcss": "^3.0.7"
   },
-  "version": "4.2.0"
+  "version": "4.3.0"
 }

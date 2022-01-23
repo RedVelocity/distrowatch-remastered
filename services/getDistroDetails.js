@@ -1,4 +1,5 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import dbConnect from './dbConnect';
 import scrapeDistroDetails from '../lib/scrapeDistroDetails';
 import Distro from '../models/Distro';
@@ -10,8 +11,11 @@ const getDistroDetails = async (slug) => {
   try {
     await dbConnect();
     const distro = await Distro.findOne({ slug }).lean();
-    // Scrape distrowatch.com if not cached in DB
-    if (!distro) {
+    // Scrape distrowatch.com if not cached in DB for last 7days
+    const shouldScrape = distro
+      ? dayjs(distro.updatedAt).diff(Date.now(), 'd') > 7
+      : true;
+    if (shouldScrape) {
       const { data } = await axios.get(API_ENDPOINT, {
         headers: {
           'User-Agent': USER_AGENT,
@@ -24,7 +28,6 @@ const getDistroDetails = async (slug) => {
         upsert: true,
         new: true,
       });
-      // console.log(`newDistro`, newDistro);
       return newDistro.toObject();
     }
     // Return cached data from DB
