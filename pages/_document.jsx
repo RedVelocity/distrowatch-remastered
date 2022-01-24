@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
@@ -11,7 +10,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name="theme-color" content="#fff" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link rel="icon" type="image/png" href="/logo.png" />
           <link rel="apple-touch-icon" href="/logo.png" />
