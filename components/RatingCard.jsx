@@ -1,13 +1,9 @@
 const RatingCard = ({ rating }) => (
   <div className="card">
     <h5>Rating</h5>
-    <span
-      className={`text-4xl font-medium ${
-        rating > 8 ? 'text-accent' : 'text-red-400'
-      }`}
-    >
+    <h2 className={`inline ${rating > 8 ? 'text-accent' : 'text-red-400'}`}>
       {rating}
-    </span>
+    </h2>
     <span className="text-gray-400"> / 10</span>
   </div>
 );

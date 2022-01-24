@@ -26,7 +26,7 @@ body {
     @apply bg-accent;
   }
   .heading {
-    @apply font-bold uppercase;
+    @apply uppercase;
   }
   .texture {
     background-image: url('/bg-texture.svg');
@@ -35,19 +35,19 @@ body {
 
 @layer base {
   h1 {
-    @apply text-3xl md:text-5xl heading;
+    @apply text-3xl md:text-5xl heading font-semibold;
   }
   h2 {
-    @apply text-2xl md:text-4xl heading;
+    @apply text-2xl md:text-4xl heading font-medium;
   }
   h3 {
-    @apply text-xl md:text-3xl heading;
+    @apply text-xl md:text-3xl heading font-medium;
   }
   h4 {
-    @apply text-lg md:text-2xl heading;
+    @apply text-lg md:text-2xl heading font-medium;
   }
   h5 {
-    @apply md:text-xl heading;
+    @apply text-base md:text-lg heading font-medium;
   }
   li {
     @apply py-0.5;
