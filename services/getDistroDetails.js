@@ -11,11 +11,11 @@ const getDistroDetails = async (slug) => {
   try {
     await dbConnect();
     const distro = await Distro.findOne({ slug }).lean();
-    // Scrape distrowatch.com if not cached in DB for last 7days
-    const shouldScrape = distro
-      ? dayjs(distro.updatedAt).diff(Date.now(), 'd') > 7
+    // Scrape distrowatch.com if not cached in DB for last 6 days
+    const isStale = distro
+      ? dayjs(distro.updatedAt).diff(Date.now(), 'd') > 6
       : true;
-    if (shouldScrape) {
+    if (isStale) {
       const { data } = await axios.get(API_ENDPOINT, {
         headers: {
           'User-Agent': USER_AGENT,

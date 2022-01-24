@@ -4,6 +4,7 @@ import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
+import RatingCard from '../../components/RatingCard';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -85,23 +86,13 @@ const DistroDetails = ({ pageData }) => {
           </div>
         </section>
         {banner && (
-          <section className="relative h-full md:h-[18rem] aspect-video holder -my-6 mx-8 md:mx-auto overflow-hidden rounded-2xl shadow-xl bg-gray-400">
+          <section className="relative h-full md:h-[18rem] aspect-video holder -my-6 mx-8 md:mx-auto overflow-hidden rounded-md shadow-xl bg-gray-400">
             <Image src={distro.header.banner} layout="fill" priority />
           </section>
         )}
         <section className={`bg-accent ${banner && 'mt-16'}`}>
           <div className="holder">
-            <div className="card">
-              <h5>Rating</h5>
-              <span
-                className={`text-4xl ${
-                  distro.rating > 8 ? 'text-accent' : 'text-red-400'
-                }`}
-              >
-                {distro.rating}
-              </span>
-              <span className="text-gray-400"> / 10</span>
-            </div>
+            <RatingCard rating={distro.rating} />
           </div>
         </section>
         <section className="flex items-center justify-center bg-secondary texture">
