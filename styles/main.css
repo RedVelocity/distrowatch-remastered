@@ -35,19 +35,19 @@ body {
 
 @layer base {
   h1 {
-    @apply text-3xl md:text-5xl heading font-semibold;
+    @apply text-4xl md:text-5xl heading font-semibold;
   }
   h2 {
-    @apply text-2xl md:text-4xl heading font-medium;
+    @apply text-4xl heading font-medium;
   }
   h3 {
-    @apply text-xl md:text-3xl heading font-medium;
+    @apply text-3xl heading font-medium;
   }
   h4 {
-    @apply text-lg md:text-2xl heading font-medium;
+    @apply text-2xl heading font-medium;
   }
   h5 {
-    @apply text-base md:text-lg heading font-medium;
+    @apply text-lg heading font-medium;
   }
   li {
     @apply py-0.5;
