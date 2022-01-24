@@ -5,6 +5,7 @@ import { getPlaiceholder } from 'plaiceholder';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 import RatingCard from '../../components/RatingCard';
+import PopularityCard from '../../components/PopularityCard';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -91,8 +92,9 @@ const DistroDetails = ({ pageData }) => {
           </section>
         )}
         <section className={`bg-accent ${banner && 'mt-16'}`}>
-          <div className="holder">
+          <div className="holder flex gap-4">
             <RatingCard rating={distro.rating} />
+            <PopularityCard popularity={distro.header.attributes.popularity} />
           </div>
         </section>
         <section className="flex items-center justify-center bg-secondary texture">

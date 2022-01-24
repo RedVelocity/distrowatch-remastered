@@ -7,7 +7,7 @@ const schema = {
       required: true,
     },
     attributes: {
-      type: ['Array'],
+      type: 'Mixed',
     },
     logo: {
       type: String,
@@ -22,7 +22,7 @@ const schema = {
     },
   },
   details: {},
-  popularity: { type: 'Mixed', default: {} },
+  popularity: { type: 'Mixed' },
   rating: {
     type: Number,
     required: true,
