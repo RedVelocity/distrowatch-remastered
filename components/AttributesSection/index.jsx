@@ -7,9 +7,15 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
   const popularityProps = getPopularityProps(attributes.popularity);
   return (
     <section className={`bg-accent ${marginRequired && 'mt-16'}`}>
-      <div className="holder grid gap-4 md:grid-flow-col">
+      <div className="holder responsive-grid gap-4">
         <Card {...ratingProps} />
         <Card {...popularityProps} />
+        <Card
+          title="Country"
+          icon="fa-globe-africa"
+          variant="flags"
+          flags={attributes.flags}
+        />
         <Card
           title="Status"
           variant="singleHeading"
@@ -20,12 +26,6 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
               : 'text-success'
           }
           icon="fa-check-circle"
-        />
-        <Card
-          title="Country"
-          icon="fa-globe-africa"
-          variant="flags"
-          flags={attributes.flags}
         />
       </div>
     </section>

@@ -13,31 +13,29 @@ const Card = ({
   // eslint-disable-next-line default-case
   switch (variant) {
     case 'singleHeading':
-      CardContent = (
-        <h5 className={`grow flex items-center ${textColor}`}>{main}</h5>
-      );
+      CardContent = <h5 className={`card-content ${textColor}`}>{main}</h5>;
       break;
     case 'subHeading':
       CardContent = (
-        <div>
+        <div className="card-content gap-2">
           <h2 className={`inline-block tracking-normal ${textColor}`}>
             {main}
+            <span className="text-gray-400 text-base font-normal">{sub}</span>
           </h2>
-          <span className="text-gray-400">{sub}</span>
         </div>
       );
       break;
     case 'error':
       CardContent = (
-        <h5 className="text-gray-400 grow flex items-center">Not Available</h5>
+        <h5 className="text-gray-400 card-content">Not Available</h5>
       );
       break;
     case 'flags':
       CardContent = (
-        <div className="flex gap-1 grow items-center">
+        <div className="flex gap-1 grow items-center justify-center md:justify-start">
           {flags.map((flag, index) => (
             <div
-              className="w-12 aspect-[5/3] relative overflow-hidden rounded-sm"
+              className="w-14 aspect-[5/3] relative overflow-hidden rounded"
               key={index}
             >
               <Image
@@ -46,7 +44,6 @@ const Card = ({
                 // title="peru"
                 layout="fill"
                 priority
-                className="inline-block"
               />
             </div>
           ))}
@@ -56,7 +53,7 @@ const Card = ({
   }
   return (
     <div className="card flex flex-col">
-      <h5 className="border-b mb-2">
+      <h5 className="border-b mb-2 pb-2">
         {icon && <i className={`fas ${icon}`} />}
         {` ${title}`}
       </h5>

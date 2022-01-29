@@ -4,7 +4,7 @@
 
 /* Root Styles */
 html {
-  @apply scroll-smooth;
+  @apply scroll-smooth text-[14px];
 }
 body {
   /* @apply bg-cover bg-secondary backdrop-blur; */
@@ -26,6 +26,10 @@ body {
   }
   .texture {
     background-image: url('/bg-texture.svg');
+  }
+  .responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   }
 }
 
@@ -70,6 +74,9 @@ body {
     @apply max-w-screen-lg overflow-hidden bg-gray-100 rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply px-4 py-2 bg-white rounded;
+    @apply p-4 bg-white rounded;
+  }
+  .card-content {
+    @apply grow flex items-center justify-center md:justify-start;
   }
 }

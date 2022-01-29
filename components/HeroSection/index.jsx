@@ -7,7 +7,7 @@ const HeroSection = ({ title, logo, banner, bannerPresent }) => (
         <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
           <Image {...logo} />
         </div>
-        <h1>{title}</h1>
+        <h1 className="uppercase">{title}</h1>
         {/* <div className="flex items-center my-4 justify-evenly md:flex-row">
             <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
               {
