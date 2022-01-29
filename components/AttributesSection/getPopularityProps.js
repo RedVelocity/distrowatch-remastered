@@ -13,6 +13,7 @@ const getPopularityProps = (popularity) => {
     sub: ` (${popularity[1]})`,
     textColor,
     variant: popularity.length > 0 ? 'subHeading' : 'error',
+    icon: 'fa-chart-line',
   };
 };
 

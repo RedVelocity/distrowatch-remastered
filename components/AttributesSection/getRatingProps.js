@@ -11,6 +11,7 @@ const getRatingProps = (rating) => {
     sub: ' / 10',
     textColor,
     variant: rating > 0 ? 'subHeading' : 'error',
+    icon: 'fa-chart-bar',
   };
 };
 

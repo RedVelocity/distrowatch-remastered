@@ -1,4 +1,11 @@
-const Card = ({ title, main, sub, textColor, variant = 'singleHeading' }) => {
+const Card = ({
+  title,
+  main,
+  sub,
+  textColor,
+  variant = 'singleHeading',
+  icon,
+}) => {
   let CardContent;
   // eslint-disable-next-line default-case
   switch (variant) {
@@ -21,15 +28,18 @@ const Card = ({ title, main, sub, textColor, variant = 'singleHeading' }) => {
       break;
     case 'error':
       CardContent = (
-        <span className="text-gray-400 grow flex items-center justify-center">
+        <h5 className="text-gray-400 grow flex items-center justify-center">
           Not Available
-        </span>
+        </h5>
       );
       break;
   }
   return (
     <div className="card flex flex-col">
-      <h5 className="border-b mb-2">{title}</h5>
+      <h5 className="border-b mb-2">
+        {icon && <i className={`fas ${icon}`} />}
+        {` ${title}`}
+      </h5>
       {CardContent}
     </div>
   );

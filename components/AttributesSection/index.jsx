@@ -19,6 +19,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
               ? 'text-danger'
               : 'text-success'
           }
+          icon="fa-check-circle"
         />
       </div>
     </section>
