@@ -1,9 +1,12 @@
+import Image from 'next/image';
+
 const Card = ({
   title,
   main,
   sub,
   textColor,
   variant = 'singleHeading',
+  flags = [],
   icon,
 }) => {
   let CardContent;
@@ -11,9 +14,7 @@ const Card = ({
   switch (variant) {
     case 'singleHeading':
       CardContent = (
-        <h5 className={`grow flex items-center justify-center ${textColor}`}>
-          {main}
-        </h5>
+        <h5 className={`grow flex items-center ${textColor}`}>{main}</h5>
       );
       break;
     case 'subHeading':
@@ -28,9 +29,28 @@ const Card = ({
       break;
     case 'error':
       CardContent = (
-        <h5 className="text-gray-400 grow flex items-center justify-center">
-          Not Available
-        </h5>
+        <h5 className="text-gray-400 grow flex items-center">Not Available</h5>
+      );
+      break;
+    case 'flags':
+      CardContent = (
+        <div className="flex gap-1 grow items-center">
+          {flags.map((flag, index) => (
+            <div
+              className="w-12 aspect-[5/3] relative overflow-hidden rounded-sm"
+              key={index}
+            >
+              <Image
+                src={flag}
+                alt="flag"
+                // title="peru"
+                layout="fill"
+                priority
+                className="inline-block"
+              />
+            </div>
+          ))}
+        </div>
       );
       break;
   }

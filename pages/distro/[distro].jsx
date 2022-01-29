@@ -11,7 +11,7 @@ export const getStaticProps = async (context) => {
   const pageData = await getDistroDetails(distro);
   // console.log(`pageData`, pageData.header.title);
   if (pageData === 404) return { notFound: true };
-  const { base64, img } = await getPlaiceholder(pageData.header?.logo);
+  const { base64, img } = await getPlaiceholder(pageData.header.logo);
   const logo = {
     src: img.src,
     placeholder: 'blur',
@@ -40,6 +40,7 @@ export const getStaticPaths = async () => {
 
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
+  // console.log('distro', distro);
   const { logo, header, rating } = distro;
   const bannerPresent = header.banner !== 'false';
   // const router = useRouter();

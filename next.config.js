@@ -6,7 +6,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withPlaiceholder(
   withBundleAnalyzer({
     images: {
-      domains: ['distrowatch.com'],
+      domains: ['distrowatch.com', 'flagcdn.com'],
     },
     async redirects() {
       return [

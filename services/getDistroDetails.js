@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import dbConnect from './dbConnect';
 import scrapeDistroDetails from '../lib/scrapeDistroDetails';
 import Distro from '../models/Distro';
+import getCountryFlags from './getCountryFlags';
 
 const getDistroDetails = async (slug) => {
   const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${slug}`;
@@ -23,11 +24,26 @@ const getDistroDetails = async (slug) => {
       });
       // Call helper function to scrape data
       const distroData = scrapeDistroDetails(data, slug);
+      const flags = [];
+      await Promise.all(
+        distroData.header.attributes.origin.split(', ').map(async (o) => {
+          flags.push(await getCountryFlags(o));
+        })
+      );
+      // Add flags to attributes
+      const header = {
+        ...distroData.header,
+        attributes: { ...distroData.header.attributes, flags },
+      };
       // Save scraped data to DB and return it
-      const newDistro = await Distro.findOneAndUpdate({ slug }, distroData, {
-        upsert: true,
-        new: true,
-      });
+      const newDistro = await Distro.findOneAndUpdate(
+        { slug },
+        { ...distroData, header },
+        {
+          upsert: true,
+          new: true,
+        }
+      );
       return newDistro.toObject();
     }
     // Return cached data from DB
