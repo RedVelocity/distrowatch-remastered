@@ -10,8 +10,7 @@ body {
   /* @apply bg-cover bg-secondary backdrop-blur; */
   /* background-image: url('/waves.png'); */
   /* @apply bg-secondary texture; */
-  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Roboto', sans-serif;
   @apply text-gray-700 bg-gray-200;
 }
 
@@ -20,13 +19,10 @@ body {
     @apply bg-secondary text-primary;
   }
   .danger {
-    @apply text-white bg-red-400;
+    @apply text-white bg-danger;
   }
   .success {
-    @apply bg-accent;
-  }
-  .heading {
-    @apply uppercase;
+    @apply bg-success;
   }
   .texture {
     background-image: url('/bg-texture.svg');
@@ -35,19 +31,19 @@ body {
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl heading font-semibold;
+    @apply text-4xl md:text-5xl tracking-widest font-semibold;
   }
   h2 {
-    @apply text-4xl heading font-medium;
+    @apply text-4xl tracking-wider font-medium;
   }
   h3 {
-    @apply text-3xl heading font-medium;
+    @apply text-3xl tracking-wide font-medium;
   }
   h4 {
-    @apply text-2xl heading font-medium;
+    @apply text-2xl tracking-wide font-medium;
   }
   h5 {
-    @apply text-lg heading font-medium;
+    @apply text-lg tracking-wide font-medium;
   }
   li {
     @apply py-0.5;
@@ -59,7 +55,7 @@ body {
 
 @layer components {
   .pill {
-    @apply px-2 py-1 text-sm font-semibold text-center rounded-full;
+    @apply px-2 py-1 text-sm font-medium text-center rounded-full;
   }
   .pill-danger {
     @apply pill danger;
@@ -74,6 +70,6 @@ body {
     @apply max-w-screen-lg overflow-hidden bg-gray-100 rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply px-4 py-2 bg-white rounded;
+    @apply px-4 py-2 bg-white rounded min-w-[8rem];
   }
 }
