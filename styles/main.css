@@ -4,7 +4,7 @@
 
 /* Root Styles */
 html {
-  @apply scroll-smooth text-[14px];
+  @apply scroll-smooth md:text-[14px];
 }
 body {
   /* @apply bg-cover bg-secondary backdrop-blur; */

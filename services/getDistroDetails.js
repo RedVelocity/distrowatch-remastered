@@ -24,26 +24,21 @@ const getDistroDetails = async (slug) => {
       });
       // Call helper function to scrape data
       const distroData = scrapeDistroDetails(data, slug);
-      const flags = [];
+      // Add flags to attributes
+      distroData.header.attributes.flags = [];
       await Promise.all(
-        distroData.header.attributes.origin.split(', ').map(async (o) => {
-          flags.push(await getCountryFlags(o));
+        distroData.header.attributes.origin.split(', ').map(async (country) => {
+          distroData.header.attributes.flags.push({
+            country,
+            flag: await getCountryFlags(country),
+          });
         })
       );
-      // Add flags to attributes
-      const header = {
-        ...distroData.header,
-        attributes: { ...distroData.header.attributes, flags },
-      };
       // Save scraped data to DB and return it
-      const newDistro = await Distro.findOneAndUpdate(
-        { slug },
-        { ...distroData, header },
-        {
-          upsert: true,
-          new: true,
-        }
-      );
+      const newDistro = await Distro.findOneAndUpdate({ slug }, distroData, {
+        upsert: true,
+        new: true,
+      });
       return newDistro.toObject();
     }
     // Return cached data from DB

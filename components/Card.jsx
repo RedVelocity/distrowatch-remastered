@@ -13,7 +13,7 @@ const Card = ({
   // eslint-disable-next-line default-case
   switch (variant) {
     case 'singleHeading':
-      CardContent = <h5 className={`card-content ${textColor}`}>{main}</h5>;
+      CardContent = <h4 className={`card-content ${textColor}`}>{main}</h4>;
       break;
     case 'subHeading':
       CardContent = (
@@ -27,7 +27,7 @@ const Card = ({
       break;
     case 'error':
       CardContent = (
-        <h5 className="text-gray-400 card-content">Not Available</h5>
+        <h4 className="text-gray-400 card-content">Not Available</h4>
       );
       break;
     case 'flags':
@@ -39,9 +39,9 @@ const Card = ({
               key={index}
             >
               <Image
-                src={flag}
-                alt="flag"
-                // title="peru"
+                src={flag.flag}
+                alt={flag.country}
+                title={flag.country}
                 layout="fill"
                 priority
               />

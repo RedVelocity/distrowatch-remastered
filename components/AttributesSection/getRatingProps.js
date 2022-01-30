@@ -7,7 +7,7 @@ const getRatingProps = (rating) => {
 
   return {
     title: 'User Rating',
-    main: rating,
+    main: rating.toFixed(2),
     sub: ' / 10',
     textColor,
     variant: rating > 0 ? 'subHeading' : 'error',

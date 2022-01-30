@@ -11,7 +11,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
         <Card {...ratingProps} />
         <Card {...popularityProps} />
         <Card
-          title="Country"
+          title="Origin"
           icon="fa-globe-africa"
           variant="flags"
           flags={attributes.flags}
