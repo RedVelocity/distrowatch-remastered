@@ -1,37 +1,19 @@
 import Image from 'next/image';
 
-const HeroSection = ({ title, logo, banner, bannerPresent }) => (
+const HeroSection = ({ title, logo, banner, bannerPresent, slug }) => (
   <>
     <section className=" bg-primary h-[18rem] flex items-center justify-center">
       <div className="grid items-center justify-center gap-2 text-center justify-items-center holder md:flex">
-        <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
-          <Image {...logo} />
-        </div>
-        <h1 className="hidden uppercase md:inline">{title}</h1>
-        {/* <div className="flex items-center my-4 justify-evenly md:flex-row">
-            <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
-              {
-                // attribute[0]=column heading, attribute[1]=[column values]
-                distro.header.attributes.map((attribute, i) => (
-                  <li key={i} className="capitalize">
-                    {`${attribute[0]}: `}
-                    <span
-                      className={`${
-                        attribute[0].trim() === 'Status'
-                          ? attribute[1].trim().includes('defined')
-                            ? 'pill-danger'
-                            : 'pill-success'
-                          : 'font-normal'
-                      }`}
-                    >
-                      {attribute[1]}
-                    </span>
-                  </li>
-                ))
-              }
-            </ul>
+        <a
+          href={`https://distrowatch.com/table.php?distribution=${slug}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
+            <Image {...logo} />
           </div>
-          <p className="">{distro.header.description}</p> */}
+        </a>
+        <h1 className="hidden uppercase md:inline">{title}</h1>
       </div>
     </section>
     {bannerPresent && (

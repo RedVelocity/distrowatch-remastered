@@ -41,7 +41,7 @@ export const getStaticPaths = async () => {
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
   // console.log('distro', distro);
-  const { logo, header, rating } = distro;
+  const { logo, header, rating, slug } = distro;
   const bannerPresent = header.banner !== 'false';
   // const router = useRouter();
   // if (router.isFallback) {
@@ -59,6 +59,7 @@ const DistroDetails = ({ pageData }) => {
           logo={logo}
           banner={header.banner}
           bannerPresent={bannerPresent}
+          slug={slug}
         />
         <AttributesSection
           marginRequired={bannerPresent}

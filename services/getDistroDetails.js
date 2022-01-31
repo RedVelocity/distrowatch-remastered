@@ -25,14 +25,13 @@ const getDistroDetails = async (slug) => {
       // Call helper function to scrape data
       const distroData = scrapeDistroDetails(data, slug);
       // Add flags to attributes
-      distroData.header.attributes.flags = [];
-      await Promise.all(
-        distroData.header.attributes.origin.split(', ').map(async (country) => {
-          distroData.header.attributes.flags.push({
+      distroData.header.attributes.flags = await Promise.all(
+        distroData.header.attributes.origin
+          .split(', ')
+          .map(async (country) => ({
             country,
             flag: await getCountryFlags(country),
-          });
-        })
+          }))
       );
       // Save scraped data to DB and return it
       const newDistro = await Distro.findOneAndUpdate({ slug }, distroData, {
