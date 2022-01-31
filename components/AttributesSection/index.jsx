@@ -7,7 +7,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
   const popularityTextColor = getTextColor('popularity', attributes.popularity);
   return (
     <section className={`bg-accent ${marginRequired && 'mt-16'}`}>
-      <div className="holder responsive-grid gap-4">
+      <div className="gap-4 holder responsive-grid">
         <Card title="User Rating" icon="fa-chart-bar">
           <Card.Content>
             {rating > 0 ? (
@@ -19,7 +19,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
                 <Card.SubContent text=" / 10" />
               </Card.MainContent>
             ) : (
-              <Card.MainContent text="Not Available" />
+              <Card.SubContent text="Not Available" bold />
             )}
           </Card.Content>
         </Card>
@@ -34,10 +34,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
                 <Card.SubContent text={` (${attributes.popularity[1]})`} />
               </Card.MainContent>
             ) : (
-              <Card.MainContent
-                text="Not Available"
-                textColor={popularityTextColor}
-              />
+              <Card.SubContent text="Not Available" bold />
             )}
           </Card.Content>
         </Card>
@@ -61,6 +58,13 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
         </Card>
         <Card title="Status" icon="fa-check-circle">
           <Card.Content>
+            <i
+              className={`${
+                attributes.status.includes('defined')
+                  ? 'fas fa-toggle-on text-danger text-2xl rotate-180'
+                  : 'fas fa-toggle-on text-success text-2xl'
+              }`}
+            />
             <Card.MainContent
               text={attributes.status.split(' ')[0]}
               textColor={
@@ -69,6 +73,11 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
                   : 'text-success'
               }
             />
+          </Card.Content>
+        </Card>
+        <Card title="Based On" icon="fa-project-diagram">
+          <Card.Content>
+            <Card.SubContent text={attributes.basedOn} bold />
           </Card.Content>
         </Card>
       </div>

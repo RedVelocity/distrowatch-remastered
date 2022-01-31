@@ -1,6 +1,6 @@
 const Card = ({ title, icon, children }) => (
-  <div className="card flex flex-col">
-    <h5 className="border-b mb-2 pb-2">
+  <div className="flex flex-col card">
+    <h5 className="pb-2 mb-2 border-b">
       {icon && <i className={`fas ${icon}`} />}
       {` ${title}`}
     </h5>
@@ -14,7 +14,7 @@ const Content = ({ children }) => (
 
 const MainContent = ({ text, textColor = 'text-gray-400', large, children }) =>
   large ? (
-    <h2 className={`inline-block tracking-normal ${textColor}`}>
+    <h2 className={`inline-block ${textColor}`}>
       {text}
       {children}
     </h2>
@@ -25,8 +25,14 @@ const MainContent = ({ text, textColor = 'text-gray-400', large, children }) =>
     </h5>
   );
 
-const SubContent = ({ text }) => (
-  <span className="text-gray-400 text-base font-normal">{text}</span>
+const SubContent = ({ text, bold }) => (
+  <span
+    className={`text-gray-400 text-base font-normal tracking-normal ${
+      bold && 'font-medium'
+    }`}
+  >
+    {text}
+  </span>
 );
 
 Card.Content = Content;

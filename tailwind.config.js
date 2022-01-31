@@ -8,6 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors,
+      gridTemplateColumns: {
+        responsive: 'repeat(auto-fit,minmax(10rem,1fr))',
+      },
     },
   },
   plugins: [],

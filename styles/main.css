@@ -28,26 +28,25 @@ body {
     background-image: url('/bg-texture.svg');
   }
   .responsive-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    @apply grid grid-cols-responsive;
   }
 }
 
 @layer base {
   h1 {
-    @apply text-4xl md:text-5xl tracking-widest font-semibold;
+    @apply text-4xl font-semibold tracking-widest md:text-5xl;
   }
   h2 {
-    @apply text-4xl tracking-wider font-medium;
+    @apply text-4xl font-medium tracking-wider;
   }
   h3 {
-    @apply text-3xl tracking-wide font-medium;
+    @apply text-3xl font-medium tracking-wide;
   }
   h4 {
-    @apply text-2xl tracking-wide font-medium;
+    @apply text-2xl font-medium tracking-wide;
   }
   h5 {
-    @apply text-lg tracking-wide font-medium;
+    @apply text-lg font-medium tracking-wide;
   }
   li {
     @apply py-0.5;
@@ -77,6 +76,6 @@ body {
     @apply p-4 bg-white rounded;
   }
   .card-content {
-    @apply grow flex items-center justify-center gap-2;
+    @apply flex items-center justify-center gap-2 grow;
   }
 }
