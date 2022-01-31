@@ -7,7 +7,7 @@ const HeroSection = ({ title, logo, banner, bannerPresent }) => (
         <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
           <Image {...logo} />
         </div>
-        <h1 className="uppercase invisible md:visible">{title}</h1>
+        <h1 className="hidden uppercase md:inline">{title}</h1>
         {/* <div className="flex items-center my-4 justify-evenly md:flex-row">
             <ul className="p-2 m-2 font-semibold text-center md:text-left md:w-1/2">
               {
@@ -35,9 +35,9 @@ const HeroSection = ({ title, logo, banner, bannerPresent }) => (
       </div>
     </section>
     {bannerPresent && (
-      <section className="relative h-full md:h-[18rem] aspect-video holder -my-6 mx-8 md:mx-auto overflow-hidden rounded-md shadow-xl bg-gray-400">
+      <div className="relative h-full md:h-[18rem] aspect-video holder -my-6 mx-8 md:mx-auto overflow-hidden rounded-md shadow-xl bg-gray-400">
         <Image src={banner} layout="fill" priority />
-      </section>
+      </div>
     )}
   </>
 );

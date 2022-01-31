@@ -51,7 +51,7 @@ const DistroDetails = ({ pageData }) => {
   return (
     <>
       <Head>
-        <title>{`Distrowatch | ${header.title}`}</title>
+        <title>{`DistroWatch | ${header.title}`}</title>
       </Head>
       <div className="page-container">
         <HeroSection

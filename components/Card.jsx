@@ -8,11 +8,9 @@ const Card = ({ title, icon, children }) => (
   </div>
 );
 
-const Content = ({ children }) => (
-  <div className="card-content">{children}</div>
-);
+Card.Content = ({ children }) => <div className="card-content">{children}</div>;
 
-const MainContent = ({ text, textColor = 'text-gray-400', large, children }) =>
+Card.MainContent = ({ text, textColor = 'text-gray-400', large, children }) =>
   large ? (
     <h2 className={`inline-block ${textColor}`}>
       {text}
@@ -25,7 +23,7 @@ const MainContent = ({ text, textColor = 'text-gray-400', large, children }) =>
     </h5>
   );
 
-const SubContent = ({ text, bold }) => (
+Card.SubContent = ({ text, bold }) => (
   <span
     className={`text-gray-400 text-base font-normal tracking-normal ${
       bold && 'font-medium'
@@ -34,9 +32,5 @@ const SubContent = ({ text, bold }) => (
     {text}
   </span>
 );
-
-Card.Content = Content;
-Card.MainContent = MainContent;
-Card.SubContent = SubContent;
 
 export default Card;
