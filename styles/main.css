@@ -4,7 +4,7 @@
 
 /* Root Styles */
 html {
-  @apply scroll-smooth md:text-[14px];
+  @apply scroll-smooth text-[14px];
 }
 body {
   /* @apply bg-cover bg-secondary backdrop-blur; */
@@ -77,6 +77,6 @@ body {
     @apply p-4 bg-white rounded;
   }
   .card-content {
-    @apply grow flex items-center justify-center md:justify-start;
+    @apply grow flex items-center justify-center gap-2;
   }
 }
