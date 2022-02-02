@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 
