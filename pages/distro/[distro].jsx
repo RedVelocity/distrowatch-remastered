@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { getPlaiceholder } from 'plaiceholder';
+// import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
@@ -9,22 +9,19 @@ import HeroSection from '../../components/HeroSection';
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
   const pageData = await getDistroDetails(distro);
-  // console.log(`pageData`, pageData.header.title);
+  // console.log(`pageData`, pageData);
   if (pageData === 404) return { notFound: true };
-  const { base64, img } = await getPlaiceholder(pageData.header.logo);
-  const logo = {
-    src: img.src,
-    placeholder: 'blur',
-    blurDataURL: base64,
-    layout: 'fill',
-    objectFit: 'scale-down',
-  };
+  // const { base64, img } = await getPlaiceholder(pageData.header.logo);
+  // const logo = {
+  //   src: img.src,
+  //   placeholder: 'blur',
+  //   blurDataURL: base64,
+  //   layout: 'fill',
+  //   objectFit: 'scale-down',
+  // };
   return {
     props: {
-      pageData: JSON.stringify({
-        ...pageData,
-        logo,
-      }),
+      pageData: JSON.stringify(pageData),
     },
     revalidate: 604800, // Rebuild every 7days
   };
@@ -41,7 +38,7 @@ export const getStaticPaths = async () => {
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
   // console.log('distro', distro);
-  const { logo, header, rating, slug } = distro;
+  const { header, rating, slug } = distro;
   const bannerPresent = header.banner !== 'false';
   // const router = useRouter();
   // if (router.isFallback) {
@@ -56,7 +53,7 @@ const DistroDetails = ({ pageData }) => {
       <div className="page-container">
         <HeroSection
           title={header.title}
-          logo={logo}
+          logo={header.logo}
           banner={header.banner}
           bannerPresent={bannerPresent}
           slug={slug}

@@ -1,6 +1,12 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DistroWatch.com Remastered!
+
+Hi! This is my take on modernizing the Linux cult's favorite web portal DistroWatch.com. The code is currently hosted on https://dw-remastered.vercel.app/distro/{distro-slug}
+
+**{distro-slug}** - slug string for the distro (fedora, ubuntu, popos etc)
 
 ## Getting Started
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 First, run the development server:
 
