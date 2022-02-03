@@ -1,6 +1,6 @@
 const DetailsSection = ({ details }) => (
   <section>
-    <div className="w-full bg-white border-t md:p-4">
+    <div className="w-full bg-white border-t p-4">
       <table className="items-center">
         <tbody className="divide-y px-4">
           {details.map(

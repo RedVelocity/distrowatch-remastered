@@ -67,7 +67,7 @@ body {
     @apply pill success;
   }
   .holder {
-    @apply p-12 lg:p-8;
+    @apply p-8;
   }
   .page-container {
     @apply max-w-screen-lg overflow-hidden bg-gray-100 rounded shadow-sm md:m-6 lg:mx-auto;
