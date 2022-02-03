@@ -8,7 +8,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
   const isDormant = attributes.status.includes('defined');
   return (
     <section className={`bg-accent ${marginRequired && 'mt-16'}`}>
-      <div className="gap-4 holder responsive-grid">
+      <div className="gap-4 responsive-grid holder">
         <Card title="User Rating" icon="fa-chart-bar">
           {rating > 0 ? (
             <Card.MainContent

@@ -6,6 +6,7 @@ import getDistroDetails from '../../services/getDistroDetails';
 import AttributesSection from '../../components/AttributesSection';
 import HeroSection from '../../components/HeroSection';
 import CombinedCard from '../../components/CombinedCard';
+import DetailsSection from '../../components/DetailsSection';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -87,6 +88,7 @@ const DistroDetails = ({ pageData }) => {
             />
           </div>
         </section>
+        <DetailsSection details={distro.details} />
       </div>
     </>
   );
