@@ -5,6 +5,7 @@ import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 import AttributesSection from '../../components/AttributesSection';
 import HeroSection from '../../components/HeroSection';
+import CombinedCard from '../../components/CombinedCard';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -74,6 +75,17 @@ const DistroDetails = ({ pageData }) => {
         />
         <section className="flex items-center justify-center bg-secondary texture">
           <p className="text-gray-200/90 holder">{header.description}</p>
+        </section>
+        <section className="flex items-center justify-center bg-primary">
+          <div className="holder">
+            <CombinedCard
+              cardItems={[
+                { title: 'Architecture', text: header.attributes.architecture },
+                { title: 'Desktop', text: header.attributes.desktop },
+                { title: 'Category', text: header.attributes.category },
+              ]}
+            />
+          </div>
         </section>
       </div>
     </>

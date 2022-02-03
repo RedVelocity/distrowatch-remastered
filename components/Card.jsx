@@ -19,9 +19,9 @@ Card.MainContent = ({ text, textColor = 'text-gray-400', large, children }) => {
   );
 };
 
-Card.SubContent = ({ text, bold }) => (
+Card.SubContent = ({ text, textColor = 'text-gray-400', bold }) => (
   <span
-    className={`text-gray-400 text-base font-normal tracking-normal ${
+    className={`${textColor} text-base font-normal tracking-normal ${
       bold && 'font-medium'
     }`}
   >

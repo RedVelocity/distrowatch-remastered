@@ -5,6 +5,7 @@ import getTextColor from './getTextColor';
 const AttributesSection = ({ marginRequired, rating, attributes }) => {
   const ratingTextColor = getTextColor('rating', rating);
   const popularityTextColor = getTextColor('popularity', attributes.popularity);
+  const isDormant = attributes.status.includes('defined');
   return (
     <section className={`bg-accent ${marginRequired && 'mt-16'}`}>
       <div className="gap-4 holder responsive-grid">
@@ -18,7 +19,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
               <Card.SubContent text=" / 10" />
             </Card.MainContent>
           ) : (
-            <Card.SubContent text="Not Available" bold />
+            <Card.SubContent text="No Ratings Yet" bold />
           )}
         </Card>
         <Card title="Popularity" icon="fa-chart-line">
@@ -31,7 +32,7 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
               <Card.SubContent text={` (${attributes.popularity[1]})`} />
             </Card.MainContent>
           ) : (
-            <Card.SubContent text="Not Available" bold />
+            <Card.SubContent text="Not Ranked" bold />
           )}
         </Card>
         <Card title="Origin" icon="fa-globe-africa">
@@ -52,23 +53,21 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
         </Card>
         <Card title="Status" icon="fa-check-circle">
           <i
-            className={`${
-              attributes.status.includes('defined')
-                ? 'fas fa-toggle-on text-danger text-2xl rotate-180'
-                : 'fas fa-toggle-on text-success text-2xl'
+            className={`fas fa-toggle-on text-2xl ${
+              isDormant ? 'text-danger rotate-180' : 'text-success'
             }`}
           />
           <Card.MainContent
             text={attributes.status.split(' ')[0]}
-            textColor={
-              attributes.status.includes('defined')
-                ? 'text-danger'
-                : 'text-success'
-            }
+            textColor={isDormant ? 'text-danger' : 'text-success'}
           />
         </Card>
         <Card title="Based On" icon="fa-project-diagram">
-          <Card.SubContent text={attributes.basedOn} bold />
+          <Card.SubContent
+            text={attributes.basedOn}
+            textColor="text-gray-600"
+            bold
+          />
         </Card>
       </div>
     </section>
