@@ -43,7 +43,7 @@ const getDistroDetails = async (slug) => {
     // Return cached data from DB
     return distro;
   } catch (error) {
-    console.log(`error`, error);
+    console.log(error);
     return 404;
   }
 };

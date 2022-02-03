@@ -1,6 +1,6 @@
 import Head from 'next/head';
 // import { getPlaiceholder } from 'plaiceholder';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 import AttributesSection from '../../components/AttributesSection';
@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
@@ -40,19 +40,19 @@ const DistroDetails = ({ pageData }) => {
   // console.log('distro', distro);
   const { header, rating, slug } = distro;
   const bannerPresent = header.banner !== 'false';
-  const router = useRouter();
-  if (router.isFallback) {
-    return (
-      <div className="flex items-center justify-center space-x-2 min-h-screen w-screen">
-        <div
-          className="spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0"
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
-  }
+  // const router = useRouter();
+  // if (router.isFallback) {
+  //   return (
+  //     <div className="flex items-center justify-center space-x-2 min-h-screen w-screen">
+  //       <div
+  //         className="spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0"
+  //         role="status"
+  //       >
+  //         <span className="visually-hidden">Loading...</span>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <>

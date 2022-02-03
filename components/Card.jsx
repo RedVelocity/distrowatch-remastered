@@ -4,17 +4,16 @@ const Card = ({ title, icon, children }) => (
       {icon && <i className={`fas ${icon}`} />}
       {` ${title}`}
     </h5>
-    {children} {/* Card.Content */}
+    <div className="card-content">{children}</div> {/* Card.Content */}
   </div>
 );
-
-Card.Content = ({ children }) => <div className="card-content">{children}</div>;
 
 Card.MainContent = ({ text, textColor = 'text-gray-400', large, children }) => {
   const CustomTag = large ? 'h2' : 'h5';
   return (
     <CustomTag className={`inline-block ${textColor}`}>
       {text}
+      {/* SubContent */}
       {children}
     </CustomTag>
   );

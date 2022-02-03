@@ -10,7 +10,7 @@ const HeroSection = ({ title, logo, banner, bannerPresent, slug }) => (
           rel="noopener noreferrer"
         >
           <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
-            <Image src={logo} layout="fill" objectFit="scale-down" />
+            <Image src={logo} layout="fill" objectFit="scale-down" priority />
           </div>
         </a>
         <h1 className="hidden uppercase md:inline">{title}</h1>
