@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
 const Footer = ({ slug, date }) => (
-  <footer className="flex flex-col justify-between gap-2 text-gray-500 md:flex-row holder">
+  <footer className="holder flex flex-col justify-between gap-2 text-gray-500 md:flex-row">
     <span>
       Data Fetched from{" "}
       <a

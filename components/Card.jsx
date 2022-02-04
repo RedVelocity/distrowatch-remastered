@@ -1,6 +1,6 @@
 const Card = ({ title, icon, children }) => (
-  <div className="flex flex-col card">
-    <h5 className="pb-2 mb-2 border-b">
+  <div className="card flex flex-col">
+    <h5 className="mb-2 border-b pb-2">
       {icon && <i className={`fas ${icon}`} />}
       {` ${title}`}
     </h5>
@@ -8,8 +8,8 @@ const Card = ({ title, icon, children }) => (
   </div>
 );
 
-Card.MainContent = ({ text, textColor = 'text-gray-400', large, children }) => {
-  const CustomTag = large ? 'h2' : 'h5';
+Card.MainContent = ({ text, textColor = "text-gray-400", large, children }) => {
+  const CustomTag = large ? "h2" : "h5";
   return (
     <CustomTag className={`inline-block ${textColor}`}>
       {text}
@@ -19,10 +19,10 @@ Card.MainContent = ({ text, textColor = 'text-gray-400', large, children }) => {
   );
 };
 
-Card.SubContent = ({ text, textColor = 'text-gray-400', bold }) => (
+Card.SubContent = ({ text, textColor = "text-gray-400", bold }) => (
   <span
     className={`${textColor} text-base font-normal tracking-normal ${
-      bold && 'font-medium'
+      bold && "font-medium"
     }`}
   >
     {text}

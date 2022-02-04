@@ -1,18 +1,18 @@
 const DetailsSection = ({ details }) => (
-  <section className="bg-white border-t holder">
+  <section className="holder border-t bg-white">
     <table className="w-full table-fixed">
       <tbody className="divide-y">
         {details.map(
           (detail, index) =>
             detail[1].length > 0 && (
               <tr key={index}>
-                <td className="block pt-2 pb-1 font-medium md:p-2 md:table-cell md:w-1/4">
+                <td className="block pt-2 pb-1 font-medium md:table-cell md:w-1/4 md:p-2">
                   <span>
                     {`${detail[0]} `}
-                    <i className="w-3 h-3 text-gray-400 fas fa-external-link-alt" />
+                    <i className="fas fa-external-link-alt h-3 w-3 text-gray-400" />
                   </span>
                 </td>
-                <td className="block pb-2 md:p-2 md:table-cell">
+                <td className="block pb-2 md:table-cell md:p-2">
                   {detail[1].map((links, i) => (
                     <a
                       href={links.link}

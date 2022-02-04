@@ -1,15 +1,15 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 const HeroSection = ({ title, logo, banner, bannerPresent, slug }) => (
   <>
-    <section className=" bg-primary h-[18rem] flex items-center justify-center">
-      <div className="grid items-center justify-center gap-2 text-center justify-items-center holder md:flex">
+    <section className=" holder flex h-[18rem] items-center justify-center bg-primary">
+      <div className="grid items-center justify-center justify-items-center gap-2 text-center md:flex">
         <a
           href={`https://distrowatch.com/table.php?distribution=${slug}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="relative w-40 h-40 mx-4 overflow-hidden bg-white border-2 rounded-full">
+          <div className="relative mx-4 h-40 w-40 overflow-hidden rounded-full border-2 bg-white">
             <Image src={logo} layout="fill" objectFit="scale-down" priority />
           </div>
         </a>
@@ -17,7 +17,7 @@ const HeroSection = ({ title, logo, banner, bannerPresent, slug }) => (
       </div>
     </section>
     {bannerPresent && (
-      <div className="relative h-full md:h-[18rem] aspect-video holder -my-6 mx-8 md:mx-auto overflow-hidden rounded-md shadow-xl bg-gray-400">
+      <div className="holder relative -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-gray-400 shadow-xl md:mx-auto md:h-[18rem]">
         <Image src={banner} layout="fill" priority />
       </div>
     )}

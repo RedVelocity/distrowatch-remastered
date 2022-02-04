@@ -53,7 +53,7 @@ const DistroDetails = ({ pageData }) => {
       <Head>
         <title>{`DistroWatch | ${header.title}`}</title>
       </Head>
-      <div className="page-container">
+      <main>
         <HeroSection
           title={header.title}
           logo={header.logo}
@@ -66,23 +66,21 @@ const DistroDetails = ({ pageData }) => {
           rating={rating}
           attributes={header.attributes}
         />
-        <section className="flex items-center justify-center bg-secondary texture">
-          <p className="holder text-gray-200/90">{header.description}</p>
+        <section className="texture holder flex items-center justify-center bg-secondary">
+          <p className="text-gray-200/90">{header.description}</p>
         </section>
-        <section className="flex items-center justify-center bg-primary">
-          <div className="w-full holder md:w-auto">
-            <CombinedCard
-              cardItems={[
-                { title: "Architecture", text: header.attributes.architecture },
-                { title: "Desktop", text: header.attributes.desktop },
-                { title: "Category", text: header.attributes.category },
-              ]}
-            />
-          </div>
+        <section className="holder flex items-center justify-center bg-primary">
+          <CombinedCard
+            cardItems={[
+              { title: "Architecture", text: header.attributes.architecture },
+              { title: "Desktop", text: header.attributes.desktop },
+              { title: "Category", text: header.attributes.category },
+            ]}
+          />
         </section>
         <DetailsSection details={distro.details} />
-        <Footer slug={slug} date={updatedAt} />
-      </div>
+      </main>
+      <Footer slug={slug} date={updatedAt} />
     </>
   );
 };

@@ -1,8 +1,8 @@
-import Footer from './Footer';
-import Header from './Header';
+import Footer from "./Footer";
+import Header from "./Header";
 
 const Layout = ({ children }) => (
-  <div className="min-h-screen flex flex-col">
+  <div className="flex min-h-screen flex-col">
     <Header />
     <main className="grow">{children}</main>
     <Footer />

@@ -1,9 +1,11 @@
 // import Layout from '../components/Layout';
-import '../styles/main.css';
+import "../styles/main.css";
 
 const MyApp = ({ Component, pageProps }) => (
   // <Layout>
-  <Component {...pageProps} />
+  <div className="page-container">
+    <Component {...pageProps} />
+  </div>
   // </Layout>
 );
 

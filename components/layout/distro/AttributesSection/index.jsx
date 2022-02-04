@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import Card from '../../../Card';
-import getTextColor from './getTextColor';
+import Image from "next/image";
+import Card from "../../../Card";
+import getTextColor from "./getTextColor";
 
 const AttributesSection = ({ marginRequired, rating, attributes }) => {
-  const ratingTextColor = getTextColor('rating', rating);
-  const popularityTextColor = getTextColor('popularity', attributes.popularity);
-  const isDormant = attributes.status.includes('defined');
+  const ratingTextColor = getTextColor("rating", rating);
+  const popularityTextColor = getTextColor("popularity", attributes.popularity);
+  const isDormant = attributes.status.includes("defined");
   return (
-    <section className={`bg-accent ${marginRequired && 'mt-16'}`}>
-      <div className="gap-4 responsive-grid holder">
+    <section className={`holder bg-accent ${marginRequired && "mt-16"}`}>
+      <div className="responsive-grid gap-4">
         <Card title="User Rating" icon="fa-chart-bar">
           {rating > 0 ? (
             <Card.MainContent
@@ -54,12 +54,12 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
         <Card title="Status" icon="fa-check-circle">
           <i
             className={`fas fa-toggle-on text-2xl ${
-              isDormant ? 'text-danger rotate-180' : 'text-success'
+              isDormant ? "rotate-180 text-danger" : "text-success"
             }`}
           />
           <Card.MainContent
-            text={attributes.status.split(' ')[0]}
-            textColor={isDormant ? 'text-danger' : 'text-success'}
+            text={attributes.status.split(" ")[0]}
+            textColor={isDormant ? "text-danger" : "text-success"}
           />
         </Card>
         <Card title="Based On" icon="fa-project-diagram">

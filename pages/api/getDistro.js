@@ -1,4 +1,4 @@
-import getDistroDetails from '../../services/getDistroDetails';
+import getDistroDetails from "../../services/getDistroDetails";
 
 const getDistro = async (req, res) => {
   try {
@@ -7,7 +7,7 @@ const getDistro = async (req, res) => {
     return res.json(pageData);
   } catch (error) {
     console.log(`error`, error);
-    return res.status(500).send('error');
+    return res.status(500).send("error");
   }
 };
 
