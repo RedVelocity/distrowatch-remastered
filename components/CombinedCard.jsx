@@ -1,6 +1,6 @@
-const CombinedCard = ({ cardItems, className = '' }) => (
+const CombinedCard = ({ cardItems, className = "" }) => (
   <ul
-    className={`${className} card divide-y-2 md:divide-y-0 md:divide-x-2 divide-accent flex flex-col md:flex-row`}
+    className={`${className} card divide-y-2 divide-accent md:divide-y-0 md:divide-x-2 flex flex-col md:flex-row`}
   >
     {cardItems.map((item) => (
       <li className="py-4 mx-4 md:p-4 md:m-0" key={item.title}>
