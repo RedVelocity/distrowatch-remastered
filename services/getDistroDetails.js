@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import dbConnect from './dbConnect';
 import scrapeDistroDetails from '../lib/scrapeDistroDetails';
 import Distro from '../models/Distro';
-import getCountryFlags from './getCountryFlags';
+import getCountryFlag from './getCountryFlag';
 
 const getDistroDetails = async (slug) => {
   const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${slug}`;
@@ -30,7 +30,7 @@ const getDistroDetails = async (slug) => {
           .split(', ')
           .map(async (country) => ({
             country,
-            flag: await getCountryFlags(country),
+            flag: await getCountryFlag(country),
           }))
       );
       // Save scraped data to DB and return it
@@ -43,6 +43,7 @@ const getDistroDetails = async (slug) => {
     // Return cached data from DB
     return distro;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
     return 404;
   }

@@ -54,6 +54,9 @@ body {
   p {
     @apply p-2 italic text-justify;
   }
+  a {
+    @apply text-blue-600 visited:text-purple-700;
+  }
 }
 
 @layer components {
@@ -73,7 +76,7 @@ body {
     @apply max-w-screen-lg overflow-hidden bg-gray-100 rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply p-4 bg-white rounded-md border;
+    @apply p-4 bg-white border rounded-md;
   }
   .card-content {
     @apply flex items-center justify-center gap-2 grow;

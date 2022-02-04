@@ -7,13 +7,13 @@ const DetailsSection = ({ details }) => (
             (detail, index) =>
               detail[1].length > 0 && (
                 <tr className="py-1" key={index}>
-                  <td className="p-2 font-medium md:w-1/4">
+                  <td className="block p-2 font-medium md:table-cell md:w-1/4">
                     {`${detail[0]} `}
+                    <i className="w-3 h-3 text-gray-400 align-middle fas fa-external-link-alt" />
                   </td>
-                  <td className="col-span-3 p-2">
+                  <td className="block p-2 md:table-cell">
                     {detail[1].map((links, i) => (
                       <a
-                        className="text-blue-700"
                         href={links.link}
                         target="_blank"
                         rel="noreferrer"
