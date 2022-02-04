@@ -90,11 +90,10 @@ const DistroDetails = ({ pageData }) => {
           </div>
         </section>
         <DetailsSection details={distro.details} />
-        <section className="flex flex-col items-center justify-between gap-2 md:flex-row holder">
+        <section className="flex flex-col justify-between gap-2 text-gray-500 md:flex-row holder">
           <span>
             Data Fetched from{' '}
             <a
-              className="text-accent"
               href={`https://distrowatch.com/table.php?distribution=${slug}`}
               target="_blank"
               rel="noopener noreferrer"
