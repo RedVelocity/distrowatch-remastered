@@ -9,7 +9,6 @@ const DetailsSection = ({ details }) => (
                 <tr className="py-1" key={index}>
                   <td className="p-2 font-medium md:w-1/4">
                     {`${detail[0]} `}
-                    <i className="w-3 h-3 text-gray-400 align-middle fas fa-external-link-alt" />
                   </td>
                   <td className="col-span-3 p-2">
                     {detail[1].map((links, i) => (
