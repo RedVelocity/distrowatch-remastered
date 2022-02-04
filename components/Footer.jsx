@@ -1,9 +1,9 @@
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 
 const Footer = ({ slug, date }) => (
   <footer className="holder flex flex-col justify-between gap-2 text-gray-500 md:flex-row">
     <span>
-      Data Fetched from{" "}
+      Data Fetched from{' '}
       <a
         href={`https://distrowatch.com/table.php?distribution=${slug}`}
         target="_blank"
@@ -12,7 +12,7 @@ const Footer = ({ slug, date }) => (
         DistroWatch
       </a>
     </span>
-    <span>Last Updated at {dayjs(date).format("HH:mm, MMM D YYYY")}</span>
+    <span>Last Updated at {dayjs(date).format('HH:mm, MMM D YYYY')}</span>
   </footer>
 );
 

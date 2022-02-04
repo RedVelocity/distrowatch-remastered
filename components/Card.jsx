@@ -8,8 +8,8 @@ const Card = ({ title, icon, children }) => (
   </div>
 );
 
-Card.MainContent = ({ text, textColor = "text-gray-400", large, children }) => {
-  const CustomTag = large ? "h2" : "h5";
+Card.MainContent = ({ text, textColor = 'text-gray-400', large, children }) => {
+  const CustomTag = large ? 'h2' : 'h5';
   return (
     <CustomTag className={`inline-block ${textColor}`}>
       {text}
@@ -19,10 +19,10 @@ Card.MainContent = ({ text, textColor = "text-gray-400", large, children }) => {
   );
 };
 
-Card.SubContent = ({ text, textColor = "text-gray-400", bold }) => (
+Card.SubContent = ({ text, textColor = 'text-gray-400', bold }) => (
   <span
     className={`${textColor} text-base font-normal tracking-normal ${
-      bold && "font-medium"
+      bold && 'font-medium'
     }`}
   >
     {text}

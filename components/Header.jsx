@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const Header = () => (
   <header className="bg-primary p-4">

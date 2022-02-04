@@ -1,15 +1,15 @@
-import Head from "next/head";
+import Head from 'next/head';
 // import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
-import getDistroPaths from "../../services/getDistroPaths";
-import getDistroDetails from "../../services/getDistroDetails";
+import getDistroPaths from '../../services/getDistroPaths';
+import getDistroDetails from '../../services/getDistroDetails';
 import {
   AttributesSection,
   DetailsSection,
   HeroSection,
-} from "../../components/layout/distro";
-import CombinedCard from "../../components/CombinedCard";
-import Footer from "../../components/Footer";
+} from '../../components/layout/distro';
+import CombinedCard from '../../components/CombinedCard';
+import Footer from '../../components/Footer';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -36,7 +36,7 @@ export const getStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
-    fallback: "blocking",
+    fallback: 'blocking',
   };
 };
 
@@ -44,7 +44,7 @@ const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
   // console.log('distro', distro);
   const { header, rating, slug, updatedAt } = distro;
-  const bannerPresent = header.banner !== "false";
+  const bannerPresent = header.banner !== 'false';
   // const router = useRouter();
   // if (router.isFallback) {}
 
@@ -72,9 +72,9 @@ const DistroDetails = ({ pageData }) => {
         <section className="holder flex items-center justify-center bg-primary">
           <CombinedCard
             cardItems={[
-              { title: "Architecture", text: header.attributes.architecture },
-              { title: "Desktop", text: header.attributes.desktop },
-              { title: "Category", text: header.attributes.category },
+              { title: 'Architecture', text: header.attributes.architecture },
+              { title: 'Desktop', text: header.attributes.desktop },
+              { title: 'Category', text: header.attributes.category },
             ]}
           />
         </section>

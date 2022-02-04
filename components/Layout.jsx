@@ -1,5 +1,5 @@
-import Footer from "./Footer";
-import Header from "./Header";
+import Footer from './Footer';
+import Header from './Header';
 
 const Layout = ({ children }) => (
   <div className="flex min-h-screen flex-col">
