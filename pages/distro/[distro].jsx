@@ -3,10 +3,10 @@ import Head from 'next/head';
 // import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
-import AttributesSection from '../../components/AttributesSection';
-import HeroSection from '../../components/HeroSection';
+import AttributesSection from '../../components/layout/distro/AttributesSection';
+import HeroSection from '../../components/layout/distro/HeroSection';
+import DetailsSection from '../../components/layout/distro/DetailsSection';
 import CombinedCard from '../../components/CombinedCard';
-import DetailsSection from '../../components/DetailsSection';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -45,9 +45,9 @@ const DistroDetails = ({ pageData }) => {
   // const router = useRouter();
   // if (router.isFallback) {
   //   return (
-  //     <div className="flex items-center justify-center space-x-2 min-h-screen w-screen">
+  //     <div className="flex items-center justify-center w-screen min-h-screen space-x-2">
   //       <div
-  //         className="spinner-grow inline-block w-12 h-12 bg-current rounded-full opacity-0"
+  //         className="inline-block w-12 h-12 bg-current rounded-full opacity-0 spinner-grow"
   //         role="status"
   //       >
   //         <span className="visually-hidden">Loading...</span>
@@ -78,7 +78,7 @@ const DistroDetails = ({ pageData }) => {
           <p className="text-gray-200/90 holder">{header.description}</p>
         </section>
         <section className="flex items-center justify-center bg-primary">
-          <div className="holder">
+          <div className="w-full holder md:w-auto">
             <CombinedCard
               cardItems={[
                 { title: 'Architecture', text: header.attributes.architecture },

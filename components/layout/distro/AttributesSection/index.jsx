@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Card from '../Card';
+import Card from '../../../Card';
 import getTextColor from './getTextColor';
 
 const AttributesSection = ({ marginRequired, rating, attributes }) => {
