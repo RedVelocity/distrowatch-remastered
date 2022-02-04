@@ -1,7 +1,7 @@
 const DetailsSection = ({ details }) => (
   <section>
-    <div className="w-full bg-white border-t holder">
-      <table className="table-fixed">
+    <div className="bg-white border-t holder">
+      <table className="w-full table-fixed">
         <tbody className="divide-y">
           {details.map(
             (detail, index) =>
@@ -19,7 +19,9 @@ const DetailsSection = ({ details }) => (
                         rel="noreferrer"
                         key={i}
                       >
-                        <span className="text-gray-500">{` • `}</span>
+                        {i > 0 && (
+                          <span className="text-gray-500">{` • `}</span>
+                        )}
                         {links.text}
                       </a>
                     ))}

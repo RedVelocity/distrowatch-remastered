@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import dayjs from 'dayjs';
 // import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
@@ -89,6 +90,23 @@ const DistroDetails = ({ pageData }) => {
           </div>
         </section>
         <DetailsSection details={distro.details} />
+        <section className="flex flex-col items-center justify-between gap-2 md:flex-row holder">
+          <span>
+            Data Fetched from{' '}
+            <a
+              className="text-accent"
+              href={`https://distrowatch.com/table.php?distribution=${slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              DistroWatch
+            </a>
+          </span>
+          <span>
+            Last Updated at{' '}
+            {dayjs(distro.updatedAt).format('HH:mm, MMM D YYYY')}
+          </span>
+        </section>
       </div>
     </>
   );
