@@ -1,6 +1,6 @@
 const DetailsSection = ({ details }) => (
-  <section className="holder border-t bg-white">
-    <table className="w-full table-fixed">
+  <div className="holder max-w-full overflow-x-auto border-t bg-white">
+    <table className="w-full">
       <tbody className="divide-y">
         {details.map(
           (detail, index) =>
@@ -30,7 +30,7 @@ const DetailsSection = ({ details }) => (
         )}
       </tbody>
     </table>
-  </section>
+  </div>
 );
 
 export default DetailsSection;

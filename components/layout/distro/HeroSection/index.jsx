@@ -9,8 +9,10 @@ const HeroSection = ({ title, logo, banner, bannerPresent, slug }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="relative mx-4 h-40 w-40 overflow-hidden rounded-full border-2 bg-white">
-            <Image src={logo} layout="fill" objectFit="scale-down" priority />
+          <div className="mx-4 rounded-full border-2 bg-white p-2">
+            <div className="relative h-40 w-40">
+              <Image src={logo} layout="fill" objectFit="scale-down" priority />
+            </div>
           </div>
         </a>
         <h1 className="hidden uppercase md:inline">{title}</h1>
