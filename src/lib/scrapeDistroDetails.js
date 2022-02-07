@@ -30,7 +30,7 @@ const getExtras = (headerText) => {
     : headerText.split('Visitor rating:');
   return [
     description.trim(),
-    null,
+    {},
     Number.isNaN(parseFloat(rating)) ? 0 : parseFloat(rating),
   ];
 };
@@ -71,7 +71,8 @@ const scrapeDistroDetails = (data, slug) => {
     .each((_, el) => {
       const [key, val] = $(el).text().trim().split(':');
       if (key === 'Popularity')
-        attributes.popularity = popularity ? popularity['6Months'] : [];
+        attributes.popularity =
+          Object.keys(popularity).length > 0 ? popularity['6Months'] : [];
       else attributes[`${toCamelCase(key)}`] = val.trim();
     });
   // Details
