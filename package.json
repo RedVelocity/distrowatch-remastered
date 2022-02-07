@@ -11,7 +11,6 @@
     "git:major": "npm --no-git-tag-version --no-commit-hooks version major && git add -A && git commit -m"
   },
   "dependencies": {
-    "@plaiceholder/next": "^2.2.0",
     "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10",
     "dayjs": "^1.10.7",
@@ -42,5 +41,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "version": "4.6.18"
+  "version": "4.6.19"
 }
