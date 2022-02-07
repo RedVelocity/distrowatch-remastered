@@ -14,7 +14,7 @@ const getDistroDetails = async (slug) => {
     const distro = await Distro.findOne({ slug }).lean();
     // Scrape distrowatch.com if not cached in DB for last 6 days
     const isStale = distro
-      ? dayjs(distro.updatedAt).diff(Date.now(), 'd') > 6
+      ? dayjs(distro.updatedAt).diff(Date.now(), 'd') < -6
       : true;
     if (isStale) {
       const { data } = await axios.get(API_ENDPOINT, {
