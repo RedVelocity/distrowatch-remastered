@@ -1,6 +1,11 @@
+import React from 'react';
+import { Details } from '../../../models/Distro.d';
 import Table from '../../Table';
 
-const DetailsSection = ({ details }) => (
+type Props = {
+  details: Details;
+};
+const DetailsSection = ({ details }: Props): React.ReactElement => (
   <Table className="holder border-t">
     {details.map(
       (detail, index) =>

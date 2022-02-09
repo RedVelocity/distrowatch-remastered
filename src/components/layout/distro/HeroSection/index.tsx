@@ -1,6 +1,21 @@
+import React from 'react';
 import Image from 'next/image';
 
-const HeroSection = ({ title, logo, banner, bannerPresent, slug }) => (
+type Props = {
+  title: string;
+  logo: string;
+  banner?: string;
+  bannerPresent: boolean;
+  slug: string;
+};
+
+const HeroSection = ({
+  title,
+  logo,
+  banner,
+  bannerPresent,
+  slug,
+}: Props): React.ReactElement => (
   <>
     <section className=" holder flex h-[18rem] items-center justify-center bg-primary">
       <div className="grid items-center justify-center justify-items-center gap-2 text-center md:flex">

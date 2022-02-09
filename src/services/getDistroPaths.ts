@@ -1,6 +1,9 @@
 import axios from 'axios';
+import distro from '../pages/distro';
 
-const getDistroPaths = async () => {
+type Paths = { params: { distro: string } };
+
+const getDistroPaths = async (): Promise<Paths> => {
   const API_ENDPOINT =
     'https://raw.githubusercontent.com/jamezrin/distrowatch-data/master/rankings.json';
 
@@ -14,7 +17,7 @@ const getDistroPaths = async () => {
     // const paths = [...new Set(allPaths)].map((d) => ({
     //   params: { distro: d.replace('https://distrowatch.com/', '') },
     // }));
-    const paths = data[21]?.distributionsRanking?.map((distro) => ({
+    const paths: Paths = data[21]?.distributionsRanking?.map((distro) => ({
       params: { distro: distro.url.replace('https://distrowatch.com/', '') },
     }));
     return paths;

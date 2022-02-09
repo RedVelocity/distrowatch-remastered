@@ -25,11 +25,10 @@ const dbConnect = async () => {
     return cached.conn;
   }
   if (!cached.promise) {
-    const opts = {
+    cached.promise = await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    };
-    cached.promise = await mongoose.connect(MONGO_URI, opts);
+    });
   }
   cached.conn = await cached.promise;
   return cached.conn;

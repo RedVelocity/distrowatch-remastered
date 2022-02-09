@@ -1,11 +1,25 @@
+import React from 'react';
 import Image from 'next/image';
+import { Attributes } from '../../../../models/Distro.d';
 import Card from '../../../Card';
 import getTextColor from './getTextColor';
 
-const AttributesSection = ({ marginRequired, rating, attributes }) => {
+type Props = {
+  marginRequired: boolean;
+  rating: number;
+  attributes: Attributes;
+};
+
+const AttributesSection = ({
+  marginRequired,
+  rating,
+  attributes,
+}: Props): React.ReactElement => {
   const ratingTextColor = getTextColor('rating', rating);
-  const popularityTextColor = getTextColor('popularity', attributes.popularity);
   const isDormant = attributes.status.includes('defined');
+  const rankTextColor =
+    attributes.rank.length > 0 &&
+    getTextColor('rank', Number.parseInt(attributes.rank[0]));
   return (
     <section className={`holder bg-accent ${marginRequired && 'mt-16'}`}>
       <div className="responsive-grid gap-4">
@@ -23,13 +37,13 @@ const AttributesSection = ({ marginRequired, rating, attributes }) => {
           )}
         </Card>
         <Card title="Popularity" icon="fa-chart-line">
-          {attributes.popularity.length > 0 ? (
+          {attributes.rank.length > 0 ? (
             <Card.MainContent
-              text={attributes.popularity[0]}
-              textColor={popularityTextColor}
+              text={attributes.rank[0]}
+              textColor={rankTextColor}
               large
             >
-              <Card.SubContent text={` (${attributes.popularity[1]})`} />
+              <Card.SubContent text={` (${attributes.rank[1]})`} />
             </Card.MainContent>
           ) : (
             <Card.SubContent text="Not Ranked" bold />

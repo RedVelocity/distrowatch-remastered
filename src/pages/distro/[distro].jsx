@@ -1,13 +1,13 @@
 import Head from 'next/head';
 // import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
-import getDistroPaths from '../../services/getDistroPaths';
-import getDistroDetails from '../../services/getDistroDetails';
+import getDistroPaths from '../../services/getDistroPaths.ts';
+import getDistroDetails from '../../services/getDistroDetails.ts';
 import {
   AttributesSection,
   DetailsSection,
   HeroSection,
-} from '../../components/layout/distro';
+} from '../../components/layout/distro/index.tsx';
 import CombinedCard from '../../components/CombinedCard';
 import Footer from '../../components/Footer';
 
@@ -43,42 +43,43 @@ export const getStaticPaths = async () => {
 const DistroDetails = ({ pageData }) => {
   const distro = JSON.parse(pageData);
   // console.log('distro', distro);
-  const { header, rating, slug, updatedAt } = distro;
-  const bannerPresent = header.banner !== 'false';
+  const { header, rating, slug, updatedAt, details } = distro;
+  const { title, logo, banner, description, attributes } = header;
+  const bannerPresent = banner !== 'false';
   // const router = useRouter();
   // if (router.isFallback) {}
 
   return (
     <>
       <Head>
-        <title>{`DistroWatch | ${header.title}`}</title>
+        <title>{`DistroWatch | ${title}`}</title>
       </Head>
       <main>
         <HeroSection
-          title={header.title}
-          logo={header.logo}
-          banner={header.banner}
+          title={title}
+          logo={logo}
+          banner={banner}
           bannerPresent={bannerPresent}
           slug={slug}
         />
         <AttributesSection
           marginRequired={bannerPresent}
           rating={rating}
-          attributes={header.attributes}
+          attributes={attributes}
         />
         <section className="texture holder flex items-center justify-center bg-secondary">
-          <p className="text-gray-200/90">{header.description}</p>
+          <p className="text-gray-200/90">{description}</p>
         </section>
         <section className="holder flex items-center justify-center bg-primary">
           <CombinedCard
             cardItems={[
-              { title: 'Architecture', text: header.attributes.architecture },
-              { title: 'Desktop', text: header.attributes.desktop },
-              { title: 'Category', text: header.attributes.category },
+              { title: 'Architecture', text: attributes.architecture },
+              { title: 'Desktop', text: attributes.desktop },
+              { title: 'Category', text: attributes.category },
             ]}
           />
         </section>
-        <DetailsSection details={distro.details} />
+        <DetailsSection details={details} />
       </main>
       <Footer slug={slug} date={updatedAt} />
     </>

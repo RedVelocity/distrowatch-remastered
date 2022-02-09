@@ -1,3 +1,4 @@
+import { DistroDocument, DistroModel } from './Distro.d';
 import mongoose, { Schema } from 'mongoose';
 
 const schema = {
@@ -35,7 +36,12 @@ const schema = {
   },
 };
 
-const DistroSchema = new Schema(schema, { minimize: false, timestamps: true });
-const Distro = mongoose.models.Distro || mongoose.model('Distro', DistroSchema);
+const DistroSchema = new Schema<DistroModel>(schema, {
+  minimize: false,
+  timestamps: true,
+});
+const Distro =
+  mongoose.models.Distro ||
+  mongoose.model<DistroDocument>('Distro', DistroSchema);
 
 export default Distro;
