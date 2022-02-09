@@ -1,3 +1,5 @@
+import React from 'react';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 // import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
@@ -11,13 +13,21 @@ import {
   HeroSection,
 } from '../../components/layout/distro';
 import { DistroModel } from '../../models/Distro.d';
-import React from 'react';
 
-export const getStaticProps = async (context) => {
-  const { distro } = context.params;
-  const pageData = await getDistroDetails(distro);
-  // console.log(`pageData`, pageData);
-  if (pageData === 404) return { notFound: true };
+export const getStaticProps: GetStaticProps = async (context) => {
+  try {
+    const { distro } = context.params;
+    const pageData = await getDistroDetails(distro.toString());
+    // console.log(`pageData`, pageData);
+    return {
+      props: {
+        pageData: JSON.stringify(pageData.toObject()),
+      },
+      revalidate: 604800, // Rebuild every 7days
+    };
+  } catch (error) {
+    return { notFound: true };
+  }
   // const { base64, img } = await getPlaiceholder(pageData.header.logo);
   // const logo = {
   //   src: img.src,
@@ -26,15 +36,9 @@ export const getStaticProps = async (context) => {
   //   layout: 'fill',
   //   objectFit: 'scale-down',
   // };
-  return {
-    props: {
-      pageData: JSON.stringify(pageData),
-    },
-    revalidate: 604800, // Rebuild every 7days
-  };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
@@ -42,11 +46,9 @@ export const getStaticPaths = async () => {
   };
 };
 
-const DistroDetails = ({
-  pageData,
-}: {
+const DistroDetails: NextPage<{
   pageData: string;
-}): React.ReactElement => {
+}> = ({ pageData }) => {
   const distro: DistroModel = JSON.parse(pageData);
   // console.log('distro', distro);
   const { header, rating, slug, updatedAt, details } = distro;
@@ -54,7 +56,6 @@ const DistroDetails = ({
   const bannerPresent = banner !== 'false';
   // const router = useRouter();
   // if (router.isFallback) {}
-
   return (
     <>
       <Head>

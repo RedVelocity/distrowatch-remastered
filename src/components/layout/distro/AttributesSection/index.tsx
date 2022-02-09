@@ -16,10 +16,10 @@ const AttributesSection = ({
   attributes,
 }: Props): React.ReactElement => {
   const ratingTextColor = getTextColor('rating', rating);
-  const isDormant = attributes.status.includes('defined');
   const rankTextColor =
     attributes.rank.length > 0 &&
     getTextColor('rank', Number.parseInt(attributes.rank[0]));
+  const isDormant = attributes.status.includes('defined');
   return (
     <section className={`holder bg-accent ${marginRequired && 'mt-16'}`}>
       <div className="responsive-grid gap-4">

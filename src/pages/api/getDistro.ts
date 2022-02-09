@@ -1,6 +1,7 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import getDistroDetails from '../../services/getDistroDetails';
 
-const getDistro = async (req, res) => {
+const getDistro = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { distro } = req.query;
     const pageData = await getDistroDetails(distro);

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import { connect } from 'mongoose';
 
 const { MONGO_URI } = process.env;
 
@@ -25,7 +25,7 @@ const dbConnect = async () => {
     return cached.conn;
   }
   if (!cached.promise) {
-    cached.promise = await mongoose.connect(MONGO_URI, {
+    cached.promise = await connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

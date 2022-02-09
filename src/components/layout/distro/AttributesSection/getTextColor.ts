@@ -1,4 +1,4 @@
-const getTextColor = (type: string, val: number) => {
+const getTextColor = (type: 'rank' | 'rating', val: number): string => {
   let textColor;
   if (type === 'rank') {
     if (val <= 10) textColor = 'text-success';
