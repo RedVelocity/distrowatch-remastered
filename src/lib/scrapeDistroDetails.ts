@@ -85,15 +85,17 @@ const scrapeDistroDetails = async (
   $(headerText)
     .find('ul > li')
     .each((_, el) => {
-      const [key, val] = $(el).text().trim().split(':');
+      const [key, value] = $(el).text().trim().split(':');
       if (key === 'Popularity')
         attributes.rank =
           Object.keys(popularity).length > 0 ? popularity['6Months'] : [];
-      else attributes[`${toCamelCase(key)}`] = val.trim();
+      // eslint-disable-next-line prefer-destructuring
+      else if (key === 'Status') attributes.status = value.trim().split(' ')[0];
+      else attributes[`${toCamelCase(key)}`] = value.trim().split(', ');
     });
   // Add flags to attributes
   const flags: Flag[] = await Promise.all(
-    attributes.origin.split(', ').map(async (country) => ({
+    attributes.origin.map(async (country) => ({
       country,
       flag: await getCountryFlag(country),
     }))

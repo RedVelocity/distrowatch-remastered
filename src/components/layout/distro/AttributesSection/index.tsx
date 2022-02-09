@@ -19,7 +19,7 @@ const AttributesSection = ({
   const rankTextColor =
     attributes.rank.length > 0 &&
     getTextColor('rank', Number.parseInt(attributes.rank[0], 10));
-  const isDormant = attributes.status.includes('defined');
+  const isDormant = attributes.status !== 'Active';
   return (
     <section className={`holder bg-accent ${marginRequired && 'mt-16'}`}>
       <div className="responsive-grid gap-4">
@@ -36,7 +36,7 @@ const AttributesSection = ({
             <Card.SubContent text="No Ratings Yet" bold />
           )}
         </Card>
-        <Card title="Popularity" icon="fa-chart-line">
+        <Card title="Popularity (HPD)" icon="fa-chart-line">
           {attributes.rank.length > 0 ? (
             <Card.MainContent
               text={attributes.rank[0]}
@@ -72,14 +72,14 @@ const AttributesSection = ({
             }`}
           />
           <Card.MainContent
-            text={attributes.status.split(' ')[0]}
+            text={attributes.status}
             textColor={isDormant ? 'text-danger' : 'text-success'}
           />
         </Card>
         <Card title="Based On" icon="fa-project-diagram">
           <Card.SubContent
-            text={attributes.basedOn}
-            textColor="text-gray-600"
+            text={attributes.basedOn.join(', ')}
+            textColor="text-gray-500"
             bold
           />
         </Card>

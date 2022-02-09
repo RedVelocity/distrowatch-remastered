@@ -80,9 +80,12 @@ const DistroDetails: NextPage<{
         <section className="holder flex items-center justify-center bg-primary">
           <CombinedCard
             cardItems={[
-              { title: 'Architecture', text: attributes.architecture },
-              { title: 'Desktop', text: attributes.desktop },
-              { title: 'Category', text: attributes.category },
+              {
+                title: 'Architecture',
+                text: attributes.architecture.join(', '),
+              },
+              { title: 'Desktop', text: attributes.desktop.join(', ') },
+              { title: 'Category', text: attributes.category.join(', ') },
             ]}
           />
         </section>

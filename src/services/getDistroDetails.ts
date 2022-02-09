@@ -16,27 +16,25 @@ const getDistroDetails = async (slug: string): Promise<DistroDocument> => {
   const isStale: boolean = distro
     ? dayjs(distro.updatedAt).diff(Date.now(), 'd') < -6
     : true;
-  if (isStale) {
-    const res: AxiosResponse = await axios.get(API_ENDPOINT, {
-      headers: {
-        'User-Agent': USER_AGENT,
-      },
-    });
-    // Call helper function to scrape data
-    const distroData = await scrapeDistroDetails(res.data, slug);
-    // Save scraped data to DB and return it
-    const newDistro: DistroDocument = await Distro.findOneAndUpdate(
-      { slug },
-      distroData,
-      {
-        upsert: true,
-        new: true,
-      }
-    );
-    return newDistro;
-  }
-  // Return cached data from DB
-  return distro;
+  // Return cached DB result if not stale
+  if (!isStale) return distro;
+  const res: AxiosResponse = await axios.get(API_ENDPOINT, {
+    headers: {
+      'User-Agent': USER_AGENT,
+    },
+  });
+  // Call helper function to scrape data
+  const distroData = await scrapeDistroDetails(res.data, slug);
+  // Save scraped data to DB and return it
+  const newDistro: DistroDocument = await Distro.findOneAndUpdate(
+    { slug },
+    distroData,
+    {
+      upsert: true,
+      new: true,
+    }
+  );
+  return newDistro;
 };
 
 export default getDistroDetails;

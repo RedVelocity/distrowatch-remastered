@@ -26,12 +26,12 @@ export type Flag = {
 };
 
 export type Attributes = {
-  osType: string;
-  basedOn: string;
-  origin: string;
-  architecture: string;
-  desktop: string;
-  category: string;
+  osType: Array<string>;
+  basedOn: Array<string>;
+  origin: Array<string>;
+  architecture: Array<string>;
+  desktop: Array<string>;
+  category: Array<string>;
   status: string;
   rank: Array<string>;
   flags: Array<Flag>;
