@@ -11,6 +11,7 @@ class MyDocument extends Document {
     const initialProps = await Document.getInitialProps(context);
     return initialProps;
   }
+
   render() {
     return (
       <Html>

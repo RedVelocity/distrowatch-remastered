@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import dbConnect from './dbConnect';
 import scrapeDistroDetails from '../lib/scrapeDistroDetails';
 import Distro from '../models/Distro';
-import { DistroDocument } from './../models/Distro.d';
+import { DistroDocument } from '../models/Distro.d';
 
 const getDistroDetails = async (slug: string): Promise<DistroDocument> => {
   const API_ENDPOINT = `https://distrowatch.com/table.php?distribution=${slug}`;

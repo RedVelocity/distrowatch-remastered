@@ -8,8 +8,6 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'prettier',
     'plugin:@next/next/recommended',
   ],
@@ -25,6 +23,16 @@ module.exports = {
     'consistent-return': 1,
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 1,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'linebreak-style': 0,
     'no-nested-ternary': 0,
     'no-return-assign': [1, 'except-parens'],
@@ -33,11 +41,21 @@ module.exports = {
       { allowTernary: true, allowShortCircuit: true },
     ],
     'react/prop-types': 0,
-    'react/jsx-filename-extension': 1,
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
     'react/no-array-index-key': 0,
     'react/require-default-props': 0,
     'react/function-component-definition': 0,
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 };

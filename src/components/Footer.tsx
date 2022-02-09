@@ -1,3 +1,4 @@
+import React from 'react';
 import dayjs from 'dayjs';
 
 type Props = { slug: string; date: Date };

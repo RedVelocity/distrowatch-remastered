@@ -1,3 +1,6 @@
+/* eslint-disable react/display-name */
+import React from 'react';
+
 type TableProps = { children: React.ReactNode; className?: string };
 
 const Table = ({

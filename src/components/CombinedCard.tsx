@@ -1,3 +1,5 @@
+import React from 'react';
+
 type Props = {
   cardItems: { title: string; text: string }[];
   className?: string;

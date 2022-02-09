@@ -18,7 +18,7 @@ const AttributesSection = ({
   const ratingTextColor = getTextColor('rating', rating);
   const rankTextColor =
     attributes.rank.length > 0 &&
-    getTextColor('rank', Number.parseInt(attributes.rank[0]));
+    getTextColor('rank', Number.parseInt(attributes.rank[0], 10));
   const isDormant = attributes.status.includes('defined');
   return (
     <section className={`holder bg-accent ${marginRequired && 'mt-16'}`}>
