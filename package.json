@@ -7,8 +7,8 @@
     "start": "next start",
     "lint": "next lint",
     "git:patch": "npm run lint && npm --no-git-tag-version --no-commit-hooks version patch && git add -A && git commit -m",
-    "git:minor": "npm --no-git-tag-version --no-commit-hooks version minor && git add -A && git commit -m",
-    "git:major": "npm --no-git-tag-version --no-commit-hooks version major && git add -A && git commit -m"
+    "git:minor": "npm run lint && npm --no-git-tag-version --no-commit-hooks version minor && git add -A && git commit -m",
+    "git:major": "npm run lint && npm --no-git-tag-version --no-commit-hooks version major && git add -A && git commit -m"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -45,5 +45,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "version": "5.0.5"
+  "version": "5.0.6"
 }
