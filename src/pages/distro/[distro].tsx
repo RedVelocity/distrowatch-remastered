@@ -1,15 +1,17 @@
 import Head from 'next/head';
 // import { getPlaiceholder } from 'plaiceholder';
 // import { useRouter } from 'next/router';
-import getDistroPaths from '../../services/getDistroPaths.ts';
-import getDistroDetails from '../../services/getDistroDetails.ts';
+import getDistroPaths from '../../services/getDistroPaths';
+import getDistroDetails from '../../services/getDistroDetails';
+import CombinedCard from '../../components/CombinedCard';
+import Footer from '../../components/Footer';
 import {
   AttributesSection,
   DetailsSection,
   HeroSection,
-} from '../../components/layout/distro/index.tsx';
-import CombinedCard from '../../components/CombinedCard';
-import Footer from '../../components/Footer';
+} from '../../components/layout/distro';
+import { DistroModel } from '../../models/Distro.d';
+import React from 'react';
 
 export const getStaticProps = async (context) => {
   const { distro } = context.params;
@@ -40,8 +42,12 @@ export const getStaticPaths = async () => {
   };
 };
 
-const DistroDetails = ({ pageData }) => {
-  const distro = JSON.parse(pageData);
+const DistroDetails = ({
+  pageData,
+}: {
+  pageData: string;
+}): React.ReactElement => {
+  const distro: DistroModel = JSON.parse(pageData);
   // console.log('distro', distro);
   const { header, rating, slug, updatedAt, details } = distro;
   const { title, logo, banner, description, attributes } = header;

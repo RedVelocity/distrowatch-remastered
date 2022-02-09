@@ -1,4 +1,11 @@
-const CombinedCard = ({ cardItems, className = '' }) => (
+type Props = {
+  cardItems: { title: string; text: string }[];
+  className?: string;
+};
+const CombinedCard = ({
+  cardItems,
+  className = '',
+}: Props): React.ReactElement => (
   <div className="w-full md:w-auto">
     <ul
       className={`${className} card flex flex-col divide-y-2 divide-accent md:flex-row md:divide-y-0 md:divide-x-2`}

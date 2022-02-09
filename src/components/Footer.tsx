@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
 
-const Footer = ({ slug, date }) => (
+type Props = { slug: string; date: Date };
+
+const Footer = ({ slug, date }: Props): React.ReactElement => (
   <footer className="holder flex flex-col justify-between gap-2 text-gray-500 md:flex-row">
     <span>
       Data Fetched from{' '}
