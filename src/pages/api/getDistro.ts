@@ -7,6 +7,7 @@ const getDistro = async (req: NextApiRequest, res: NextApiResponse) => {
     const pageData = await getDistroDetails(distro.toString());
     return res.json(pageData);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(`error`, error);
     return res.status(500).send('error');
   }
