@@ -21,7 +21,11 @@ const AttributesSection = ({
     getTextColor('rank', Number.parseInt(attributes.rank[0], 10));
   const isDormant = attributes.status !== 'Active';
   return (
-    <section className={`holder bg-accent ${marginRequired && 'mt-16'}`}>
+    <section
+      className={`holder bg-accent dark:bg-gray-500 ${
+        marginRequired && 'mt-16'
+      }`}
+    >
       <div className="responsive-grid gap-4">
         <Card title="User Rating" icon="fa-chart-bar">
           {rating > 0 ? (
@@ -79,7 +83,7 @@ const AttributesSection = ({
         <Card title="Based On" icon="fa-project-diagram">
           <Card.SubContent
             text={attributes.basedOn.join(', ')}
-            textColor="text-gray-500"
+            textColor="text-gray-500 dark:text-gray-300"
             bold
           />
         </Card>

@@ -17,14 +17,14 @@ const HeroSection = ({
   slug,
 }: Props): React.ReactElement => (
   <>
-    <section className=" holder flex h-[18rem] items-center justify-center bg-primary">
+    <section className="holder flex h-[18rem] items-center justify-center bg-primary dark:bg-gray-800">
       <div className="grid items-center justify-center justify-items-center gap-2 text-center md:flex">
         <a
           href={`https://distrowatch.com/table.php?distribution=${slug}`}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="mx-4 rounded-full border-2 bg-white p-2">
+          <div className="mx-4 rounded-full border-2 bg-white p-2 dark:border-none dark:bg-gray-300">
             <div className="relative h-40 w-40">
               <Image src={logo} layout="fill" objectFit="scale-down" priority />
             </div>

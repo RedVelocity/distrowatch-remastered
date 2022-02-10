@@ -74,10 +74,10 @@ const DistroDetails: NextPage<{
           rating={rating}
           attributes={attributes}
         />
-        <section className="texture holder flex items-center justify-center bg-secondary">
+        <section className="texture holder flex items-center justify-center bg-secondary dark:bg-gray-800">
           <p className="text-gray-200/90">{description}</p>
         </section>
-        <section className="holder flex items-center justify-center bg-primary">
+        <section className="holder flex items-center justify-center bg-primary dark:bg-gray-500">
           <CombinedCard
             cardItems={[
               {

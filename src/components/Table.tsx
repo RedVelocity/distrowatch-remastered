@@ -7,9 +7,11 @@ const Table = ({
   children,
   className = '',
 }: TableProps): React.ReactElement => (
-  <div className={`${className} max-w-full overflow-x-auto bg-white`}>
+  <div
+    className={`${className} max-w-full overflow-x-auto bg-white dark:bg-gray-600 dark:text-gray-300`}
+  >
     <table className="w-full">
-      <tbody className="divide-y">{children}</tbody>
+      <tbody className="divide-y dark:divide-gray-400">{children}</tbody>
     </table>
   </div>
 );

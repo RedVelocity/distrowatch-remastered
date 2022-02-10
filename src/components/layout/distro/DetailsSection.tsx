@@ -6,7 +6,7 @@ type Props = {
   details: Details;
 };
 const DetailsSection = ({ details }: Props): React.ReactElement => (
-  <Table className="holder border-t">
+  <Table className="holder border-t dark:border-0">
     {details.map(
       (detail, index) =>
         detail[1].length > 0 && (

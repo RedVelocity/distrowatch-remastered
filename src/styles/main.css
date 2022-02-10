@@ -11,7 +11,8 @@ body {
   /* background-image: url('/waves.png'); */
   /* @apply bg-secondary texture; */
   font-family: 'Roboto', sans-serif;
-  @apply text-gray-700 bg-gray-200;
+  /* @apply text-gray-700 bg-gray-200; */
+  /* @apply bg-gray-900 text-gray-300; */
 }
 
 @layer utilities {
@@ -55,7 +56,7 @@ body {
     @apply p-2 italic text-justify;
   }
   a {
-    @apply text-blue-700 visited:text-purple-700;
+    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300;
   }
 }
 
@@ -73,10 +74,10 @@ body {
     @apply p-8;
   }
   .page-container {
-    @apply max-w-screen-lg overflow-hidden bg-gray-100 rounded shadow-sm md:m-6 lg:mx-auto;
+    @apply max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto bg-gray-100 dark:bg-gray-700 dark:text-gray-200;
   }
   .card {
-    @apply p-4 bg-white border rounded-md;
+    @apply p-4 bg-white border dark:border-0 dark:shadow-lg rounded-md dark:bg-gray-600 dark:text-gray-300 dark:border-gray-400;
   }
   .card-content {
     @apply flex items-center justify-center gap-2 grow;
