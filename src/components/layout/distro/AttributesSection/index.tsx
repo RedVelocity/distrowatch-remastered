@@ -36,7 +36,7 @@ const AttributesSection = ({
             <Card.SubContent text="No Ratings Yet" bold />
           )}
         </Card>
-        <Card title="Popularity (HPD)" icon="fa-chart-line">
+        <Card title="Popularity" icon="fa-chart-line">
           {attributes.rank.length > 0 ? (
             <Card.MainContent
               text={attributes.rank[0]}

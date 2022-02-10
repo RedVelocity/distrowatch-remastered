@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import getDistroDetails from '../../services/getDistroDetails';
 
-const getDistro = async (req: NextApiRequest, res: NextApiResponse) => {
+const distro = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { distro } = req.query;
-    const pageData = await getDistroDetails(distro.toString());
+    const { slug } = req.query;
+    const pageData = await getDistroDetails(slug.toString());
     return res.json(pageData);
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -13,4 +13,4 @@ const getDistro = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default getDistro;
+export default distro;
