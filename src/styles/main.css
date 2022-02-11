@@ -33,19 +33,16 @@ body {
     @apply bg-secondary dark:bg-neutral-800;
   }
   .dark-white {
-    @apply bg-white dark:bg-neutral-600;
+    @apply bg-neutral-100 dark:bg-neutral-600;
   }
   .dark-light{
     @apply dark:bg-neutral-500;
   }
   .dark-base {
-    @apply bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-300;
+    @apply bg-neutral-200 dark:bg-neutral-700 dark:text-neutral-300;
   }
   .dark-bg-main{
-    @apply bg-neutral-200 dark:bg-neutral-900;
-  }
-  .dark-text-accent{
-    @apply text-accent dark:text-blue-300;
+    @apply bg-neutral-300 dark:bg-neutral-900;
   }
 }
 

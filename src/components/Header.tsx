@@ -12,7 +12,7 @@ const Header = ({
 }): React.ReactElement => (
   <header className="dark-primary holder flex items-center justify-between">
     <Image
-      className="rounded-xl shadow dark:hue-rotate-60"
+      className="rounded-xl shadow dark:grayscale"
       src="/logo.png"
       height={48}
       width={48}
@@ -27,7 +27,7 @@ const Header = ({
     >
       <FontAwesomeIcon
         icon={darkMode ? faMoon : faSun}
-        className="dark-text-accent text-4xl"
+        className="text-4xl text-accent dark:text-current"
       />
     </button>
   </header>

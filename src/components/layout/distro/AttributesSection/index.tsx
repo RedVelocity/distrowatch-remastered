@@ -86,10 +86,9 @@ const AttributesSection = ({
           />
         </Card>
         <Card title="Based On" icon={faProjectDiagram}>
-          <Card.SubContent
+          <Card.MainContent
             text={attributes.basedOn.join(', ')}
             textColor="text-neutral-500 dark:text-neutral-300"
-            bold
           />
         </Card>
       </div>
