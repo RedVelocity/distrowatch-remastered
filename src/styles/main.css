@@ -7,12 +7,7 @@ html {
   @apply scroll-smooth text-[14px];
 }
 body {
-  /* @apply bg-cover bg-secondary backdrop-blur; */
-  /* background-image: url('/waves.png'); */
-  /* @apply bg-secondary texture; */
   font-family: 'Roboto', sans-serif;
-  /* @apply text-gray-700 bg-gray-200; */
-  /* @apply bg-gray-900 text-gray-300; */
 }
 
 @layer utilities {
@@ -20,7 +15,7 @@ body {
     @apply bg-secondary text-primary;
   }
   .danger {
-    @apply text-white bg-danger;
+    @apply bg-danger text-white;
   }
   .success {
     @apply bg-success;
@@ -30,6 +25,24 @@ body {
   }
   .responsive-grid {
     @apply grid grid-cols-responsive;
+  }
+  .dark-primary {
+    @apply bg-primary dark:bg-gray-800;
+  }
+  .dark-secondary {
+    @apply bg-secondary dark:bg-gray-800;
+  }
+  .dark-white {
+    @apply bg-white dark:bg-gray-600;
+  }
+  .dark-light{
+    @apply dark:bg-gray-500;
+  }
+  .dark-base {
+    @apply bg-gray-100 dark:bg-gray-700 dark:text-gray-300;
+  }
+  .dark-bg-main{
+    @apply bg-gray-200 dark:bg-gray-900;
   }
 }
 
@@ -53,7 +66,7 @@ body {
     @apply py-0.5;
   }
   p {
-    @apply p-2 italic text-justify;
+    @apply p-2 text-justify italic;
   }
   a {
     @apply text-blue-700 visited:text-purple-700 dark:text-blue-300;
@@ -62,7 +75,7 @@ body {
 
 @layer components {
   .pill {
-    @apply px-2 py-1 text-sm font-medium text-center rounded-full;
+    @apply rounded-full px-2 py-1 text-center text-sm font-medium;
   }
   .pill-danger {
     @apply pill danger;
@@ -74,12 +87,12 @@ body {
     @apply p-8;
   }
   .page-container {
-    @apply max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto bg-gray-100 dark:bg-gray-700 dark:text-gray-200;
+    @apply dark-base max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply p-4 bg-white border dark:border-0 dark:shadow-lg rounded-md dark:bg-gray-600 dark:text-gray-300 dark:border-gray-400;
+    @apply dark-white rounded-md border p-4 dark:border-0 dark:text-gray-300 dark:shadow-lg;
   }
   .card-content {
-    @apply flex items-center justify-center gap-2 grow;
+    @apply flex grow items-center justify-center gap-2;
   }
 }

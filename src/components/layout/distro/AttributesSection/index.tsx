@@ -22,9 +22,7 @@ const AttributesSection = ({
   const isDormant = attributes.status !== 'Active';
   return (
     <section
-      className={`holder bg-accent dark:bg-gray-500 ${
-        marginRequired && 'mt-16'
-      }`}
+      className={`holder dark-light bg-accent ${marginRequired && 'mt-16'}`}
     >
       <div className="responsive-grid gap-4">
         <Card title="User Rating" icon="fa-chart-bar">

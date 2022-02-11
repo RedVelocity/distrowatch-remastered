@@ -20,7 +20,9 @@ const DetailsSection = ({ details }: Props): React.ReactElement => (
             <Table.Cell>
               {detail[1].map((links, i) => (
                 <a href={links.link} target="_blank" rel="noreferrer" key={i}>
-                  {i > 0 && <span className="text-gray-500">{` • `}</span>}
+                  {i > 0 && (
+                    <span className="text-gray-500 dark:text-gray-400">{` • `}</span>
+                  )}
                   {links.text}
                 </a>
               ))}

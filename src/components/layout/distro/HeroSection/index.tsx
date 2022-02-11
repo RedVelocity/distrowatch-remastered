@@ -17,7 +17,7 @@ const HeroSection = ({
   slug,
 }: Props): React.ReactElement => (
   <>
-    <section className="holder flex h-[18rem] items-center justify-center bg-primary dark:bg-gray-800">
+    <section className="holder dark-primary flex h-[18rem] items-center justify-center">
       <div className="grid items-center justify-center justify-items-center gap-2 text-center md:flex">
         <a
           href={`https://distrowatch.com/table.php?distribution=${slug}`}
