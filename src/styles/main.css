@@ -33,7 +33,7 @@ body {
     @apply bg-secondary dark:bg-gray-800;
   }
   .dark-white {
-    @apply bg-gray-100 dark:bg-gray-600;
+    @apply bg-white dark:bg-gray-600;
   }
   .dark-light{
     @apply dark:bg-gray-500;
