@@ -15,7 +15,7 @@ const CombinedCard = ({
       {cardItems.map((item) => (
         <li className="p-4" key={item.title}>
           <h5 className="mb-2">{item.title}</h5>
-          <span className="text-neutral-400">{item.text}</span>
+          <span className="text-zinc-400">{item.text}</span>
         </li>
       ))}
     </ul>
