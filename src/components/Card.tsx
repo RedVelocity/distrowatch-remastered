@@ -1,18 +1,20 @@
 /* eslint-disable react/display-name */
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 type CardProps = {
   title: string;
-  icon: string;
+  icon: IconProp;
   children: React.ReactNode;
 };
 const Card = ({ title, icon, children }: CardProps): React.ReactElement => (
   <div className="card flex flex-col">
-    <h5 className="mb-2 border-b pb-2">
-      {icon && <i className={`fas ${icon}`} />}
+    <h5 className="mb-2 border-b pb-2 dark:border-gray-400">
+      {icon && <FontAwesomeIcon icon={icon} />}
       {` ${title}`}
     </h5>
-    <div className="card-content">{children}</div> {/* Card.Content */}
+    <div className="card-content p-2">{children}</div> {/* Card.Content */}
   </div>
 );
 

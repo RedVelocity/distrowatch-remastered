@@ -1,4 +1,7 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
+
 import { Details } from '../../../models/Distro.d';
 import Table from '../../Table';
 
@@ -14,7 +17,10 @@ const DetailsSection = ({ details }: Props): React.ReactElement => (
             <Table.Heading>
               <span>
                 {`${detail[0]} `}
-                <i className="fas fa-external-link-alt h-3 w-3 text-gray-400" />
+                <FontAwesomeIcon
+                  icon={faExternalLink}
+                  className="text-gray-400 dark:text-current"
+                />
               </span>
             </Table.Heading>
             <Table.Cell>

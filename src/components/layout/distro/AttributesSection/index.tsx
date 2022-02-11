@@ -1,5 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
+import {
+  faChartBar,
+  faChartLine,
+  faGlobeAfrica,
+  faCheckCircle,
+  faProjectDiagram,
+} from '@fortawesome/free-solid-svg-icons';
 import { Attributes } from '../../../../models/Distro.d';
 import Card from '../../../Card';
 import getTextColor from './getTextColor';
@@ -25,7 +32,7 @@ const AttributesSection = ({
       className={`holder dark-light bg-accent ${marginRequired && 'mt-16'}`}
     >
       <div className="responsive-grid gap-4">
-        <Card title="User Rating" icon="fa-chart-bar">
+        <Card title="User Rating" icon={faChartBar}>
           {rating > 0 ? (
             <Card.MainContent
               text={rating.toFixed(2)}
@@ -38,7 +45,7 @@ const AttributesSection = ({
             <Card.SubContent text="No Ratings Yet" bold />
           )}
         </Card>
-        <Card title="Popularity" icon="fa-chart-line">
+        <Card title="Popularity" icon={faChartLine}>
           {attributes.rank.length > 0 ? (
             <Card.MainContent
               text={attributes.rank[0]}
@@ -51,7 +58,7 @@ const AttributesSection = ({
             <Card.SubContent text="Not Ranked" bold />
           )}
         </Card>
-        <Card title="Origin" icon="fa-globe-africa">
+        <Card title="Origin" icon={faGlobeAfrica}>
           {attributes.flags.map((flag, index) => (
             <div
               className="relative aspect-[5/3] w-14 overflow-hidden rounded"
@@ -67,7 +74,7 @@ const AttributesSection = ({
             </div>
           ))}
         </Card>
-        <Card title="Status" icon="fa-check-circle">
+        <Card title="Status" icon={faCheckCircle}>
           <i
             className={`fas fa-toggle-on text-2xl ${
               isDormant ? 'rotate-180 text-danger' : 'text-success'
@@ -78,7 +85,7 @@ const AttributesSection = ({
             textColor={isDormant ? 'text-danger' : 'text-success'}
           />
         </Card>
-        <Card title="Based On" icon="fa-project-diagram">
+        <Card title="Based On" icon={faProjectDiagram}>
           <Card.SubContent
             text={attributes.basedOn.join(', ')}
             textColor="text-gray-500 dark:text-gray-300"

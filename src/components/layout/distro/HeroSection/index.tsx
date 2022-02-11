@@ -18,7 +18,7 @@ const HeroSection = ({
 }: Props): React.ReactElement => (
   <>
     <section className="holder dark-primary flex h-[18rem] items-center justify-center">
-      <div className="grid items-center justify-center justify-items-center gap-2 text-center md:flex">
+      <div className="-mt-16 grid items-center justify-center justify-items-center gap-2 text-center md:flex">
         <a
           href={`https://distrowatch.com/table.php?distribution=${slug}`}
           target="_blank"

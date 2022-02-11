@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import type { AppProps } from 'next/app';
-import Header from '../components/Header';
 
 import '../styles/main.css';
+import Header from '../components/Header';
+
+// library.add(faExternalLink);
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [darkMode, setDarkMode] = useState(false);
+  useLayoutEffect(() => {
+    if ('theme' in localStorage) {
+      setDarkMode(localStorage.theme === 'dark');
+    } else {
+      localStorage.theme = darkMode ? 'dark' : 'light';
+    }
+  }, []);
+
   return (
     <div className={darkMode && 'dark'}>
       <div className="dark-bg-main overflow-hidden">
