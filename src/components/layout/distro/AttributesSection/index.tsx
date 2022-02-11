@@ -1,11 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChartBar,
   faChartLine,
   faGlobeAfrica,
   faCheckCircle,
   faProjectDiagram,
+  faToggleOn,
 } from '@fortawesome/free-solid-svg-icons';
 import { Attributes } from '../../../../models/Distro.d';
 import Card from '../../../Card';
@@ -75,8 +77,9 @@ const AttributesSection = ({
           ))}
         </Card>
         <Card title="Status" icon={faCheckCircle}>
-          <i
-            className={`fas fa-toggle-on text-2xl ${
+          <FontAwesomeIcon
+            icon={faToggleOn}
+            className={`text-2xl ${
               isDormant ? 'rotate-180 text-danger' : 'text-success'
             }`}
           />
