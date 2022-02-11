@@ -44,7 +44,7 @@ const AttributesSection = ({
               <Card.SubContent text=" / 10" />
             </Card.MainContent>
           ) : (
-            <Card.SubContent text="No Ratings Yet" bold />
+            <Card.MainContent text="No Ratings Yet" />
           )}
         </Card>
         <Card title="Popularity" icon={faChartLine}>
@@ -57,7 +57,7 @@ const AttributesSection = ({
               <Card.SubContent text={` (${attributes.rank[1]})`} />
             </Card.MainContent>
           ) : (
-            <Card.SubContent text="Not Ranked" bold />
+            <Card.MainContent text="Not Ranked" />
           )}
         </Card>
         <Card title="Origin" icon={faGlobeAfrica}>
