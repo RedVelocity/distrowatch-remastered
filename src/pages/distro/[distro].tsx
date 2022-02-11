@@ -75,7 +75,7 @@ const DistroDetails: NextPage<{
           attributes={attributes}
         />
         <section className="texture holder dark-secondary flex flex-col items-center justify-center gap-8">
-          <p className="text-gray-200/90">{description}</p>
+          <p className="text-neutral-200/90">{description}</p>
           <CombinedCard
             cardItems={[
               {

@@ -11,7 +11,7 @@ const Table = ({
     className={`${className} dark-white max-w-full overflow-x-auto bg-white`}
   >
     <table className="w-full">
-      <tbody className="divide-y dark:divide-gray-500">{children}</tbody>
+      <tbody className="divide-y dark:divide-neutral-500">{children}</tbody>
     </table>
   </div>
 );

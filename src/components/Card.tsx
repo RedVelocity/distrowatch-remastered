@@ -10,7 +10,7 @@ type CardProps = {
 };
 const Card = ({ title, icon, children }: CardProps): React.ReactElement => (
   <div className="card flex flex-col">
-    <h5 className="mb-2 border-b-2 pb-2 dark:border-gray-500">
+    <h5 className="mb-2 border-b-2 pb-2 dark:border-neutral-500">
       {icon && <FontAwesomeIcon icon={icon} />}
       {` ${title}`}
     </h5>
@@ -26,7 +26,7 @@ type MainContentProps = {
 };
 Card.MainContent = ({
   text,
-  textColor = 'text-gray-400',
+  textColor = 'text-neutral-400',
   large,
   children,
 }: MainContentProps): React.ReactElement => {
@@ -43,7 +43,7 @@ Card.MainContent = ({
 type SubContentProps = { text: string; textColor?: string; bold?: boolean };
 Card.SubContent = ({
   text,
-  textColor = 'text-gray-400',
+  textColor = 'text-neutral-400',
   bold,
 }: SubContentProps): React.ReactElement => (
   <span

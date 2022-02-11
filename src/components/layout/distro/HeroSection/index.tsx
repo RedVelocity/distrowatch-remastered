@@ -24,7 +24,7 @@ const HeroSection = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="mx-4 rounded-full border-2 bg-white p-2 dark:border-none dark:bg-gray-300">
+          <div className="mx-4 rounded-full border-2 bg-white p-2 dark:border-none dark:bg-neutral-300">
             <div className="relative h-40 w-40">
               <Image src={logo} layout="fill" objectFit="scale-down" priority />
             </div>
@@ -34,7 +34,7 @@ const HeroSection = ({
       </div>
     </section>
     {bannerPresent && (
-      <div className="holder relative -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-gray-400 shadow-xl md:mx-auto md:h-[18rem]">
+      <div className="holder relative -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-neutral-400 shadow-xl md:mx-auto md:h-[18rem]">
         <Image src={banner} layout="fill" priority />
       </div>
     )}

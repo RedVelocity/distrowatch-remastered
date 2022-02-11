@@ -27,22 +27,25 @@ body {
     @apply grid grid-cols-responsive;
   }
   .dark-primary {
-    @apply bg-primary dark:bg-gray-800;
+    @apply bg-primary dark:bg-neutral-800;
   }
   .dark-secondary {
-    @apply bg-secondary dark:bg-gray-800;
+    @apply bg-secondary dark:bg-neutral-800;
   }
   .dark-white {
-    @apply bg-white dark:bg-gray-600;
+    @apply bg-white dark:bg-neutral-600;
   }
   .dark-light{
-    @apply dark:bg-gray-500;
+    @apply dark:bg-neutral-500;
   }
   .dark-base {
-    @apply bg-gray-100 dark:bg-gray-700 dark:text-gray-300;
+    @apply bg-neutral-100 dark:bg-neutral-700 dark:text-neutral-300;
   }
   .dark-bg-main{
-    @apply bg-gray-200 dark:bg-gray-900;
+    @apply bg-neutral-200 dark:bg-neutral-900;
+  }
+  .dark-text-accent{
+    @apply text-accent dark:text-blue-300;
   }
 }
 
@@ -90,7 +93,7 @@ body {
     @apply dark-base max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply dark-white rounded-md p-4 dark:text-gray-300 shadow;
+    @apply dark-white rounded-md p-4 dark:text-neutral-300 shadow;
   }
   .card-content {
     @apply flex grow items-center justify-center gap-2;

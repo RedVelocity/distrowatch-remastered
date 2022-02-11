@@ -25,11 +25,10 @@ const Header = ({
         localStorage.theme = !darkMode ? 'dark' : 'light';
       }}
     >
-      {darkMode ? (
-        <FontAwesomeIcon icon={faMoon} className="text-4xl text-blue-300" />
-      ) : (
-        <FontAwesomeIcon icon={faSun} className="text-4xl text-accent" />
-      )}
+      <FontAwesomeIcon
+        icon={darkMode ? faMoon : faSun}
+        className="dark-text-accent text-4xl"
+      />
     </button>
   </header>
 );

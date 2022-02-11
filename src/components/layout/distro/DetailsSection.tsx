@@ -19,7 +19,7 @@ const DetailsSection = ({ details }: Props): React.ReactElement => (
                 {`${detail[0]} `}
                 <FontAwesomeIcon
                   icon={faExternalLink}
-                  className="text-gray-400 dark:text-current"
+                  className="text-neutral-400 dark:text-current"
                 />
               </span>
             </Table.Heading>
@@ -27,7 +27,7 @@ const DetailsSection = ({ details }: Props): React.ReactElement => (
               {detail[1].map((links, i) => (
                 <a href={links.link} target="_blank" rel="noreferrer" key={i}>
                   {i > 0 && (
-                    <span className="text-gray-500 dark:text-gray-400">{` • `}</span>
+                    <span className="text-neutral-500 dark:text-neutral-400">{` • `}</span>
                   )}
                   {links.text}
                 </a>
