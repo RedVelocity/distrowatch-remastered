@@ -69,7 +69,7 @@ body {
     @apply p-2 text-justify italic;
   }
   a {
-    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300;
+    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300 dark:visited:text-purple-400 ;
   }
 }
 

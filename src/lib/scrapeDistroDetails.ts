@@ -116,7 +116,9 @@ const scrapeDistroDetails = async (
             .find('td > a')
             .map((__, e) => ({
               text: $(e).text().trim(),
-              link: `https://distrowatch.com/${$(e).attr('href')}`,
+              link: $(e).attr('href').includes('http')
+                ? $(e).attr('href')
+                : `https://distrowatch.com/${$(e).attr('href')}`,
             }))
             .get(),
         ]);
