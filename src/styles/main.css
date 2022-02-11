@@ -33,7 +33,7 @@ body {
     @apply bg-secondary dark:bg-gray-800;
   }
   .dark-white {
-    @apply bg-white dark:bg-gray-600;
+    @apply bg-gray-100 dark:bg-gray-600;
   }
   .dark-light{
     @apply dark:bg-gray-500;
@@ -90,7 +90,7 @@ body {
     @apply dark-base max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply dark-white rounded-md border p-4 dark:border-0 dark:text-gray-300 dark:shadow-lg;
+    @apply dark-white rounded-md p-4 dark:text-gray-300 shadow;
   }
   .card-content {
     @apply flex grow items-center justify-center gap-2;

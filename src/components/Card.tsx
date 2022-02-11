@@ -10,7 +10,7 @@ type CardProps = {
 };
 const Card = ({ title, icon, children }: CardProps): React.ReactElement => (
   <div className="card flex flex-col">
-    <h5 className="mb-2 border-b pb-2 dark:border-gray-400">
+    <h5 className="mb-2 border-b pb-2 dark:border-gray-500">
       {icon && <FontAwesomeIcon icon={icon} />}
       {` ${title}`}
     </h5>

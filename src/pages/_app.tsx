@@ -20,8 +20,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   return (
     <div className={darkMode && 'dark'}>
-      <div className="dark-bg-main overflow-hidden">
-        <div className="page-container">
+      <div className="dark-bg-main min-h-screen overflow-hidden">
+        <div className="page-container min-h-full">
           <Header darkMode={darkMode} setDarkMode={setDarkMode} />
           <Component {...pageProps} />
         </div>

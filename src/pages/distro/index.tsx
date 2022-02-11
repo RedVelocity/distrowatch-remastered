@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Distro: React.FC = () => <h1>TO-DO Distro List</h1>;
+const Distro: React.FC = () => null;
 
 export default Distro;

@@ -10,12 +10,13 @@ const Header = ({
   setDarkMode: Dispatch<SetStateAction<boolean>>;
   darkMode: boolean;
 }): React.ReactElement => (
-  <header className="dark-primary flex items-center justify-between px-8 pt-4">
+  <header className="dark-primary holder flex items-center justify-between">
     <Image
       className="rounded-xl shadow dark:hue-rotate-60"
       src="/logo.png"
       height={48}
       width={48}
+      priority
     />
     <button
       type="button"
@@ -27,7 +28,7 @@ const Header = ({
       {darkMode ? (
         <FontAwesomeIcon icon={faMoon} className="text-4xl text-blue-300" />
       ) : (
-        <FontAwesomeIcon icon={faSun} className="text-4xl text-yellow-400/75" />
+        <FontAwesomeIcon icon={faSun} className="text-4xl text-accent" />
       )}
     </button>
   </header>
