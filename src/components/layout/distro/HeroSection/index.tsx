@@ -20,10 +20,10 @@ const HeroSection = ({
   const logoRef = useRef(null);
   useEffect(() => {
     gsap.from(logoRef.current, {
-      scale: 0,
+      scale: 1.2,
       opacity: 0,
-      ease: 'elastic.out',
       duration: 0.8,
+      ease: 'power2.inOut',
     });
   }, [logo]);
 

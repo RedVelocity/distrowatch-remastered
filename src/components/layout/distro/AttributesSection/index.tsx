@@ -26,8 +26,8 @@ const AttributesSection = ({
   rating,
   attributes,
 }: Props): React.ReactElement => {
-  const cardRef = useRef(null);
-  const q = gsap.utils.selector(cardRef);
+  const containerRef = useRef(null);
+  const q = gsap.utils.selector(containerRef);
   const ratingTextColor = getTextColor('rating', rating);
   const rankTextColor =
     attributes.rank.length > 0 &&
@@ -42,7 +42,7 @@ const AttributesSection = ({
       stagger: 0.05,
       ease: 'power2.inOut',
       scrollTrigger: {
-        trigger: cardRef.current,
+        trigger: containerRef.current,
         start: 'center bottom',
         end: 'bottom bottom',
         // markers: true,
@@ -56,7 +56,7 @@ const AttributesSection = ({
   return (
     <section
       className={`holder dark-light bg-accent ${marginRequired && 'mt-16'}`}
-      ref={cardRef}
+      ref={containerRef}
     >
       <div className="responsive-grid gap-4">
         <Card title="User Rating" icon={faChartBar}>
