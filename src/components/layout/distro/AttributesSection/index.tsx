@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChartBar,
@@ -24,14 +26,38 @@ const AttributesSection = ({
   rating,
   attributes,
 }: Props): React.ReactElement => {
+  const cardRef = useRef(null);
+  const q = gsap.utils.selector(cardRef);
   const ratingTextColor = getTextColor('rating', rating);
   const rankTextColor =
     attributes.rank.length > 0 &&
     getTextColor('rank', Number.parseInt(attributes.rank[0], 10));
   const isDormant = attributes.status !== 'Active';
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const animation = gsap.from(q('.card'), {
+      y: 100,
+      opacity: 0,
+      stagger: 0.05,
+      delay: 0.5,
+      ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: cardRef.current,
+        start: 'center bottom',
+        end: 'bottom bottom',
+        // markers: true,
+      },
+    });
+    return () => {
+      animation.kill();
+    };
+  }, []);
+
   return (
     <section
       className={`holder dark-light bg-accent ${marginRequired && 'mt-16'}`}
+      ref={cardRef}
     >
       <div className="responsive-grid gap-4">
         <Card title="User Rating" icon={faChartBar}>
