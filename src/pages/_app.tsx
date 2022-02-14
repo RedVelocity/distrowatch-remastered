@@ -8,9 +8,9 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [darkMode, setDarkMode] = useState(false);
   // Initial Mount
   useLayoutEffect(() => {
-    if ('theme' in localStorage) {
-      setDarkMode(localStorage.theme === 'dark');
-    }
+    if ('theme' in localStorage) setDarkMode(localStorage.theme === 'dark');
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+      setDarkMode(true);
   }, []);
   // Update theme
   useLayoutEffect(() => {

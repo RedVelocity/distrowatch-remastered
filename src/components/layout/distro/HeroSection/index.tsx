@@ -36,7 +36,7 @@ const HeroSection = ({
         y: 100,
         opacity: 0,
         delay: 0.5,
-        duration: 1,
+        duration: 0.8,
         ease: 'power2.out',
       }
     );
