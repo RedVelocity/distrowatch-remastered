@@ -34,13 +34,13 @@ body {
     @apply bg-secondary dark:bg-zinc-800;
   }
   .dark-white {
-    @apply bg-zinc-100 dark:bg-zinc-600;
+    @apply bg-white dark:bg-zinc-600;
   }
   .dark-light{
-    @apply dark:bg-zinc-500;
+    @apply bg-zinc-100 dark:bg-zinc-500;
   }
   .dark-base {
-    @apply bg-zinc-200 dark:bg-zinc-700 dark:text-zinc-300;
+    @apply bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300;
   }
   .dark-bg-main{
     @apply bg-zinc-300 dark:bg-zinc-900;
@@ -91,7 +91,7 @@ body {
     @apply dark-base max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
-    @apply dark-white rounded-md p-4 dark:text-zinc-300 shadow;
+    @apply dark-white rounded-md p-4 shadow;
   }
   .card-content {
     @apply flex grow items-center justify-center gap-2;

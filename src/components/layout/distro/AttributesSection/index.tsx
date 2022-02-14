@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
@@ -34,7 +34,7 @@ const AttributesSection = ({
     getTextColor('rank', Number.parseInt(attributes.rank[0], 10));
   const isDormant = attributes.status !== 'Active';
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const animation = gsap.from(q('.card'), {
       y: 100,
@@ -55,7 +55,9 @@ const AttributesSection = ({
 
   return (
     <section
-      className={`holder dark-light bg-accent ${marginRequired && 'mt-16'}`}
+      className={`holder bg-accent dark:bg-zinc-500 ${
+        marginRequired && 'mt-16'
+      }`}
       ref={containerRef}
     >
       <div className="responsive-grid gap-4">

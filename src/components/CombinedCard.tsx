@@ -15,13 +15,14 @@ const CombinedCard = ({
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const animation = gsap.from(cardRef.current, {
-      scale: 1.2,
+      // scale: 1.2,
+      y: 50,
       opacity: 0,
-      duration: 0.8,
+      duration: 0.6,
       ease: 'power2.inOut',
       scrollTrigger: {
         trigger: cardRef.current,
-        start: 'bottom bottom',
+        start: 'center bottom',
         end: 'bottom bottom',
       },
     });

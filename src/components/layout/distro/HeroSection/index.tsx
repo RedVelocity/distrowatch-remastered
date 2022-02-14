@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 
@@ -17,15 +17,30 @@ const HeroSection = ({
   bannerPresent,
   slug,
 }: Props): React.ReactElement => {
-  const logoRef = useRef(null);
-  useEffect(() => {
+  // Refs for animation
+  const logoRef = useRef<HTMLDivElement>(null);
+  const bannerRef = useRef<HTMLDivElement>(null);
+  // Mount animations
+  useLayoutEffect(() => {
     gsap.from(logoRef.current, {
       scale: 1.2,
       opacity: 0,
       duration: 0.8,
       ease: 'power2.inOut',
     });
-  }, [logo]);
+    gsap.from(
+      bannerRef.current,
+      // { scale: 0, y: 500, opacity: 0 },
+      {
+        scale: 0,
+        y: 500,
+        opacity: 0,
+        delay: 0.5,
+        duration: 1,
+        ease: 'power2.out',
+      }
+    );
+  }, []);
 
   return (
     <>
@@ -37,8 +52,22 @@ const HeroSection = ({
             rel="noopener noreferrer"
           >
             <div
-              className="relative h-40 w-40 rounded-full border-2 bg-zinc-100 p-2 dark:border-none dark:bg-zinc-300"
+              className="relative h-40 w-40 rounded-full bg-white p-2 shadow dark:bg-zinc-300"
               ref={logoRef}
+              onMouseEnter={() =>
+                gsap.to(logoRef.current, {
+                  scale: 1.1,
+                  ease: 'power2.inOut',
+                  duration: 0.5,
+                })
+              }
+              onMouseLeave={() =>
+                gsap.to(logoRef.current, {
+                  scale: 1,
+                  ease: 'power2.inOut',
+                  duration: 0.5,
+                })
+              }
             >
               <Image src={logo} layout="fill" objectFit="scale-down" priority />
             </div>
@@ -47,7 +76,10 @@ const HeroSection = ({
         </div>
       </section>
       {bannerPresent && (
-        <div className="holder relative -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-zinc-400 shadow-xl md:mx-auto md:h-[18rem]">
+        <div
+          className="holder relative -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-zinc-400 shadow-xl md:mx-auto md:h-[18rem]"
+          ref={bannerRef}
+        >
           <Image src={banner} layout="fill" priority />
         </div>
       )}
