@@ -27,24 +27,27 @@ body {
   .responsive-grid {
     @apply grid grid-cols-responsive;
   }
+  .dark-bg-main {
+    @apply bg-zinc-300 dark:bg-zinc-900;
+  }
   .dark-primary {
     @apply bg-primary dark:bg-zinc-800;
   }
   .dark-secondary {
     @apply bg-secondary dark:bg-zinc-800;
   }
-  .dark-white {
-    @apply bg-white dark:bg-zinc-600;
-  }
-  .dark-light{
-    @apply bg-zinc-100 dark:bg-zinc-500;
-  }
   .dark-base {
     @apply bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300;
   }
-  .dark-bg-main{
-    @apply bg-zinc-300 dark:bg-zinc-900;
+  .dark-white {
+    @apply bg-white dark:bg-zinc-600;
   }
+  .dark-accent{
+    @apply bg-accent dark:bg-zinc-500;
+  }
+  /* .dark-light {
+    @apply bg-zinc-100 dark:bg-zinc-500;
+  } */
 }
 
 @layer base {

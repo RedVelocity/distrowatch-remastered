@@ -32,8 +32,8 @@ const HeroSection = ({
       bannerRef.current,
       // { scale: 0, y: 500, opacity: 0 },
       {
-        scale: 0,
-        y: 500,
+        scale: 0.5,
+        y: 100,
         opacity: 0,
         delay: 0.5,
         duration: 1,
@@ -77,7 +77,7 @@ const HeroSection = ({
       </section>
       {bannerPresent && (
         <div
-          className="holder relative -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-zinc-400 shadow-xl md:mx-auto md:h-[18rem]"
+          className="holder relative z-10 -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-zinc-400 shadow-xl md:mx-auto md:h-[18rem]"
           ref={bannerRef}
         >
           <Image src={banner} layout="fill" priority />

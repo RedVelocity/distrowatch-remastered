@@ -55,9 +55,7 @@ const AttributesSection = ({
 
   return (
     <section
-      className={`holder bg-accent dark:bg-zinc-500 ${
-        marginRequired && 'mt-16'
-      }`}
+      className={`holder dark-accent ${marginRequired && 'mt-16'}`}
       ref={containerRef}
     >
       <div className="responsive-grid gap-4">

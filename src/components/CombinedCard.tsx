@@ -22,7 +22,7 @@ const CombinedCard = ({
       ease: 'power2.inOut',
       scrollTrigger: {
         trigger: cardRef.current,
-        start: 'center bottom',
+        start: 'top bottom',
         end: 'bottom bottom',
       },
     });
