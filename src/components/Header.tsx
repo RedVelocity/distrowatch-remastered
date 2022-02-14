@@ -25,10 +25,7 @@ const Header = ({
         localStorage.theme = !darkMode ? 'dark' : 'light';
       }}
     >
-      <FontAwesomeIcon
-        icon={darkMode ? faMoon : faSun}
-        className="text-4xl text-accent dark:text-current"
-      />
+      <FontAwesomeIcon icon={darkMode ? faMoon : faSun} className="text-4xl" />
     </button>
   </header>
 );

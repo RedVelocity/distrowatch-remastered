@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faExternalLink } from '@fortawesome/free-solid-svg-icons';
 import type { AppProps } from 'next/app';
 
 import '../styles/main.css';
 import Header from '../components/Header';
-
-// library.add(faExternalLink);
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [darkMode, setDarkMode] = useState(false);
