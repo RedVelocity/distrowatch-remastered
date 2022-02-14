@@ -22,7 +22,7 @@ const HeroSection = ({
     gsap.from(logoRef.current, {
       scale: 0,
       opacity: 0,
-      ease: 'bounce.out',
+      ease: 'elastic.out',
       duration: 0.8,
     });
   }, [logo]);

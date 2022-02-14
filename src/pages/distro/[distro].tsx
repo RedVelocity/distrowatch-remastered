@@ -1,8 +1,6 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-// import { getPlaiceholder } from 'plaiceholder';
-// import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 import CombinedCard from '../../components/CombinedCard';
@@ -54,8 +52,6 @@ const DistroDetails: NextPage<{
   const { header, rating, slug, updatedAt, details } = distro;
   const { title, logo, banner, description, attributes } = header;
   const bannerPresent = banner !== 'false';
-  // const router = useRouter();
-  // if (router.isFallback) {}
   return (
     <>
       <Head>

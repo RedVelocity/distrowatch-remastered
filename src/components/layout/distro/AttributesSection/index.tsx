@@ -40,7 +40,6 @@ const AttributesSection = ({
       y: 100,
       opacity: 0,
       stagger: 0.05,
-      delay: 0.5,
       ease: 'power2.inOut',
       scrollTrigger: {
         trigger: cardRef.current,
