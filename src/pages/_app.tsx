@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 
 import '../styles/main.css';
@@ -6,19 +6,21 @@ import Header from '../components/Header';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [darkMode, setDarkMode] = useState(false);
-  // Initial Mount
-  useLayoutEffect(() => {
-    if ('theme' in localStorage) setDarkMode(localStorage.theme === 'dark');
-    else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+  const [mounted, setMounted] = useState(false);
+  // Set theme on initial Mount
+  useEffect(() => {
+    if ('theme' in localStorage) {
+      const isDarktheme = localStorage.theme === 'dark';
+      if (isDarktheme) document.querySelector('html').classList.add('dark');
+      setDarkMode(isDarktheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.querySelector('html').classList.add('dark');
       setDarkMode(true);
+    }
+    setMounted(true);
   }, []);
-  // Update theme
-  useLayoutEffect(() => {
-    darkMode
-      ? document.querySelector('html').classList.add('dark')
-      : document.querySelector('html').classList.remove('dark');
-  }, [darkMode]);
-
+  // Return if UI not mounted
+  if (!mounted) return null;
   return (
     <div className="page-container min-h-full">
       <Header darkMode={darkMode} setDarkMode={setDarkMode} />

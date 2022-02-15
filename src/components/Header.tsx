@@ -23,6 +23,7 @@ const Header = ({
       onClick={() => {
         setDarkMode(!darkMode);
         localStorage.theme = !darkMode ? 'dark' : 'light';
+        document.querySelector('html').classList.toggle('dark');
       }}
     >
       <FontAwesomeIcon icon={darkMode ? faMoon : faSun} className="text-4xl" />
