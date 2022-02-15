@@ -9,14 +9,13 @@ const App = ({ Component, pageProps }: AppProps) => {
   const [mounted, setMounted] = useState(false);
   // Set theme on initial Mount
   useEffect(() => {
-    if ('theme' in localStorage) {
-      const isDarktheme = localStorage.theme === 'dark';
-      if (isDarktheme) document.querySelector('html').classList.add('dark');
-      setDarkMode(isDarktheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (
+      ('theme' in localStorage && localStorage.theme === 'dark') ||
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
       document.querySelector('html').classList.add('dark');
       setDarkMode(true);
-    }
+    } 
     setMounted(true);
   }, []);
   // Return if UI not mounted
