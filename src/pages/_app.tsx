@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 export type ColorScheme = 'dark' | 'light';
 export type SetColorScheme = (
-  current: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
+  val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
 ) => void;
 
 const App = ({ Component, pageProps }: AppProps) => {

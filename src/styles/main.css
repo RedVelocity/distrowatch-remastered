@@ -28,16 +28,16 @@ body {
     @apply grid grid-cols-responsive;
   }
   .dark-bg-main {
-    @apply bg-zinc-300 dark:bg-zinc-900;
+    @apply bg-zinc-300 dark:bg-zinc-900 transition-colors ease-in duration-200;
   }
   .dark-primary {
-    @apply bg-primary dark:bg-zinc-800;
+    @apply bg-primary dark:bg-zinc-800 transition-colors ease-in duration-200;
   }
   .dark-secondary {
-    @apply bg-secondary dark:bg-zinc-800;
+    @apply bg-secondary dark:bg-zinc-800 transition-colors ease-in duration-200;
   }
   .dark-base {
-    @apply bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300;
+    @apply bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-300 transition-colors ease-in duration-200;
   }
   .dark-white {
     @apply bg-white dark:bg-zinc-600;
