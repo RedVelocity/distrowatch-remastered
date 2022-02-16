@@ -2,13 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Root Styles */
-html {
-  @apply scroll-smooth text-[14px];
-}
-body {
-  font-family: 'Roboto', sans-serif;
-  @apply dark-bg-main min-h-screen;
+@layer base {
+  /* Root Styles */
+  html {
+    @apply scroll-smooth text-[14px];
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    @apply dark-bg-main min-h-screen;
+  }
+  /* Base Styles */
+  h1 {
+    @apply text-4xl font-semibold tracking-widest md:text-5xl;
+  }
+  h2 {
+    @apply text-4xl font-medium tracking-wider;
+  }
+  h3 {
+    @apply text-3xl font-medium tracking-wide;
+  }
+  h4 {
+    @apply text-2xl font-medium tracking-wide;
+  }
+  h5 {
+    @apply text-lg font-medium tracking-wide;
+  }
+  li {
+    @apply py-0.5;
+  }
+  p {
+    @apply p-2 text-justify italic;
+  }
+  a {
+    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300 dark:visited:text-purple-400 ;
+  }
 }
 
 @layer utilities {
@@ -48,33 +76,6 @@ body {
   /* .dark-light {
     @apply bg-zinc-100 dark:bg-zinc-500;
   } */
-}
-
-@layer base {
-  h1 {
-    @apply text-4xl font-semibold tracking-widest md:text-5xl;
-  }
-  h2 {
-    @apply text-4xl font-medium tracking-wider;
-  }
-  h3 {
-    @apply text-3xl font-medium tracking-wide;
-  }
-  h4 {
-    @apply text-2xl font-medium tracking-wide;
-  }
-  h5 {
-    @apply text-lg font-medium tracking-wide;
-  }
-  li {
-    @apply py-0.5;
-  }
-  p {
-    @apply p-2 text-justify italic;
-  }
-  a {
-    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300 dark:visited:text-purple-400 ;
-  }
 }
 
 @layer components {

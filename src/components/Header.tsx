@@ -26,7 +26,7 @@ const Header = ({
       />
       <button
         type="button"
-        className="dark-accent relative flex gap-1 rounded-full p-2 text-xl"
+        className="dark-accent relative flex gap-1 rounded-full p-2 text-xl outline-none ring-blue-300 active:focus:ring-2"
         onClick={toggleColorScheme}
       >
         <FontAwesomeIcon icon={faSun} />
