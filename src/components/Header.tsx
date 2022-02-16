@@ -1,14 +1,15 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { ColorScheme, SetColorScheme } from '../pages/_app';
 
 const Header = ({
-  setDarkMode,
-  darkMode,
+  colorScheme,
+  setColorScheme,
 }: {
-  setDarkMode: Dispatch<SetStateAction<boolean>>;
-  darkMode: boolean;
+  colorScheme: ColorScheme;
+  setColorScheme: SetColorScheme;
 }): React.ReactElement => (
   <header className="dark-primary holder flex items-center justify-between">
     <Image
@@ -21,12 +22,14 @@ const Header = ({
     <button
       type="button"
       onClick={() => {
-        setDarkMode(!darkMode);
-        localStorage.theme = !darkMode ? 'dark' : 'light';
+        setColorScheme((current) => (current === 'dark' ? 'light' : 'dark'));
         document.querySelector('html').classList.toggle('dark');
       }}
     >
-      <FontAwesomeIcon icon={darkMode ? faMoon : faSun} className="text-4xl" />
+      <FontAwesomeIcon
+        icon={colorScheme === 'dark' ? faMoon : faSun}
+        className="text-4xl"
+      />
     </button>
   </header>
 );
