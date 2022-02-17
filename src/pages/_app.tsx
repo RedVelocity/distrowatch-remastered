@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useLocalStorageValue } from '@mantine/hooks';
-import type { AppProps } from 'next/app';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
-import '../styles/main.css';
+import type { AppProps } from 'next/app';
 import Header from '../components/Header';
+
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import '../styles/main.css';
 
 export type ColorScheme = 'dark' | 'light';
 export type SetColorScheme = (
   val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
 ) => void;
-
+// Deisable FA autoAddCss
+config.autoAddCss = false;
 const App = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useLocalStorageValue<ColorScheme>({
     key: 'color-scheme',
     defaultValue: 'light',
   });
-  // const [darkMode, setDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
   // Check for dark theme on initial Mount
   useEffect(() => {
-    if (
-      colorScheme === 'dark' ||
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
+    if (colorScheme === 'dark') {
       document.querySelector('html').classList.add('dark');
       setColorScheme('dark');
     }
