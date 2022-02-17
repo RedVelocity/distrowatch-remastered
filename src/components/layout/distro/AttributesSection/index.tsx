@@ -9,7 +9,8 @@ import {
   faGlobeAfrica,
   faCheckCircle,
   faProjectDiagram,
-  faToggleOn,
+  faSquareXmark,
+  faSquareCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { Attributes } from '../../../../models/Distro.d';
 import Card from '../../../Card';
@@ -103,10 +104,8 @@ const AttributesSection = ({
         </Card>
         <Card title="Status" icon={faCheckCircle}>
           <FontAwesomeIcon
-            icon={faToggleOn}
-            className={`text-2xl ${
-              isDormant ? 'rotate-180 text-danger' : 'text-success'
-            }`}
+            icon={isDormant ? faSquareXmark : faSquareCheck}
+            className={`text-2xl ${isDormant ? 'text-danger' : 'text-success'}`}
           />
           <Card.MainContent
             text={attributes.status}
