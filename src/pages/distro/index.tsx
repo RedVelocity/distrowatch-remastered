@@ -29,7 +29,9 @@ const Distro: NextPage<{ rankings: Ranking[] }> = ({ rankings }) => {
       debouncedSearch.length > 0
         ? setFilteredRankings(
             rankings.filter((ranking) =>
-              ranking.distribution.toLowerCase().includes(debouncedSearch)
+              ranking.distribution
+                .toLowerCase()
+                .includes(debouncedSearch.toLowerCase())
             )
           )
         : setFilteredRankings(rankings),
