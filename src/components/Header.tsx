@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faCircle, faFan } from '@fortawesome/free-solid-svg-icons';
@@ -18,13 +19,15 @@ const Header = ({
   };
   return (
     <header className="dark-primary holder flex items-center justify-between">
-      <Image
-        className="rounded-xl shadow dark:grayscale"
-        src="/logo.png"
-        height={48}
-        width={48}
-        priority
-      />
+      <Link href="/" passHref>
+        <Image
+          className="cursor-pointer rounded-xl shadow dark:grayscale"
+          src="/logo.png"
+          height={48}
+          width={48}
+          priority
+        />
+      </Link>
       <button
         type="button"
         className="invert-text relative flex gap-1 rounded-full p-2 text-xl outline-blue-300 dark:bg-zinc-600"
