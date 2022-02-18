@@ -21,14 +21,15 @@ const Header = ({
   return (
     <header className="dark-primary holder flex items-center justify-between">
       <Link href="/">
-        <a className="outline-none focus:ring">
-          <Image
-            className="cursor-pointer rounded-xl shadow dark:grayscale"
-            src="/logo.png"
-            height={48}
-            width={48}
-            priority
-          />
+        <a className="overflow-hidden rounded-xl shadow outline-none focus:ring dark:grayscale">
+          <div className="relative h-14 w-14">
+            <Image
+              // className="rounded-xl shadow dark:grayscale"
+              src="/logo.png"
+              layout="fill"
+              priority
+            />
+          </div>
         </a>
       </Link>
       <button

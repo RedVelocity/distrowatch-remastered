@@ -89,10 +89,10 @@
     @apply pill success;
   }
   .holder {
-    @apply p-8;
+    @apply px-8 py-4 md:p-8;
   }
   .page-container {
-    @apply dark-base max-w-screen-lg md:rounded overflow-hidden shadow-sm md:m-6 lg:mx-auto;
+    @apply dark-base max-w-screen-lg md:rounded-md overflow-hidden shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
     @apply dark-white rounded-md p-4 shadow;

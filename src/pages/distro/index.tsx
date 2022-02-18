@@ -12,27 +12,31 @@ import getDistroRankings, { Ranking } from '../../services/getDistroRankings';
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const rankings = await getDistroRankings();
-    const { data } = await axios.get('https://api.unsplash.com/photos/random', {
-      headers: {
-        authorization: `Client-ID ${process.env.UNSPLASH_CLIENT_ID}`,
-      },
-    });
+    const { data } = await axios.get(
+      'https://api.unsplash.com/photos/random?query=landscape,nature,earth&orientation=landscape',
+      {
+        headers: {
+          authorization: `Client-ID ${process.env.UNSPLASH_CLIENT_ID}`,
+        },
+      }
+    );
     return {
       props: {
         rankings,
         banner: data.urls.regular,
+        // color: data.color,
       },
-      revalidate: 3600, // Rebuild every hour
+      revalidate: 60 * 60, // Rebuild every hour
     };
   } catch (error) {
     return { notFound: true };
   }
 };
 
-const Distro: NextPage<{ rankings: Ranking[]; banner: string }> = ({
-  rankings,
-  banner,
-}) => {
+const Distro: NextPage<{
+  rankings: Ranking[];
+  banner: string;
+}> = ({ rankings, banner }) => {
   const [filteredRankings, setFilteredRankings] = useState(rankings);
   const [searchValue, setSearchValue] = useState('');
   const [debouncedSearch] = useDebouncedValue(searchValue, 200);
@@ -57,15 +61,17 @@ const Distro: NextPage<{ rankings: Ranking[]; banner: string }> = ({
       <main>
         <div className="w-full">
           <div
-            className="holder flex h-[25rem] items-center justify-center overflow-hidden bg-center pb-6"
-            style={{ backgroundImage: `url(${banner})` }}
+            className="holder flex h-[25rem] items-center justify-center overflow-hidden bg-center brightness-90"
+            style={{
+              backgroundImage: `url(${banner})`,
+            }}
           >
-            <div className="holder rounded-xl backdrop-blur">
-              <div className="text-white/90">
+            <div className="holder rounded-xl bg-primary/70 backdrop-blur">
+              <div className="text-secondary/90">
                 <h2 className="font-semibold tracking-widest">
                   DistroWatch Rankings
                 </h2>
-                <small className="text-xs">Rankings for last 6 months</small>
+                Rankings for last 6 months
               </div>
               <div className="mt-4">
                 <div className="dark-light flex items-center gap-2 rounded-md p-2 outline-none focus-within:ring">
@@ -83,7 +89,7 @@ const Distro: NextPage<{ rankings: Ranking[]; banner: string }> = ({
               </div>
             </div>
           </div>
-          <div className="holder">
+          <div className="holder dark-white">
             <table className="relative min-w-full">
               <thead className="sticky top-2">
                 <tr className="dark-light text-left text-xs font-semibold uppercase tracking-wider">
