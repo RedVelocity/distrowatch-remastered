@@ -10,7 +10,7 @@
   }
   body {
     font-family: 'Roboto', sans-serif;
-    @apply dark-bg-main min-h-screen;
+    @apply dark-bg-main;
   }
   /* Base Styles */
   h1 {
@@ -35,7 +35,7 @@
     @apply p-2 text-justify italic;
   }
   a {
-    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300 dark:visited:text-purple-400 ;
+    @apply text-blue-700 visited:text-purple-700 dark:text-blue-300 dark:visited:text-purple-400 outline-none focus:ring;
   }
 }
 
@@ -92,7 +92,7 @@
     @apply p-8;
   }
   .page-container {
-    @apply dark-base max-w-screen-lg overflow-hidden rounded shadow-sm md:m-6 lg:mx-auto;
+    @apply dark-base max-w-screen-lg md:rounded overflow-hidden shadow-sm md:m-6 lg:mx-auto;
   }
   .card {
     @apply dark-white rounded-md p-4 shadow;

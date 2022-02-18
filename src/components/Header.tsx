@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -19,18 +20,20 @@ const Header = ({
   };
   return (
     <header className="dark-primary holder flex items-center justify-between">
-      <Link href="/" passHref>
-        <Image
-          className="cursor-pointer rounded-xl shadow dark:grayscale"
-          src="/logo.png"
-          height={48}
-          width={48}
-          priority
-        />
+      <Link href="/">
+        <a className="outline-none focus:ring">
+          <Image
+            className="cursor-pointer rounded-xl shadow dark:grayscale"
+            src="/logo.png"
+            height={48}
+            width={48}
+            priority
+          />
+        </a>
       </Link>
       <button
         type="button"
-        className="invert-text relative flex gap-1 rounded-full p-2 text-xl outline-blue-300 dark:bg-zinc-600"
+        className="invert-text relative flex gap-1 rounded-full p-2 text-xl outline-none focus:ring dark:bg-zinc-600"
         onClick={toggleColorScheme}
       >
         <FontAwesomeIcon icon={faFan} />

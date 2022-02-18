@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   // Return if UI not mounted
   if (!mounted) return null;
   return (
-    <div className="page-container min-h-full">
+    <div className="page-container">
       <Header colorScheme={colorScheme} setColorScheme={setColorScheme} />
       <Component {...pageProps} />
     </div>
