@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import axios from 'axios';
+import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDebouncedValue } from '@mantine/hooks';
@@ -21,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
         rankings,
         banner: data.urls.regular,
       },
-      // revalidate: 604800, // Rebuild every 7days
+      revalidate: 3600, // Rebuild every hour
     };
   } catch (error) {
     return { notFound: true };
@@ -127,6 +128,9 @@ const Distro: NextPage<{ rankings: Ranking[]; banner: string }> = ({
           </div>
         </div>
       </main>
+      <footer className="holder">
+        Last Updated at {dayjs(Date.now()).format('HH:mm, MMM D YYYY')}
+      </footer>
     </>
   );
 };
