@@ -52,7 +52,7 @@ const RankingTable = ({
         {[...Array(pageCount)].map((_, i) => (
           <button
             className={`${
-              currentPage === i ? 'ring-2 ring-accent' : ''
+              currentPage === i && 'ring-2 ring-accent'
             } rounded px-1 md:px-4 md:py-2`}
             type="button"
             key={`${i}-pageNum`}
