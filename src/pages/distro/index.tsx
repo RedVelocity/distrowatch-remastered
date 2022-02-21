@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDebouncedValue } from '@mantine/hooks';
 import getDistroRankings, { Ranking } from '../../services/getDistroRankings';
+import RankingTable from '../../components/layout/rankings/RankingTable';
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
@@ -66,18 +66,20 @@ const Distro: NextPage<{
               backgroundImage: `url(${banner})`,
             }}
           >
-            <div className="holder rounded-xl bg-primary/70 backdrop-blur">
-              <div className="text-secondary/90">
-                <h2 className="font-semibold tracking-widest">
+            <div className="holder rounded-xl bg-primary/80 backdrop-blur dark:bg-zinc-800/80">
+              <div className="text-secondary/90 dark:text-primary/90">
+                <h3 className="font-semibold uppercase tracking-widest">
                   DistroWatch Rankings
-                </h2>
-                Rankings for last 6 months
+                </h3>
+                <span className="text-zinc-800/90 dark:text-zinc-300/90">
+                  Rankings for last 6 months
+                </span>
               </div>
               <div className="mt-4">
-                <div className="dark-light flex items-center gap-2 rounded-md p-2 outline-none focus-within:ring">
+                <div className="dark-white flex items-center gap-2 rounded-md p-2 shadow outline-none focus-within:ring">
                   <FontAwesomeIcon icon={faSearch} />
                   <input
-                    className="dark-light ml-1 w-full outline-none"
+                    className="dark-white ml-1 w-full outline-none"
                     type="text"
                     name="search"
                     id="search"
@@ -89,49 +91,7 @@ const Distro: NextPage<{
               </div>
             </div>
           </div>
-          <div className="holder dark-white">
-            <table className="relative min-w-full">
-              <thead className="sticky top-2">
-                <tr className="dark-light text-left text-xs font-semibold uppercase tracking-wider">
-                  <th className="p-4">Rank</th>
-                  <th className="p-4">Distribution</th>
-                  <th className="p-4">Hits Per Day (HPD)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y dark:divide-zinc-500">
-                {filteredRankings.map((ranking) => (
-                  <tr key={ranking.distribution}>
-                    <td className="px-4 text-sm">
-                      {/* <div className="flex items-center">
-                        <div className="h-10 w-10 flex-shrink-0">
-                          <img
-                            className="h-full w-full rounded-full"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                            alt="logo"
-                          />
-                        </div> */}
-                      <p className="whitespace-no-wrap ">{ranking.no}</p>
-                      {/* </div> */}
-                    </td>
-                    <td className="px-4 text-sm">
-                      <Link
-                        href={`/distro/${ranking.distrowatch_distribution_detail_url.replace(
-                          'https://distrowatch.com/',
-                          ''
-                        )}`}
-                      >
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                        <a>{ranking.distribution}</a>
-                      </Link>
-                    </td>
-                    <td className="px-4 text-sm">
-                      <p>{ranking.hpd.count}</p>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <RankingTable filteredRankings={filteredRankings} />
         </div>
       </main>
       <footer className="holder">

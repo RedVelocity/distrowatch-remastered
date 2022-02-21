@@ -89,7 +89,7 @@
     @apply pill success;
   }
   .holder {
-    @apply px-8 py-4 md:p-8;
+    @apply px-8 py-6 md:p-8;
   }
   .page-container {
     @apply dark-base max-w-screen-lg md:rounded-md overflow-hidden shadow-sm md:m-6 lg:mx-auto;
