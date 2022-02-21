@@ -66,7 +66,7 @@ const Distro: NextPage<{
               backgroundImage: `url(${banner})`,
             }}
           >
-            <div className="holder rounded-xl bg-primary/80 backdrop-blur dark:bg-zinc-800/80">
+            <div className="holder rounded-xl bg-primary/90 backdrop-blur dark:bg-zinc-800/90">
               <div className="text-secondary/90 dark:text-primary/90">
                 <h3 className="font-semibold uppercase tracking-widest">
                   DistroWatch Rankings
@@ -84,6 +84,7 @@ const Distro: NextPage<{
                     name="search"
                     id="search"
                     value={searchValue}
+                    autoComplete="off"
                     placeholder="search..."
                     onChange={(e) => setSearchValue(e.target.value)}
                   />

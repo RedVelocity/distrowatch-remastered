@@ -25,7 +25,13 @@ const DetailsSection = ({ details }: Props): React.ReactElement => (
             </Table.Heading>
             <Table.Cell>
               {detail[1].map((links, i) => (
-                <a href={links.link} target="_blank" rel="noreferrer" key={i}>
+                <a
+                  className="visited:text-purple-700 dark:visited:text-purple-400"
+                  href={links.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={i}
+                >
                   {i > 0 && (
                     <span className="text-zinc-500 dark:text-zinc-400">{` • `}</span>
                   )}

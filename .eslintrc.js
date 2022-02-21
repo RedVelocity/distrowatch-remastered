@@ -42,6 +42,7 @@ module.exports = {
       1,
       { allowTernary: true, allowShortCircuit: true },
     ],
+    radix: ['error', 'as-needed'],
     'react/prop-types': 0,
     'react/jsx-filename-extension': [
       1,
