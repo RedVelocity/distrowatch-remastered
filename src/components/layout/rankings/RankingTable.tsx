@@ -48,10 +48,12 @@ const RankingTable = ({
             ))}
         </tbody>
       </table>
-      <div className="dark-primary mt-1 flex items-center justify-center gap-8 py-2 text-blue-600 dark:text-blue-300">
+      <div className="dark-primary mt-1 flex items-center justify-center gap-4 py-2 px-4 text-blue-600 dark:text-blue-300 md:gap-8">
         {[...Array(pageCount)].map((_, i) => (
           <button
-            // className="px-8 py-2"
+            className={`${
+              currentPage === i ? 'ring-2 ring-accent' : ''
+            } rounded px-1 md:px-4 md:py-2`}
             type="button"
             key={`${i}-pageNum`}
             data-page-num={i}
