@@ -1,6 +1,7 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 import CombinedCard from '../../components/CombinedCard';
@@ -21,7 +22,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       props: {
         pageData: JSON.stringify(pageData.toObject()),
       },
-      revalidate: 604800, // Rebuild every 7days
+      revalidate: 60 * 60 * 24 * 7, // Rebuild every 7days
     };
   } catch (error) {
     return { notFound: true };
@@ -40,13 +41,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 
 const DistroDetails: NextPage<{
   pageData: string;
 }> = ({ pageData }) => {
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   const distro: DistroModel = JSON.parse(pageData);
   // console.log('distro', distro);
   const { header, rating, slug, updatedAt, details } = distro;
