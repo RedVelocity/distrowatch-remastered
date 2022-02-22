@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -107,9 +108,9 @@ const Distro: NextPage<{
                             key={dist.slug}
                             className="p-2 hover:bg-primary dark:hover:bg-zinc-500"
                           >
-                            <a className="block" href={`/distro/${dist.slug}`}>
-                              {dist.name}
-                            </a>
+                            <Link href={`/distro/${dist.slug}`}>
+                              <a className="block">{dist.name}</a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
