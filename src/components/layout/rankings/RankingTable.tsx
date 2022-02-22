@@ -20,8 +20,8 @@ const RankingTable = ({
 
   return (
     <div className="holder dark-white">
-      <table className="relative min-w-full">
-        <thead className="sticky top-2">
+      <table className="min-w-full">
+        <thead>
           <tr className="dark-primary text-left text-xs font-semibold uppercase tracking-wider">
             <th className="p-4">Rank</th>
             <th className="p-4">Distribution</th>
@@ -59,7 +59,7 @@ const RankingTable = ({
           <button
             className={`${
               currentPage === i && 'ring-2 ring-accent'
-            } rounded px-1 md:px-4 md:py-2 hover:bg-accent/60 dark:hover:bg-zinc-600 transition-colors ease-in-out`}
+            } rounded px-1 transition-colors ease-in-out hover:bg-accent/60 dark:hover:bg-zinc-600 md:px-4 md:py-2`}
             type="button"
             key={`${i}-pageNum`}
             data-page-num={i}
