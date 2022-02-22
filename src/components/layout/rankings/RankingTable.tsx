@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+// import gsap from 'gsap';
 import { Ranking } from '../../../services/getDistroRankings';
 
 const PAGE_SIZE = 10;
@@ -8,9 +9,15 @@ const RankingTable = ({
 }: {
   filteredRankings: Ranking[];
 }): React.ReactElement => {
-  const pageCount: number = Math.ceil(filteredRankings.length / PAGE_SIZE);
+  const pageCount = Math.ceil(filteredRankings.length / PAGE_SIZE);
   const [currentPage, setCurrentPage] = useState(0);
-  // console.log('filteredRankings', filteredRankings, pageCount);
+  // const tableRef = useRef(null);
+  // const q = gsap.utils.selector(tableRef);
+
+  // useEffect(() => {
+  //   gsap.to(q('tr[data-table]'), { opacity: 0, x: -100, display: 'none' });
+  // }, [filteredRankings]);
+
   return (
     <div className="holder dark-white">
       <table className="relative min-w-full">
@@ -26,7 +33,7 @@ const RankingTable = ({
             // Filter based on current page and page size
             .slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE)
             .map((ranking) => (
-              <tr key={ranking.distribution}>
+              <tr key={ranking.distribution} data-table>
                 <td className="px-4 text-sm">
                   <p className="whitespace-no-wrap ">{ranking.no}</p>
                 </td>
@@ -37,7 +44,6 @@ const RankingTable = ({
                       ''
                     )}`}
                   >
-                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                     <a>{ranking.distribution}</a>
                   </Link>
                 </td>
@@ -53,7 +59,7 @@ const RankingTable = ({
           <button
             className={`${
               currentPage === i && 'ring-2 ring-accent'
-            } rounded px-1 md:px-4 md:py-2`}
+            } rounded px-1 md:px-4 md:py-2 hover:bg-accent/60 dark:hover:bg-zinc-600 transition-colors ease-in-out`}
             type="button"
             key={`${i}-pageNum`}
             data-page-num={i}
