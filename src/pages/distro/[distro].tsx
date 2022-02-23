@@ -1,6 +1,5 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
@@ -22,7 +21,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       props: {
         pageData: JSON.stringify(pageData.toObject()),
       },
-      revalidate: 60 * 60 * 24 * 7, // Rebuild every 7days
+      revalidate: 604800, // Rebuild every 7days
     };
   } catch (error) {
     return { notFound: true };
@@ -41,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
@@ -53,10 +52,6 @@ const DistroDetails: NextPage<{
   const { header, rating, slug, updatedAt, details } = distro;
   const { title, logo, banner, description, attributes } = header;
   const bannerPresent = banner !== 'false';
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
   return (
     <>
       <Head>
