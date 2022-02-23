@@ -45,31 +45,33 @@ const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
               >
                 <Combobox.Options
                   static
-                  className="dark-white absolute top-[100%] left-0 z-20 mt-2 max-h-72 min-w-full divide-y overflow-y-auto rounded p-4 shadow-xl dark:divide-zinc-500"
+                  className="dark-white absolute top-[100%] left-0 z-20 mt-2 min-w-full overflow-hidden rounded-md p-4 shadow dark:shadow-primary/20"
                 >
-                  {filteredList.length > 0 ? (
-                    filteredList.map((dist) => (
-                      <Combobox.Option
-                        key={dist.slug}
-                        value={dist}
-                        as={React.Fragment}
-                      >
-                        {({ active }) => (
-                          <li
-                            className={`p-2 ${
-                              active && 'bg-primary dark:bg-zinc-500'
-                            }`}
-                          >
-                            <Link href={`/distro/${dist.slug}`}>
-                              <a className="block">{dist.name}</a>
-                            </Link>
-                          </li>
-                        )}
-                      </Combobox.Option>
-                    ))
-                  ) : (
-                    <li className="select-none p-2">Nothing Found.</li>
-                  )}
+                  <div className="max-h-72 divide-y overflow-y-auto dark:divide-zinc-500">
+                    {filteredList.length > 0 ? (
+                      filteredList.map((dist) => (
+                        <Combobox.Option
+                          key={dist.slug}
+                          value={dist}
+                          as={React.Fragment}
+                        >
+                          {({ active }) => (
+                            <li
+                              className={`p-2 ${
+                                active && 'bg-primary dark:bg-zinc-500'
+                              }`}
+                            >
+                              <Link href={`/distro/${dist.slug}`}>
+                                <a className="block">{dist.name}</a>
+                              </Link>
+                            </li>
+                          )}
+                        </Combobox.Option>
+                      ))
+                    ) : (
+                      <li className="select-none p-2">Nothing Found.</li>
+                    )}
+                  </div>
                 </Combobox.Options>
               </Transition>
             )}

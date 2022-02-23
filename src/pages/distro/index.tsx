@@ -45,17 +45,18 @@ const Distro: NextPage<{
     <main>
       <div className="w-full">
         <div
-          className="holder flex h-[25rem] items-center justify-center bg-center"
+          className="holder relative flex h-[25rem] items-center justify-center bg-center"
           style={{
             backgroundImage: `url(${banner})`,
           }}
         >
-          <div className="holder rounded-xl bg-primary/80 backdrop-blur dark:bg-zinc-800/80">
-            <div className="text-secondary/90 dark:text-primary/90">
+          <div className="absolute inset-0 bg-zinc-900/40" />
+          <div className="holder rounded-xl bg-zinc-900/20 shadow-xl shadow-primary/30 backdrop-blur">
+            <div className=" text-zinc-50/90">
               <h3 className="font-semibold uppercase tracking-widest">
                 DistroWatch Rankings
               </h3>
-              <span className="text-zinc-800/90 dark:text-zinc-300/90">
+              <span className=" text-zinc-300/90">
                 Rankings for last 6 months
               </span>
             </div>
