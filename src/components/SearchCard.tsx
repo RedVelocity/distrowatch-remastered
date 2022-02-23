@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Combobox, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Distribution } from '../services/getDistroList';
 
 const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
+  const router = useRouter();
   const [selectedItem, setSelectedItem] = useState(list[0]);
   const [query, setQuery] = useState('');
   const filteredList =
@@ -61,9 +62,18 @@ const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
                                 active && 'bg-primary dark:bg-zinc-500'
                               }`}
                             >
-                              <Link href={`/distro/${dist.slug}`}>
-                                <a className="block">{dist.name}</a>
-                              </Link>
+                              <button
+                                type="button"
+                                className="w-full text-left"
+                                data-slug={dist.slug}
+                                onClick={(e) =>
+                                  router.push(
+                                    `/distro/${e.currentTarget.attributes['data-slug'].value}`
+                                  )
+                                }
+                              >
+                                {dist.name}
+                              </button>
                             </li>
                           )}
                         </Combobox.Option>

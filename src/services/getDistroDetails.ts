@@ -18,7 +18,7 @@ const getDistroDetails = async (slug: string): Promise<DistroDocument> => {
         ? dayjs(distro.updatedAt).diff(Date.now(), 'd') < -6
         : true;
       // Return cached DB result if not stale
-      // if (!isStale) return distro;
+      if (!isStale) return distro;
       const res: AxiosResponse = await axios.get(API_ENDPOINT, {
         headers: {
           'User-Agent': USER_AGENT,
@@ -40,8 +40,7 @@ const getDistroDetails = async (slug: string): Promise<DistroDocument> => {
       // eslint-disable-next-line no-console
       console.log('error', error);
       return error;
-    }
-  
+    }  
 };
 
 export default getDistroDetails;
