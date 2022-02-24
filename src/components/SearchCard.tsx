@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Combobox, Transition } from '@headlessui/react';
-import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Distribution } from '../services/getDistroList';
@@ -63,7 +62,7 @@ const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
                                 active && 'bg-primary dark:bg-zinc-500'
                               }`}
                             >
-                              <motion.button
+                              <button
                                 type="button"
                                 className="w-full text-left"
                                 data-slug={dist.slug}
@@ -72,10 +71,9 @@ const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
                                     `/distro/${e.currentTarget.attributes['data-slug'].value}`
                                   )
                                 }
-                                layoutId={dist.slug}
                               >
                                 {dist.name}
-                              </motion.button>
+                              </button>
                             </li>
                           )}
                         </Combobox.Option>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 // import gsap from 'gsap';
 import { Ranking } from '../../../services/getDistroRankings';
 
@@ -28,12 +29,18 @@ const RankingTable = ({
             <th className="p-4">Hits Per Day (HPD)</th>
           </tr>
         </thead>
-        <tbody className="divide-y dark:divide-zinc-500">
+        <motion.tbody className="divide-y dark:divide-zinc-500">
           {filteredRankings
             // Filter based on current page and page size
             .slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE)
             .map((ranking) => (
-              <tr key={ranking.distribution} data-table>
+              <motion.tr
+                key={ranking.distribution}
+                data-table
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4 }}
+              >
                 <td className="px-4 text-sm">
                   <p className="whitespace-no-wrap ">{ranking.no}</p>
                 </td>
@@ -50,9 +57,9 @@ const RankingTable = ({
                 <td className="px-4 text-sm">
                   <p>{ranking.hpd.count}</p>
                 </td>
-              </tr>
+              </motion.tr>
             ))}
-        </tbody>
+        </motion.tbody>
       </table>
       <div className="dark-primary mt-1 flex items-center justify-center gap-4 py-2 px-4 text-blue-600 dark:text-blue-300 md:gap-8">
         {[...Array(pageCount)].map((_, i) => (

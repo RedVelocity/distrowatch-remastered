@@ -74,13 +74,13 @@ const HeroSection = ({
             </div>
           </a>
           <motion.h1
+            className="hidden uppercase md:inline"
             initial={false}
             animate={{ scale: 1, x: 0, opacity: 1 }}
             transition={{
               duration: 2,
             }}
-            layoutId={slug}
-            className="hidden uppercase md:inline"
+            // layoutId={slug}
           >
             {title}
           </motion.h1>

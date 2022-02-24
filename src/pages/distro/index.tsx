@@ -50,9 +50,9 @@ const Distro: NextPage<{
             backgroundImage: `url(${banner})`,
           }}
         >
-          <div className="absolute inset-0 bg-zinc-900/40" />
+          <div className="absolute inset-0 bg-zinc-900/10" />
           <div className="holder rounded-xl bg-zinc-900/20 shadow-xl shadow-primary/30 backdrop-blur">
-            <div className=" text-zinc-50/90">
+            <div className=" text-white/90">
               <h3 className="font-semibold uppercase tracking-widest">
                 DistroWatch Rankings
               </h3>
