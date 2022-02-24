@@ -29,13 +29,13 @@ const RankingTable = ({
             <th className="p-4">Hits Per Day (HPD)</th>
           </tr>
         </thead>
-        <motion.tbody className="divide-y dark:divide-zinc-500">
+        <motion.tbody className="divide-y overflow-hidden dark:divide-zinc-500">
           {filteredRankings
             // Filter based on current page and page size
             .slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE)
             .map((ranking) => (
               <motion.tr
-                key={ranking.distribution}
+                key={ranking.no}
                 data-table
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
