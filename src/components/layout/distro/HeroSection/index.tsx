@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 
 type Props = {
   title: string;
@@ -72,7 +73,20 @@ const HeroSection = ({
               <Image src={logo} layout="fill" objectFit="scale-down" priority />
             </div>
           </a>
-          <h1 className="hidden uppercase md:inline">{title}</h1>
+          <motion.h1
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 500,
+              damping: 90,
+              duration: 2,
+            }}
+            layoutId={slug}
+            className="hidden uppercase md:inline"
+          >
+            {title}
+          </motion.h1>
         </div>
       </section>
       {bannerPresent && (
