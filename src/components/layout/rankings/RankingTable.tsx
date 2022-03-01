@@ -64,9 +64,7 @@ const RankingTable = ({
       <div className="dark-primary mt-1 flex items-center justify-center gap-4 py-2 px-4 text-blue-600 dark:text-blue-300 md:gap-8">
         {[...Array(pageCount)].map((_, i) => (
           <button
-            className={`${
-              currentPage === i && 'ring-2 ring-accent'
-            } rounded px-1 transition-colors ease-in-out hover:bg-accent/60 dark:hover:bg-zinc-600 md:px-4 md:py-2`}
+            className="relative rounded px-1 transition-colors ease-in-out hover:bg-accent/60 dark:hover:bg-zinc-600 md:px-4 md:py-2"
             type="button"
             key={`${i}-pageNum`}
             data-page-num={i}
@@ -79,6 +77,13 @@ const RankingTable = ({
             }
           >
             {i + 1}
+            {currentPage === i && (
+              <motion.div
+                className="text-accent outline"
+                initial={false}
+                layoutId="pager"
+              />
+            )}
           </button>
         ))}
       </div>

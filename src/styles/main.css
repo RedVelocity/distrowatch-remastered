@@ -101,3 +101,7 @@
     @apply flex grow items-center justify-center gap-2;
   }
 }
+
+.outline {
+  @apply inset-0 absolute rounded;
+}
