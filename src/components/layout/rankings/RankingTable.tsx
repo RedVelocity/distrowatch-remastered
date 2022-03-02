@@ -5,13 +5,9 @@ import { Ranking } from '../../../services/getDistroRankings';
 
 type PageProps = {
   filteredRankings: Ranking[];
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 const PAGE_SIZE = 10;
-const RankingTable = ({
-  filteredRankings,
-  setLoading,
-}: PageProps): React.ReactElement => {
+const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
   const pageCount = Math.ceil(filteredRankings.length / PAGE_SIZE);
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -47,9 +43,7 @@ const RankingTable = ({
                       ''
                     )}`}
                   >
-                    <a onClick={() => setLoading(true)} aria-hidden="true">
-                      {ranking.distribution}
-                    </a>
+                    <a>{ranking.distribution}</a>
                   </Link>
                 </td>
                 <td className="px-4 text-sm">

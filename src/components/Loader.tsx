@@ -4,16 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 type PageProps = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Loader = ({ isOpen, setIsOpen }: PageProps): React.ReactElement => (
+const Loader = ({ isLoading, setIsLoading }: PageProps): React.ReactElement => (
   <Dialog
     as="div"
     className="fixed inset-0 z-10 flex items-center justify-center overflow-y-auto"
-    open={isOpen}
-    onClose={() => setIsOpen(false)}
+    open={isLoading}
+    onClose={() => setIsLoading(false)}
   >
     <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur" />
     <div className="z-10 flex flex-col items-center justify-center rounded-2xl bg-white/70 px-20 py-6 backdrop-blur">

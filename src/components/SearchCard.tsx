@@ -5,7 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Distribution } from '../services/getDistroList';
 
-const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
+type SearchProps = {
+  list: Distribution[];
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const SearchCard = ({
+  list,
+  setIsLoading,
+}: SearchProps): React.ReactElement => {
   const router = useRouter();
   const [selectedItem, setSelectedItem] = useState(list[0]);
   const [query, setQuery] = useState('');
@@ -66,11 +73,12 @@ const SearchCard = ({ list }: { list: Distribution[] }): React.ReactElement => {
                                 type="button"
                                 className="w-full text-left"
                                 data-slug={dist.slug}
-                                onClick={(e) =>
+                                onClick={(e) => {
+                                  setIsLoading(true);
                                   router.push(
                                     `/distro/${e.currentTarget.attributes['data-slug'].value}`
-                                  )
-                                }
+                                  );
+                                }}
                               >
                                 {dist.name}
                               </button>
