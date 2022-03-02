@@ -53,31 +53,33 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
             ))}
         </motion.tbody>
       </table>
-      <div className="dark-primary mt-1 flex items-center justify-center gap-4 py-2 px-4 text-blue-600 dark:text-blue-300 md:gap-8">
-        {[...Array(pageCount)].map((_, i) => (
-          <button
-            className="dark-white relative rounded px-2 shadow-sm transition-colors ease-in-out hover:bg-accent/60 dark:hover:bg-zinc-500 md:px-4 md:py-2"
-            type="button"
-            key={`${i}-pageNum`}
-            data-page-num={i}
-            onClick={(e) =>
-              setCurrentPage(
-                Number.parseInt(
-                  e.currentTarget.attributes['data-page-num'].value
+      <div className="dark-primary mt-1 flex items-center justify-center p-4 text-blue-600 dark:text-blue-300">
+        <div className="divide-x drop-shadow dark:divide-zinc-500" role="group">
+          {[...Array(pageCount)].map((_, i) => (
+            <button
+              className="dark-white relative px-2 py-1 transition-colors ease-in-out first:rounded-l last:rounded-r hover:bg-accent/60 dark:hover:bg-zinc-500 md:px-4 md:py-2"
+              type="button"
+              key={`${i}-pageNum`}
+              data-page-num={i}
+              onClick={(e) =>
+                setCurrentPage(
+                  Number.parseInt(
+                    e.currentTarget.attributes['data-page-num'].value
+                  )
                 )
-              )
-            }
-          >
-            {i + 1}
-            {currentPage === i && (
-              <motion.div
-                className="text-accent outline"
-                initial={false}
-                layoutId="pager"
-              />
-            )}
-          </button>
-        ))}
+              }
+            >
+              {i + 1}
+              {currentPage === i && (
+                <motion.div
+                  className="z-10 text-accent outline"
+                  initial={false}
+                  layoutId="pager"
+                />
+              )}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -48,7 +48,12 @@ const Distro: NextPage<PageProps> = ({ rankings, banner, distroList }) => {
         <title>DistroWatch | Rankings</title>
       </Head>
       <main>
-        <Loader isLoading={loading} setIsLoading={setLoading} />
+        <Loader
+          isLoading={loading}
+          setIsLoading={() => {
+            // console.log('true', true);
+          }}
+        />
         <div className="w-full">
           <div
             className="holder relative flex h-[25rem] items-center justify-center bg-center"
@@ -69,7 +74,7 @@ const Distro: NextPage<PageProps> = ({ rankings, banner, distroList }) => {
               <SearchCard setIsLoading={setLoading} list={distroList} />
             </div>
           </div>
-          <RankingTable filteredRankings={rankings}/>
+          <RankingTable filteredRankings={rankings} />
         </div>
       </main>
       <footer className="holder">
