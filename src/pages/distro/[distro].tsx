@@ -1,7 +1,6 @@
 import React from 'react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import getDistroPaths from '../../services/getDistroPaths';
 import getDistroDetails from '../../services/getDistroDetails';
 import CombinedCard from '../../components/CombinedCard';
@@ -41,20 +40,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = await getDistroPaths();
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
 const DistroDetails: NextPage<{
   pageData: string;
 }> = ({ pageData }) => {
-  const router = useRouter();
   const distro: DistroModel = JSON.parse(pageData);
   // console.log('distro', distro);
   const { header, rating, slug, updatedAt, details } = distro;
   const { title, logo, banner, description, attributes } = header;
   const bannerPresent = banner !== 'false';
-  if (router.isFallback) return <div>Loading...</div>;
   return (
     <>
       <Head>

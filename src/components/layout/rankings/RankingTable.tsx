@@ -1,23 +1,19 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-// import gsap from 'gsap';
 import { Ranking } from '../../../services/getDistroRankings';
 
+type PageProps = {
+  filteredRankings: Ranking[];
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
 const PAGE_SIZE = 10;
 const RankingTable = ({
   filteredRankings,
-}: {
-  filteredRankings: Ranking[];
-}): React.ReactElement => {
+  setLoading,
+}: PageProps): React.ReactElement => {
   const pageCount = Math.ceil(filteredRankings.length / PAGE_SIZE);
   const [currentPage, setCurrentPage] = useState(0);
-  // const tableRef = useRef(null);
-  // const q = gsap.utils.selector(tableRef);
-
-  // useEffect(() => {
-  //   gsap.to(q('tr[data-table]'), { opacity: 0, x: -100, display: 'none' });
-  // }, [filteredRankings]);
 
   return (
     <div className="holder dark-white">
@@ -51,7 +47,9 @@ const RankingTable = ({
                       ''
                     )}`}
                   >
-                    <a>{ranking.distribution}</a>
+                    <a onClick={() => setLoading(true)} aria-hidden="true">
+                      {ranking.distribution}
+                    </a>
                   </Link>
                 </td>
                 <td className="px-4 text-sm">
@@ -64,7 +62,7 @@ const RankingTable = ({
       <div className="dark-primary mt-1 flex items-center justify-center gap-4 py-2 px-4 text-blue-600 dark:text-blue-300 md:gap-8">
         {[...Array(pageCount)].map((_, i) => (
           <button
-            className="relative rounded px-1 transition-colors ease-in-out hover:bg-accent/60 dark:hover:bg-zinc-600 md:px-4 md:py-2"
+            className="dark-white relative rounded px-2 shadow-sm transition-colors ease-in-out hover:bg-accent/60 dark:hover:bg-zinc-500 md:px-4 md:py-2"
             type="button"
             key={`${i}-pageNum`}
             data-page-num={i}

@@ -35,7 +35,7 @@
     @apply p-2 text-justify italic;
   }
   a {
-    @apply text-blue-700 dark:text-blue-300 outline-none focus:ring;
+    @apply text-blue-700 outline-none focus:ring dark:text-blue-300;
   }
 }
 
@@ -56,7 +56,7 @@
     @apply grid grid-cols-responsive;
   }
   .dark-bg-main {
-    @apply bg-zinc-300 dark:bg-zinc-900 transition-colors ease-in duration-200;
+    @apply bg-zinc-300 transition-colors duration-200 ease-in dark:bg-zinc-900;
   }
   .dark-primary {
     @apply bg-primary dark:bg-zinc-800;
@@ -70,7 +70,7 @@
   .dark-white {
     @apply bg-white dark:bg-zinc-600;
   }
-  .dark-accent{
+  .dark-accent {
     @apply bg-accent dark:bg-zinc-500;
   }
   .dark-light {
@@ -79,6 +79,9 @@
 }
 
 @layer components {
+  .outline {
+    @apply absolute inset-0 rounded;
+  }
   .pill {
     @apply rounded-full px-2 py-1 text-center text-sm font-medium;
   }
@@ -92,7 +95,7 @@
     @apply px-8 py-6 md:p-8;
   }
   .page-container {
-    @apply dark-base max-w-screen-lg md:rounded-md overflow-hidden shadow-sm md:m-6 lg:mx-auto;
+    @apply dark-base max-w-screen-lg overflow-hidden shadow-sm md:m-6 md:rounded-md lg:mx-auto;
   }
   .card {
     @apply dark-white rounded-md p-4 shadow;
@@ -100,8 +103,4 @@
   .card-content {
     @apply flex grow items-center justify-center gap-2;
   }
-}
-
-.outline {
-  @apply inset-0 absolute rounded;
 }
