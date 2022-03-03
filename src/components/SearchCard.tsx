@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useInputState } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { Combobox, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +16,7 @@ const SearchCard = ({
 }: SearchProps): React.ReactElement => {
   const router = useRouter();
   const [selectedItem, setSelectedItem] = useState(list[0]);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useInputState('');
   const filteredList =
     query === ''
       ? list
@@ -36,7 +37,7 @@ const SearchCard = ({
               // displayValue={(dist: Distribution) => dist.name}
               autoComplete="off"
               placeholder="search..."
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={setQuery}
             />
             <Combobox.Button>
               <FontAwesomeIcon icon={faChevronDown} />
