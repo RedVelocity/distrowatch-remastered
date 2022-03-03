@@ -40,6 +40,20 @@
 }
 
 @layer utilities {
+  .bg-gradient {
+    background-image: linear-gradient(
+      to right top,
+      #fdffe3,
+      #e6eeb2,
+      #cddd82,
+      #b5cd72,
+      #9cbc63,
+      #84ac54,
+      #608f4a,
+      #40723f,
+      #245632
+    );
+  }
   .invert-text {
     @apply bg-secondary text-primary;
   }

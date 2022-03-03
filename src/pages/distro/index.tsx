@@ -36,11 +36,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
 type PageProps = {
   rankings: Ranking[];
-  banner: string;
+  // banner: string;
   distroList: Distribution[];
 };
 
-const Distro: NextPage<PageProps> = ({ rankings, banner, distroList }) => {
+const Distro: NextPage<PageProps> = ({ rankings, distroList }) => {
   const [loading, setLoading] = useState(false);
   return (
     <>
@@ -50,19 +50,14 @@ const Distro: NextPage<PageProps> = ({ rankings, banner, distroList }) => {
       <main>
         <Loader isLoading={loading} setIsLoading={() => null} />
         <div className="w-full">
-          <div
-            className="holder relative flex h-[25rem] items-center justify-center bg-center"
-            style={{
-              backgroundImage: `url(${banner})`,
-            }}
-          >
+          <div className="holder bg-gradient relative flex h-[25rem] items-center justify-center bg-center">
             <div className="absolute inset-0 bg-zinc-900/10" />
-            <div className="holder rounded-xl bg-zinc-900/20 shadow-xl shadow-primary/30 backdrop-blur">
+            <div className="holder rounded-xl bg-zinc-100/20 backdrop-blur">
               <div className=" text-white/90">
                 <h3 className="font-semibold uppercase tracking-widest">
                   DistroWatch Rankings
                 </h3>
-                <span className=" text-zinc-300/90">
+                <span className=" text-zinc-100/90">
                   Rankings for last 6 months
                 </span>
               </div>

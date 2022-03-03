@@ -32,7 +32,7 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="even:dark-lightest"
+                className="odd:bg-gradient-to-r odd:from-accent/10 odd:to-primary/10"
               >
                 <td className="p-4">{ranking.no}</td>
                 <td className="p-4">
