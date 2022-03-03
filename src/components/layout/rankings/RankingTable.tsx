@@ -12,16 +12,16 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
   const [currentPage, setCurrentPage] = useState(0);
 
   return (
-    <div className="holder dark-white">
-      <table className="min-w-full">
+    <div className="dark-white">
+      <table className="min-w-full text-center text-sm">
         <thead>
-          <tr className="dark-primary text-left text-xs font-semibold uppercase tracking-wider">
+          <tr className="dark-primary font-semibold uppercase tracking-wider">
             <th className="p-4">Rank</th>
             <th className="p-4">Distribution</th>
             <th className="p-4">Hits Per Day (HPD)</th>
           </tr>
         </thead>
-        <motion.tbody className="divide-y overflow-hidden dark:divide-zinc-500">
+        <motion.tbody className="">
           {filteredRankings
             // Filter based on current page and page size
             .slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE)
@@ -29,14 +29,13 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
               <motion.tr
                 key={ranking.no}
                 data-table
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
+                className="even:dark-lightest"
               >
-                <td className="px-4 text-sm">
-                  <p className="whitespace-no-wrap ">{ranking.no}</p>
-                </td>
-                <td className="px-4 text-sm">
+                <td className="p-4">{ranking.no}</td>
+                <td className="p-4">
                   <Link
                     href={`/distro/${ranking.distrowatch_distribution_detail_url.replace(
                       'https://distrowatch.com/',
@@ -46,18 +45,16 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
                     <a>{ranking.distribution}</a>
                   </Link>
                 </td>
-                <td className="px-4 text-sm">
-                  <p>{ranking.hpd.count}</p>
-                </td>
+                <td className="p-4">{ranking.hpd.count}</td>
               </motion.tr>
             ))}
         </motion.tbody>
       </table>
-      <div className="dark-primary mt-1 flex items-center justify-center p-4 text-blue-600 dark:text-blue-300">
+      <div className="dark-primary flex items-center justify-center py-4 text-blue-600 dark:text-blue-300">
         <div className="divide-x drop-shadow dark:divide-zinc-500" role="group">
           {[...Array(pageCount)].map((_, i) => (
             <button
-              className="dark-white relative px-2 py-1 transition-colors ease-in-out first:rounded-l last:rounded-r hover:bg-accent/60 dark:hover:bg-zinc-500 md:px-4 md:py-2"
+              className="dark-white relative px-3 py-1 outline-none transition-colors ease-in-out first:rounded-l last:rounded-r hover:bg-accent/40 focus:bg-zinc-200 dark:hover:bg-zinc-500 dark:focus:bg-zinc-500 md:px-4 md:py-2"
               type="button"
               key={`${i}-pageNum`}
               data-page-num={i}

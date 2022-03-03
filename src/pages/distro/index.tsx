@@ -48,12 +48,7 @@ const Distro: NextPage<PageProps> = ({ rankings, banner, distroList }) => {
         <title>DistroWatch | Rankings</title>
       </Head>
       <main>
-        <Loader
-          isLoading={loading}
-          setIsLoading={() => {
-            // console.log('true', true);
-          }}
-        />
+        <Loader isLoading={loading} setIsLoading={() => null} />
         <div className="w-full">
           <div
             className="holder relative flex h-[25rem] items-center justify-center bg-center"
