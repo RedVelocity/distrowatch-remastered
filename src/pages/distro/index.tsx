@@ -53,11 +53,11 @@ const Distro: NextPage<PageProps> = ({ rankings, distroList }) => {
           <div className="holder bg-gradient relative flex h-[25rem] items-center justify-center bg-center">
             <div className="absolute inset-0 bg-zinc-900/10" />
             <div className="holder rounded-xl bg-zinc-100/20 backdrop-blur">
-              <div className=" text-white/90">
+              <div className="text-primary">
                 <h3 className="font-semibold uppercase tracking-widest">
                   DistroWatch Rankings
                 </h3>
-                <span className=" text-zinc-100/90">
+                <span className="text-zinc-100">
                   Rankings for last 6 months
                 </span>
               </div>
