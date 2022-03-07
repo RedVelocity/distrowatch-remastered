@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import router from 'next/router';
@@ -8,7 +8,7 @@ import getDistroRankings, { Ranking } from '../../services/getDistroRankings';
 import getDistroList, { Distribution } from '../../services/getDistroList';
 import RankingTable from '../../components/layout/rankings/RankingTable';
 import SearchCard from '../../components/SearchCard';
-import Loader from '../../components/Loader';
+import { LoadingContext } from '../../lib/context/loadingContext';
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
@@ -42,10 +42,11 @@ type PageProps = {
 };
 
 const Distro: NextPage<PageProps> = ({ rankings, distroList }) => {
-  const [loading, setLoading] = useState(false);
-  const handleSelect = (e) => {
+  const { setLoading } = useContext(LoadingContext);
+  const handleSelect = async (e) => {
     setLoading(true);
-    router.push(`/distro/${e.slug}`);
+    await router.push(`/distro/${e.slug}`);
+    setLoading(false);
   };
   return (
     <>
@@ -53,7 +54,6 @@ const Distro: NextPage<PageProps> = ({ rankings, distroList }) => {
         <title>DistroWatch | Rankings</title>
       </Head>
       <main>
-        <Loader isLoading={loading} setIsLoading={() => null} />
         <div className="w-full">
           <div className="holder bg-gradient relative flex h-[25rem] items-center justify-center bg-center">
             <div className="absolute inset-0 bg-zinc-900/10" />

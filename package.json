@@ -6,9 +6,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "git:patch": "npm run lint && npm version patch --force -m",
-    "git:minor": "npm run lint && npm version minor --force -m",
-    "git:major": "npm run lint && npm version major --force -m"
+    "git:patch": "npm run lint && npm --no-git-tag-version version patch && git add -A && git commit -m",
+    "git:minor": "npm run lint && npm --no-git-tag-version version minor && git add -A && git commit -m",
+    "git:major": "npm run lint && npm --no-git-tag-version version major && git add -A && git commit -m"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.3.0",
@@ -52,5 +52,5 @@
     "last 2 versions",
     "not dead"
   ],
-  "version": "5.6.5"
+  "version": "5.6.6"
 }
