@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Combobox } from '@headlessui/react';
 import { useInputState } from '@mantine/hooks';
@@ -9,14 +8,9 @@ import { Distribution } from '../services/getDistroList';
 
 type SearchProps = {
   list: Distribution[];
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  onSelect: (e) => void;
 };
-const SearchCard = ({
-  list,
-  setIsLoading,
-}: SearchProps): React.ReactElement => {
-  const router = useRouter();
-  const [selectedItem, setSelectedItem] = useState(list[0]);
+const SearchCard = ({ list, onSelect }: SearchProps): React.ReactElement => {
   const [query, setQuery] = useInputState('');
   const filteredList =
     query === ''
@@ -28,17 +22,17 @@ const SearchCard = ({
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         );
   return (
-    <Combobox value={selectedItem} onChange={setSelectedItem}>
+    <Combobox value={list[0]} onChange={onSelect}>
       {({ open }) => (
         <div className="mt-4">
           <div className="dark-white relative flex items-center rounded-md py-2 px-4 shadow outline-none focus-within:ring">
             <FontAwesomeIcon icon={faSearch} className="mr-2" />
             <Combobox.Input
               className="dark-white ml-1 w-full outline-none"
-              // displayValue={(dist: Distribution) => dist.name}
+              displayValue={(dist: Distribution) => dist.name}
               autoComplete="off"
               placeholder="search..."
-              onChange={setQuery}
+              onChange={(event) => setQuery(event.target.value)}
             />
             <Combobox.Button>
               <FontAwesomeIcon icon={faChevronDown} />
@@ -62,6 +56,7 @@ const SearchCard = ({
                             key={dist.slug}
                             value={dist}
                             as={React.Fragment}
+                            data-slug={dist.slug}
                           >
                             {({ active }) => (
                               <li
@@ -69,19 +64,7 @@ const SearchCard = ({
                                   active && 'bg-primary dark:bg-zinc-500'
                                 }`}
                               >
-                                <button
-                                  type="button"
-                                  className="w-full text-left"
-                                  data-slug={dist.slug}
-                                  onClick={(e) => {
-                                    setIsLoading(true);
-                                    router.push(
-                                      `/distro/${e.currentTarget.attributes['data-slug'].value}`
-                                    );
-                                  }}
-                                >
-                                  {dist.name}
-                                </button>
+                                {dist.name}
                               </li>
                             )}
                           </Combobox.Option>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import router from 'next/router';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import getDistroRankings, { Ranking } from '../../services/getDistroRankings';
@@ -42,6 +43,10 @@ type PageProps = {
 
 const Distro: NextPage<PageProps> = ({ rankings, distroList }) => {
   const [loading, setLoading] = useState(false);
+  const handleSelect = (e) => {
+    setLoading(true);
+    router.push(`/distro/${e.slug}`);
+  };
   return (
     <>
       <Head>
@@ -61,7 +66,7 @@ const Distro: NextPage<PageProps> = ({ rankings, distroList }) => {
                   Rankings for last 6 months
                 </span>
               </div>
-              <SearchCard setIsLoading={setLoading} list={distroList} />
+              <SearchCard onSelect={handleSelect} list={distroList} />
             </div>
           </div>
           <RankingTable filteredRankings={rankings} />
