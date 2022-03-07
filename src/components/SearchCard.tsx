@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Combobox } from '@headlessui/react';
 import { useInputState } from '@mantine/hooks';
+import { useRouter } from 'next/router';
+import { Combobox, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Distribution } from '../services/getDistroList';
@@ -31,8 +30,8 @@ const SearchCard = ({
     <Combobox value={selectedItem} onChange={setSelectedItem}>
       {({ open }) => (
         <div className="mt-4">
-          <div className="dark-white relative flex items-center rounded-md py-2 px-4 shadow outline-none focus-within:ring">
-            <FontAwesomeIcon icon={faSearch} className="mr-2" />
+          <div className="dark-white relative flex items-center gap-2 rounded-md py-2 px-4 shadow outline-none focus-within:ring">
+            <FontAwesomeIcon icon={faSearch} />
             <Combobox.Input
               className="dark-white ml-1 w-full outline-none"
               // displayValue={(dist: Distribution) => dist.name}
@@ -43,57 +42,58 @@ const SearchCard = ({
             <Combobox.Button>
               <FontAwesomeIcon icon={faChevronDown} />
             </Combobox.Button>
-            <AnimatePresence>
-              {open && (
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+            {open && (
+              <Transition
+                as={React.Fragment}
+                enter="transition ease-in-out duration-200"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-1 scale-100"
+                leave="transition ease-in duration-500"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-0"
+              >
+                <Combobox.Options
+                  static
+                  className="dark-white absolute top-[100%] left-0 z-20 mt-2 min-w-full overflow-hidden rounded-md p-4 shadow dark:shadow-primary/20"
                 >
-                  <Combobox.Options
-                    static
-                    className="dark-white absolute top-[100%] left-0 z-20 mt-2 min-w-full overflow-hidden rounded-md p-4 shadow dark:shadow-primary/20"
-                  >
-                    <div className="max-h-72 divide-y overflow-y-auto dark:divide-zinc-500">
-                      {filteredList.length > 0 ? (
-                        filteredList.map((dist) => (
-                          <Combobox.Option
-                            key={dist.slug}
-                            value={dist}
-                            as={React.Fragment}
-                          >
-                            {({ active }) => (
-                              <li
-                                className={`p-2 ${
-                                  active && 'bg-primary dark:bg-zinc-500'
-                                }`}
+                  <div className="max-h-72 divide-y overflow-y-auto dark:divide-zinc-500">
+                    {filteredList.length > 0 ? (
+                      filteredList.map((dist) => (
+                        <Combobox.Option
+                          key={dist.slug}
+                          value={dist}
+                          as={React.Fragment}
+                        >
+                          {({ active }) => (
+                            <li
+                              className={`p-2 ${
+                                active && 'bg-primary dark:bg-zinc-500'
+                              }`}
+                            >
+                              <button
+                                type="button"
+                                className="w-full text-left"
+                                data-slug={dist.slug}
+                                onClick={(e) => {
+                                  setIsLoading(true);
+                                  router.push(
+                                    `/distro/${e.currentTarget.attributes['data-slug'].value}`
+                                  );
+                                }}
                               >
-                                <button
-                                  type="button"
-                                  className="w-full text-left"
-                                  data-slug={dist.slug}
-                                  onClick={(e) => {
-                                    setIsLoading(true);
-                                    router.push(
-                                      `/distro/${e.currentTarget.attributes['data-slug'].value}`
-                                    );
-                                  }}
-                                >
-                                  {dist.name}
-                                </button>
-                              </li>
-                            )}
-                          </Combobox.Option>
-                        ))
-                      ) : (
-                        <li className="select-none p-2">Nothing Found.</li>
-                      )}
-                    </div>
-                  </Combobox.Options>
-                </motion.span>
-              )}
-            </AnimatePresence>
+                                {dist.name}
+                              </button>
+                            </li>
+                          )}
+                        </Combobox.Option>
+                      ))
+                    ) : (
+                      <li className="select-none p-2">Nothing Found.</li>
+                    )}
+                  </div>
+                </Combobox.Options>
+              </Transition>
+            )}
           </div>
         </div>
       )}
