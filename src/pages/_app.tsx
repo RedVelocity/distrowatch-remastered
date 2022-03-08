@@ -7,6 +7,8 @@ import Header from '../components/Header';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/main.css';
+import { LoadingContextProvider } from '../lib/context/loadingContext';
+import Loader from '../components/Loader';
 
 export type ColorScheme = 'dark' | 'light';
 export type SetColorScheme = (
@@ -31,10 +33,13 @@ const App = ({ Component, pageProps }: AppProps) => {
   // Return if UI not mounted
   if (!mounted) return null;
   return (
-    <div className="page-container">
-      <Header colorScheme={colorScheme} setColorScheme={setColorScheme} />
-      <Component {...pageProps} />
-    </div>
+    <LoadingContextProvider>
+      <div className="page-container">
+        <Loader />
+        <Header colorScheme={colorScheme} setColorScheme={setColorScheme} />
+        <Component {...pageProps} />
+      </div>
+    </LoadingContextProvider>
   );
 };
 

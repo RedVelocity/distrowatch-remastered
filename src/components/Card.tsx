@@ -2,34 +2,21 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-
-type CardProps = {
-  title: string;
-  icon: IconProp;
-  children: React.ReactNode;
-};
-const Card = ({ title, icon, children }: CardProps): React.ReactElement => (
-  <div className="card flex flex-col">
-    <h5 className="mb-2 border-b-2 pb-2 dark:border-zinc-500">
-      {icon && <FontAwesomeIcon icon={icon} />}
-      {` ${title}`}
-    </h5>
-    <div className="card-content p-2">{children}</div> {/* Card.Content */}
-  </div>
-);
+import { motion, Variants } from 'framer-motion';
 
 type MainContentProps = {
   text: string;
   textColor?: string;
   large?: boolean;
-  children?;
+  children?: React.ReactNode;
 };
-Card.MainContent = ({
+type MainBodyContent = (props: MainContentProps) => React.ReactElement;
+const MainContent: MainBodyContent = ({
   text,
   textColor = 'text-zinc-400',
   large,
   children,
-}: MainContentProps): React.ReactElement => {
+}) => {
   const CustomTag = large ? 'h2' : 'h5';
   return (
     <CustomTag className={`inline-block ${textColor}`}>
@@ -41,11 +28,12 @@ Card.MainContent = ({
 };
 
 type SubContentProps = { text: string; textColor?: string; bold?: boolean };
-Card.SubContent = ({
+type SubBodyContent = (props: SubContentProps) => React.ReactElement;
+const SubContent: SubBodyContent = ({
   text,
   textColor = 'text-zinc-400',
   bold,
-}: SubContentProps): React.ReactElement => (
+}) => (
   <span
     className={`${textColor} text-base font-normal tracking-normal ${
       bold && 'font-medium'
@@ -54,5 +42,35 @@ Card.SubContent = ({
     {text}
   </span>
 );
+
+type CardChildren = {
+  MainContent?: MainBodyContent;
+  SubContent?: SubBodyContent;
+};
+type CardProps = {
+  title: string;
+  icon: IconProp;
+  children: React.ReactNode;
+  variants?: Variants;
+};
+type CardComponent = (props: CardProps) => React.ReactElement;
+
+const Card: CardComponent & CardChildren = ({
+  title,
+  icon,
+  children,
+  variants,
+}) => (
+  <motion.div className="card flex flex-col" variants={variants}>
+    <h5 className="mb-2 border-b-2 pb-2 dark:border-zinc-500">
+      {icon && <FontAwesomeIcon icon={icon} />}
+      {` ${title}`}
+    </h5>
+    <div className="card-content p-2">{children}</div> {/* Card.Content */}
+  </motion.div>
+);
+
+Card.MainContent = MainContent;
+Card.SubContent = SubContent;
 
 export default Card;

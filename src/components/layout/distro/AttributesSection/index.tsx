@@ -1,7 +1,5 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChartBar,
@@ -12,6 +10,7 @@ import {
   faSquareXmark,
   faSquareCheck,
 } from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
 import { Attributes } from '../../../../models/Distro.d';
 import Card from '../../../Card';
 import getTextColor from './getTextColor';
@@ -27,40 +26,43 @@ const AttributesSection = ({
   rating,
   attributes,
 }: Props): React.ReactElement => {
-  const containerRef = useRef(null);
-  const q = gsap.utils.selector(containerRef);
   const ratingTextColor = getTextColor('rating', rating);
   const rankTextColor =
     attributes.rank.length > 0 &&
     getTextColor('rank', Number.parseInt(attributes.rank[0]));
   const isDormant = attributes.status !== 'Active';
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const animation = gsap.from(q('.card'), {
-      y: 100,
-      opacity: 0,
-      stagger: 0.05,
-      ease: 'power2.inOut',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'center bottom',
-        end: 'bottom bottom',
-        // markers: true,
+  const containerVariants = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: 'beforeChildren',
+        staggerChildren: 0.3,
+        duration: 0,
       },
-    });
-    return () => {
-      animation.kill();
-    };
-  }, []);
+    },
+    hidden: {
+      opacity: 0,
+    },
+  };
+  const cardVariants = {
+    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 100 },
+  };
 
   return (
     <section
       className={`holder dark-accent ${marginRequired && 'mt-16'}`}
-      ref={containerRef}
+      // ref={containerRef}
     >
-      <div className="responsive-grid gap-4">
-        <Card title="User Rating" icon={faChartBar}>
+      <motion.div
+        className="responsive-grid gap-4"
+        initial="hidden"
+        whileInView="visible"
+        variants={containerVariants}
+        viewport={{ once: true }}
+      >
+        <Card title="User Rating" icon={faChartBar} variants={cardVariants}>
           {rating > 0 ? (
             <Card.MainContent
               text={rating.toFixed(2)}
@@ -73,7 +75,7 @@ const AttributesSection = ({
             <Card.MainContent text="No Ratings Yet" />
           )}
         </Card>
-        <Card title="Popularity" icon={faChartLine}>
+        <Card title="Popularity" icon={faChartLine} variants={cardVariants}>
           {attributes.rank.length > 0 ? (
             <Card.MainContent
               text={attributes.rank[0]}
@@ -86,7 +88,7 @@ const AttributesSection = ({
             <Card.MainContent text="Not Ranked" />
           )}
         </Card>
-        <Card title="Origin" icon={faGlobeAfrica}>
+        <Card title="Origin" icon={faGlobeAfrica} variants={cardVariants}>
           {attributes.flags.map((flag, index) => (
             <div
               className="relative aspect-[5/3] w-14 overflow-hidden rounded"
@@ -102,7 +104,7 @@ const AttributesSection = ({
             </div>
           ))}
         </Card>
-        <Card title="Status" icon={faCheckCircle}>
+        <Card title="Status" icon={faCheckCircle} variants={cardVariants}>
           <FontAwesomeIcon
             icon={isDormant ? faSquareXmark : faSquareCheck}
             className={`text-2xl ${isDormant ? 'text-danger' : 'text-success'}`}
@@ -112,13 +114,13 @@ const AttributesSection = ({
             textColor={isDormant ? 'text-danger' : 'text-success'}
           />
         </Card>
-        <Card title="Based On" icon={faProjectDiagram}>
+        <Card title="Based On" icon={faProjectDiagram} variants={cardVariants}>
           <Card.MainContent
             text={attributes.basedOn.join(', ')}
             textColor="text-zinc-500 dark:text-zinc-300"
           />
         </Card>
-      </div>
+      </motion.div>
     </section>
   );
 };
