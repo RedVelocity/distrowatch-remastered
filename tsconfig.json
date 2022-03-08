@@ -25,6 +25,6 @@
     "src/**/*.tsx"
   ],
   "exclude": [
-    "node_modules",".next","src/styles"
+    "node_modules",".next","src/styles",
   ]
 }

@@ -34,7 +34,7 @@ const Header = ({
       </Link>
       <button
         type="button"
-        className="invert-text relative flex gap-1 rounded-full p-2 text-xl outline-none focus:ring dark:bg-zinc-600"
+        className="transition-color invert-text relative flex gap-1 rounded-full p-2 text-xl outline-none duration-500 ease-in focus:ring dark:bg-zinc-600"
         onClick={toggleColorScheme}
       >
         <FontAwesomeIcon icon={faFan} />

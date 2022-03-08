@@ -27,9 +27,10 @@ const HeroSection = ({
           className="rounded-full outline-none focus:ring"
         >
           <motion.div
-            className="relative h-40 w-40 rounded-full bg-white p-2 shadow dark:bg-zinc-300"
+            className="relative h-40 w-40 rounded-full bg-white shadow dark:bg-zinc-300"
             whileHover={{
               scale: 1.1,
+              transition: { duration: 0.1 },
             }}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}

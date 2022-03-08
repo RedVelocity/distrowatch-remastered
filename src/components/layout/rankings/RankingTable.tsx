@@ -15,10 +15,16 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
     <div className="dark-white">
       <table className="min-w-full text-center text-sm">
         <thead>
-          <tr className="dark-primary font-semibold capitalize tracking-wider">
-            <th className="p-4">Rank</th>
-            <th className="p-4">Distribution</th>
-            <th className="p-4">Hits Per Day (HPD)</th>
+          <tr className="dark-primary font-semibold uppercase tracking-wider">
+            <th className="p-4">
+              <h5>Rank</h5>
+            </th>
+            <th className="p-4">
+              <h5>Distribution</h5>
+            </th>
+            <th className="p-4">
+              <h5>Hits Per Day (HPD)</h5>
+            </th>
           </tr>
         </thead>
         <motion.tbody className="">
