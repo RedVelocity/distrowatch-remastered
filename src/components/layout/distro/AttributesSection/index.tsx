@@ -10,7 +10,7 @@ import {
   faSquareXmark,
   faSquareCheck,
 } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Attributes } from '../../../../models/Distro.d';
 import Card from '../../../Card';
 import getTextColor from './getTextColor';
@@ -37,7 +37,7 @@ const AttributesSection = ({
       opacity: 1,
       transition: {
         when: 'beforeChildren',
-        staggerChildren: 0.3,
+        staggerChildren: 0.2,
         duration: 0,
       },
     },
@@ -45,8 +45,8 @@ const AttributesSection = ({
       opacity: 0,
     },
   };
-  const cardVariants = {
-    visible: { opacity: 1, y: 0 },
+  const cardVariants: Variants = {
+    visible: { opacity: 1, y: 0, transition: { ease: 'easeOut' } },
     hidden: { opacity: 0, y: 100 },
   };
 

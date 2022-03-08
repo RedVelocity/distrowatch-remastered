@@ -24,7 +24,7 @@ const HeroSection = ({
           href={`https://distrowatch.com/table.php?distribution=${slug}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="outline-none focus:ring-2"
+          className="rounded-full outline-none focus:ring"
         >
           <motion.div
             className="relative h-40 w-40 rounded-full bg-white p-2 shadow dark:bg-zinc-300"
@@ -51,9 +51,7 @@ const HeroSection = ({
         }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         transition={{
-          type: 'tween',
           ease: 'easeInOut',
-          delay: 0.5,
           duration: 0.8,
         }}
       >

@@ -12,7 +12,7 @@ const CombinedCard = ({
   <motion.div
     className="w-full md:w-auto"
     initial={{ opacity: 0, y: 100 }}
-    whileInView={{ opacity: 1, y: 0 }}
+    whileInView={{ opacity: 1, y: 0, transition: { ease: 'easeOut' } }}
     viewport={{ once: true }}
   >
     <ul
