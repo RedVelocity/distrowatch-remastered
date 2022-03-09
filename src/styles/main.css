@@ -95,9 +95,9 @@
 }
 
 @layer components {
-  /* .outline {
+  .outline {
     @apply absolute inset-0 rounded;
-  } */
+  }
   .pill {
     @apply rounded-full px-2 py-1 text-center text-sm font-medium;
   }
@@ -120,3 +120,4 @@
     @apply flex grow items-center justify-center gap-2;
   }
 }
+

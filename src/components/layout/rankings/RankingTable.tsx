@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Ranking } from '../../../services/getDistroRankings';
+import Pager from '../../Pager';
 
 type PageProps = {
   filteredRankings: Ranking[];
@@ -33,8 +34,7 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
             .slice(currentPage * PAGE_SIZE, currentPage * PAGE_SIZE + PAGE_SIZE)
             .map((ranking) => (
               <motion.tr
-                key={ranking.no}
-                data-table
+                key={`rtr-${ranking.no}`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
@@ -56,34 +56,11 @@ const RankingTable = ({ filteredRankings }: PageProps): React.ReactElement => {
             ))}
         </motion.tbody>
       </table>
-      <div className="dark-primary flex items-center justify-center py-4 text-blue-600 dark:text-blue-300">
-        <div className="divide-x drop-shadow dark:divide-zinc-500" role="group">
-          {[...Array(pageCount)].map((_, i) => (
-            <button
-              className="dark-white relative px-3 py-1 outline-none transition-colors ease-in-out first:rounded-l last:rounded-r hover:bg-accent/40 focus:bg-zinc-200 dark:hover:bg-zinc-500 dark:focus:bg-zinc-500 md:px-4 md:py-2"
-              type="button"
-              key={`${i}-pageNum`}
-              data-page-num={i}
-              onClick={(e) =>
-                setCurrentPage(
-                  Number.parseInt(
-                    e.currentTarget.attributes['data-page-num'].value
-                  )
-                )
-              }
-            >
-              {i + 1}
-              {currentPage === i && (
-                <motion.div
-                  className="z-10 text-accent outline"
-                  initial={false}
-                  layoutId="pager"
-                />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
+      <Pager
+        pageCount={pageCount}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   );
 };
