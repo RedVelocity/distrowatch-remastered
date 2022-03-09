@@ -5,12 +5,12 @@
 @layer base {
   /* Root Styles */
   html {
-    @apply scroll-smooth text-[14px];
+    @apply text-[14px];
     -webkit-tap-highlight-color: transparent;
   }
   body {
     font-family: 'Roboto', sans-serif;
-    @apply dark-bg-main;
+    @apply dark-bg-main scroll-smooth;
   }
   /* Base Styles */
   h1 {
@@ -95,9 +95,9 @@
 }
 
 @layer components {
-  .outline {
+  /* .outline {
     @apply absolute inset-0 rounded;
-  }
+  } */
   .pill {
     @apply rounded-full px-2 py-1 text-center text-sm font-medium;
   }

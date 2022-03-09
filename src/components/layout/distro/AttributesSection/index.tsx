@@ -32,7 +32,7 @@ const AttributesSection = ({
     getTextColor('rank', Number.parseInt(attributes.rank[0]));
   const isDormant = attributes.status !== 'Active';
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     visible: {
       opacity: 1,
       transition: {
@@ -46,7 +46,10 @@ const AttributesSection = ({
     },
   };
   const cardVariants: Variants = {
-    visible: { opacity: 1, y: 0, transition: { ease: 'easeOut' } },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
     hidden: { opacity: 0, y: 100 },
   };
 

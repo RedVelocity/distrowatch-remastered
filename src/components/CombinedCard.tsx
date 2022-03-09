@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CUSTOM_EASE } from '../lib/constants';
 
 type Props = {
   cardItems: { title: string; text: string }[];
@@ -12,7 +13,11 @@ const CombinedCard = ({
   <motion.div
     className="w-full md:w-auto"
     initial={{ opacity: 0, y: 100 }}
-    whileInView={{ opacity: 1, y: 0, transition: { ease: 'easeOut' } }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+      transition: { ease: CUSTOM_EASE },
+    }}
     viewport={{ once: true }}
   >
     <ul

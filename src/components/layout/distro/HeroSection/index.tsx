@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { CUSTOM_EASE } from '../../../../lib/constants';
 
 type Props = {
   title: string;
@@ -28,10 +29,6 @@ const HeroSection = ({
         >
           <motion.div
             className="relative h-40 w-40 rounded-full bg-white shadow dark:bg-zinc-300"
-            whileHover={{
-              scale: 1.1,
-              transition: { duration: 0.1 },
-            }}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -52,8 +49,9 @@ const HeroSection = ({
         }}
         animate={{ scale: 1, y: 0, opacity: 1 }}
         transition={{
-          ease: 'easeInOut',
+          delay: 0.5,
           duration: 0.8,
+          ease: CUSTOM_EASE,
         }}
       >
         <Image src={banner} layout="fill" priority />

@@ -1,16 +1,48 @@
-/* eslint-disable react/display-name */
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { motion, Variants } from 'framer-motion';
 
-type MainContentProps = {
+// Container type
+type CardContainer = (props: {
+  title: string;
+  icon: IconProp;
+  children: React.ReactNode;
+  variants?: Variants;
+}) => React.ReactElement;
+// Main content type
+type MainBodyContent = (props: {
   text: string;
   textColor?: string;
   large?: boolean;
   children?: React.ReactNode;
+}) => React.ReactElement;
+// Sub content type
+type SubBodyContent = (props: {
+  text: string;
+  textColor?: string;
+  bold?: boolean;
+}) => React.ReactElement;
+// Cart children type
+type CardChildren = {
+  MainContent: MainBodyContent;
+  SubContent?: SubBodyContent;
 };
-type MainBodyContent = (props: MainContentProps) => React.ReactElement;
+type CardComponent = CardContainer & CardChildren;
+
+const Card: CardComponent = ({ title, icon, children, variants }) => {
+  const CustomDiv = variants ? motion.div : 'div';
+  return (
+    <CustomDiv className="card flex flex-col" variants={variants}>
+      <h5 className="mb-2 border-b-2 pb-2 dark:border-zinc-500">
+        {icon && <FontAwesomeIcon icon={icon} />}
+        {` ${title}`}
+      </h5>
+      <div className="card-content p-2">{children}</div> {/* Card.Content */}
+    </CustomDiv>
+  );
+};
+
 const MainContent: MainBodyContent = ({
   text,
   textColor = 'text-zinc-400',
@@ -27,8 +59,6 @@ const MainContent: MainBodyContent = ({
   );
 };
 
-type SubContentProps = { text: string; textColor?: string; bold?: boolean };
-type SubBodyContent = (props: SubContentProps) => React.ReactElement;
 const SubContent: SubBodyContent = ({
   text,
   textColor = 'text-zinc-400',
@@ -41,33 +71,6 @@ const SubContent: SubBodyContent = ({
   >
     {text}
   </span>
-);
-
-type CardChildren = {
-  MainContent?: MainBodyContent;
-  SubContent?: SubBodyContent;
-};
-type CardProps = {
-  title: string;
-  icon: IconProp;
-  children: React.ReactNode;
-  variants?: Variants;
-};
-type CardComponent = (props: CardProps) => React.ReactElement;
-
-const Card: CardComponent & CardChildren = ({
-  title,
-  icon,
-  children,
-  variants,
-}) => (
-  <motion.div className="card flex flex-col" variants={variants}>
-    <h5 className="mb-2 border-b-2 pb-2 dark:border-zinc-500">
-      {icon && <FontAwesomeIcon icon={icon} />}
-      {` ${title}`}
-    </h5>
-    <div className="card-content p-2">{children}</div> {/* Card.Content */}
-  </motion.div>
 );
 
 Card.MainContent = MainContent;
