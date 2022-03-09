@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useLocalStorageValue } from '@mantine/hooks';
 import { config } from '@fortawesome/fontawesome-svg-core';
-
 import type { AppProps } from 'next/app';
+
+import { LoadingContextProvider } from '../lib/context/loadingContext';
 import Header from '../components/Header';
 
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/main.css';
-import { LoadingContextProvider } from '../lib/context/loadingContext';
 
 export type ColorScheme = 'dark' | 'light';
 export type SetColorScheme = (
   val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
 ) => void;
-// Deisable FA autoAddCss
+// Disable FA autoAddCss
 config.autoAddCss = false;
 const App = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useLocalStorageValue<ColorScheme>({
