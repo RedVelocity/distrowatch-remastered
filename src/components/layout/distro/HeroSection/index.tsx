@@ -42,23 +42,23 @@ const HeroSection = ({
       </div>
     </section>
     {bannerPresent && (
-      <motion.div
+      <div
         className="holder relative z-10 -my-6 mx-8 aspect-video h-full overflow-hidden rounded-md bg-zinc-400 shadow-xl md:mx-auto md:h-[18rem]"
-        initial={{
-          scale: 0.5,
-          y: 100,
-          opacity: 0,
-        }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
-        transition={{
-          type: 'tween',
-          ease: 'easeInOut',
-          delay: 0.5,
-          duration: 0.8,
-        }}
+        // initial={{
+        //   scale: 0.5,
+        //   y: 100,
+        //   opacity: 0,
+        // }}
+        // animate={{ scale: 1, y: 0, opacity: 1 }}
+        // transition={{
+        //   type: 'tween',
+        //   ease: 'easeInOut',
+        //   delay: 0.5,
+        //   duration: 0.8,
+        // }}
       >
         <Image src={banner} layout="fill" priority />
-      </motion.div>
+      </div>
     )}
   </>
 );
